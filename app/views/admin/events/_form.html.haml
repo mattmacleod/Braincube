@@ -1,0 +1,73 @@
+=form_errors @event
+-@main_form = f
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Basic information", "#basic"
+		%li
+			%h2= link_to "Content", "#content"
+		%li
+			%h2= link_to "Images", "#images"
+		%li
+			%h2= link_to "Tagging", "#tagging"
+		%li
+			%h2= link_to "Performances", "#performances"
+	
+	%fieldset#basic
+		%legend Basic information
+		.full= f.text_field :title, :required => true, :note => "Main title for the event. This will be displayed across the site."
+		.half
+			.full= f.check_box :featured, :label => "Featured event?"
+			.full= f.check_box :print, :label => "Include in print listings?"
+			.full= f.check_box :enabled, :label => "Enabled", :note => "If unchecked, will be hidden across the site and in print."
+			
+		.half
+			.full= f.select :affiliate_type, ([""] + Braincube::Config::AffiliateCodes.map{|k,v| [k,v]}), :note => "Select the type of affiliate code for this event"
+			.full= f.text_field :affiliate_code, :note => "Enter the affiliate code required."
+	
+	%fieldset#content
+		%legend Content
+		.full= f.text_area :abstract, :label => "Short description", :note => "This will appear on listings across the site.", :rows => 3, :maxlength => 255
+		.full= f.text_area :short_content, :label => "Short content", :note => "Short content for print. Will use abstract if left blank.", :rows => 3, :maxlength => 255
+		
+		.word_counter
+			%span.label Word count:
+			%span.word_count= @event.content.to_s.word_count
+		.full
+			= f.text_area :content, :rows => 30, :class=>"text_editor"
+					
+	%fieldset#images
+		%legend Images
+		.asset_search_suggestion= @event.title
+		=note "Choose the assets to be attached to this item. The first item will be used as the main image."
+		= image_attachments( f )
+		
+	%fieldset#tagging
+		%legend Tagging
+		.full= f.tag_select :tag_list, :label => "Event tags"
+		
+	%fieldset#performances
+		%legend Performances
+		=note "Create performances for this event. Performances are times when the event runs."
+		
+		.event_performance_tools
+			= link_to "New performance", "#", :class => "button new"
+			= link_to "Clear all", "#", :class => "button delete delete_all"
+			= link_to "Clear expired", "#", :class => "button delete delete_old"
+
+		.event_performance_items
+
+			.empty{ :style => ("display: none" unless f.object.performances.empty?)}
+				There are no performances on record
+
+			%table.performance_list{ :style => ("display: none" if f.object.performances.empty?)}
+				%thead
+					%tr
+						%th.first Time
+						%th Venue
+						%th.icons.last
+				%tbody.performance_list_contents
+					= render :partial => "performance", :locals => { :f => f }, :collection => f.object.performances
+		

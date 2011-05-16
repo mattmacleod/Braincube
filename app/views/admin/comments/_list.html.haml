@@ -1,0 +1,20 @@
+- if comments.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 5}
+			No comments found
+
+
+- comments.each do |comment|
+	%tr{ :class=>"#{cycle(:even, :odd)}#{" reported" if comment.reported? && !comment.approved? }" }
+		%td
+			= link_to comment.item.title, edit_admin_comment_path( comment )
+			%br/
+			Posted by 
+			%strong= comment.name
+			<#{ mail_to comment.email }>
+		%td= print_time( comment.created_at )
+		%td.comment_approval.approve
+			- unless comment.approved?
+				= approve_link "Approve comment", approve_admin_comment_path( comment.id )
+		%td.destroy
+			= delete_link "Delete comment", admin_comment_path( comment.id )

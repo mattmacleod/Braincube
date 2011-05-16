@@ -1,0 +1,32 @@
+=form_errors @user
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Personal details", "#personal"
+		%li
+			%h2= link_to "Account settings", "#account"
+		%li
+			%h2= link_to "Profile", "#profile"
+			
+	%fieldset#personal
+		%legend Personal details
+		.full= f.text_field :name, :required => true
+		.full= f.text_field :email, :required => true
+		.full= f.text_field :position, :label => "Staff position"
+		.full= f.text_field :country
+		.half= f.text_field :postcode, :label => "Postal code"
+		.third= f.text_field :date_of_birth, :class=>:date
+	
+	%fieldset#account
+		%legend User settings
+		.full= f.select :role, User::Roles.map{|r| [r.humanize, r]}
+		.full= f.password_field :password, :required => true, :note => ("Leave blank to keep current password" unless @user.new_record?)
+		.full= f.check_box :enabled, :note => "Uncheck to disable this user's login"
+		.full= f.check_box :verified, :note => "Has the user confirmed their email address?"
+		.full= f.check_box :mailing_list, :label => "Include on mailing list?"
+
+	%fieldset#profile
+		%legend Profile
+		.full= f.text_area :profile, :rows => 30, :class=>"text_editor"

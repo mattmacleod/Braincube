@@ -1,0 +1,10 @@
+- content_for :wrapper do
+	%body.wide
+		- content_for :body do
+
+			#content_body_wide
+				= yield
+			
+		= render :partial => "layouts/admin/parts/wrapper"
+		
+= render :partial => "layouts/admin/parts/head"

@@ -1,0 +1,25 @@
+-@page_title = "Comment manager"
+%h1 Comment manager
+.search_form
+	.summary
+		Found #{ pluralize(@comments.total_entries, "comment") }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search comments:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+
+= flash_message
+
+#pagination_wrapper
+	- unless @comments.blank?
+		= render :partial => "table", :locals=>{:comments => @comments}
+	-else
+		= note "There are no comments", :type=>:alert
+
+=continuous_pagination "comments"

@@ -1,0 +1,19 @@
+- if @assets.blank? && params[:page].blank? && !params[:q].blank?
+	=note "No images found"
+	
+- @assets.each do |asset|
+	.icon{:class=>"#{asset.asset_type} #{cycle(:first, "", "", :last)}"}
+		- if asset.asset_type == :image
+			=image_tag( asset.asset.url(:thumb) )
+		- else
+			.icon_area= asset.asset_type
+		.label
+			%strong= asset.title
+			%em
+				- if asset.asset_type == :image
+					=link_to "Show", asset.asset.url(:original), :class => :asset_show, :rel => "prettyPhoto", :title => asset.title
+					=link_to "Use", asset.asset.url(:thumb), :id => "#{asset.id}", :class => :asset_use
+				- else
+					=link_to "Download", asset.asset.url(:original), :class => :asset_download, :title => asset.title
+					=link_to "Use", "/images/admin/embed/icons/file_types/#{asset.asset_type}.png", :id => "#{asset.id}", :class => "asset_use linked"
+			.clear

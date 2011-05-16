@@ -1,0 +1,9 @@
+%table.list.alternating
+	%thead
+		%tr
+			%th Event
+			%th Enabled
+			%th.icon 
+			%th.icon
+	%tbody
+		= render :partial => "list", :locals => {:comments => comments}

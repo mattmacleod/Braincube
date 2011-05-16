@@ -1,0 +1,9 @@
+= note "Choose the options for venues to be displayed on this page"
+
+= f.fields_for :properties do |ff|
+	.full= ff.tag_select :venues_tags, :label => "Show venues with these tags:", :required => true, :popular => false, :value => f.object.properties[:venues_tags]
+	.full= ff.check_box :venues_all_tags, :label => "Require all tags?", :note => "Check to only show venues matching all tags. Otherwise, will show venues matching any tag.", :checked => f.object.properties[:venues_all_tags]=="1"
+	.full= ff.select :venues_cities, City::options_for_select, :label => "Cities", :required => false, :note => "Show only venues in the selected cities", :html_options => { :multiple => true}, :selected => f.object.properties[:venues_cities]
+	.full
+		.quarter= ff.text_field :venues_items_per_page, :label => "Items per page", :note => "Enter the number of venues to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:venues_items_per_page]
+		.half= ff.select :venues_sort_order, Braincube::Config::PageSortOrder.map{|k,v|[v,k]}, :label => "Default sort order", :value => f.object.properties[:venues_sort_order]

@@ -1,0 +1,9 @@
+- if cities.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 3}
+			No cities found
+			
+- cities.each do |city|
+	%tr{ :class => cycle(:even, :odd) }
+		%td= link_to city.name, edit_admin_city_path( city )
+		%td.destroy= delete_link "Delete city", admin_city_path(city.id)

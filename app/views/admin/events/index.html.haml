@@ -1,0 +1,25 @@
+-@page_title = "Event manager"
+%h1 Events
+.search_form
+	.summary
+		Found #{ pluralize(@events.total_entries, "event") }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search events:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+
+= flash_message
+
+#pagination_wrapper
+	- unless @events.blank?
+		= render :partial => "table", :locals=>{:events => @events}
+	-else
+		= note "There are no events", :type=>:alert
+
+=continuous_pagination "events"

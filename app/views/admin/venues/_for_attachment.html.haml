@@ -1,0 +1,14 @@
+-if venues.blank?
+	.empty No venues found
+	
+%ul.ajax_search_list
+	- venues.each do |venue|
+		%li{ :class => ("last" if venue==venues.last) }
+			%span.item_title
+				= venue.title
+				- if action==:add
+					%span.item_link= link_to "Use", "", :class => "venue_search_add_link", :id => "venue_add_link_#{venue.id}"
+				- elsif action==:remove
+					%span.item_link= link_to "Remove", "", :class => "venue_search_remove_link", :id => "venue_remove_link_#{venue.id}"
+				
+			%span.item_details_1= venue.address_elements.join(", ")

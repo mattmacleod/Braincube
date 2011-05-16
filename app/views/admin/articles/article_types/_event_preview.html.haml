@@ -1,0 +1,7 @@
+%fieldset.article_type{ :id => "article_type_#{k}" }
+	%legend Event preview properties
+	
+	= f.fields_for :properties do |properties|
+		.full= properties.text_field :event_name, :value => f.object.properties[:event_name]
+		.full= properties.text_field :event_venue, :value => f.object.properties[:event_venue]
+		.full.bottom= properties.text_field :event_dates, :value => f.object.properties[:event_dates]

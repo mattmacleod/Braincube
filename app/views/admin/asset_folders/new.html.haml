@@ -1,0 +1,16 @@
+= labelled_form_for [:admin, @asset_folder] do |f|
+
+	#content_body.content_body
+
+		- @page_title = "New folder | Asset Manager"
+		%h1= @asset_folder.name.blank? ? "New asset folder" : @asset_folder.name
+
+		=form_errors @asset_folder
+
+		%fieldset.standard
+			%legend Folder details
+			.full= f.text_field :name, :required => true
+			.full= f.select :parent_id, asset_folder_options(AssetFolder.root, f.object.parent_id), :required => true, :label => "Parent folder"
+	
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}

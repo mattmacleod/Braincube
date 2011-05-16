@@ -1,0 +1,16 @@
+=labelled_form_for [:admin, @page] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "#{@page.title} | Page Manager"
+		%h1 
+			Page:
+			=@page.title
+		=flash_message
+		
+		=note "Edit the page's details using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

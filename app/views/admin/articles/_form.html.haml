@@ -1,0 +1,46 @@
+= form_errors @article
+= hidden_field_tag(:current_article_id, f.object.id) unless f.object.new_record?
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Basics", "#basic"
+		%li
+			%h2= link_to "Content", "#content"
+		%li
+			%h2= link_to "Additional", "#additional"
+		%li
+			%h2= link_to "Events", "#events"
+		%li
+			%h2= link_to "Venues", "#venues"
+		%li
+			%h2= link_to "Tagging", "#tagging"
+		%li
+			%h2= link_to "Images", "#assets"
+		%li
+			%h2= link_to "Publishing", "#publishing"
+
+	%fieldset#basic
+		= render :partial => "form_basic", :locals => { :f => f }
+		
+	%fieldset#content
+		= render :partial => "form_content", :locals => { :f => f }
+		
+	%fieldset#additional
+		= render :partial => "form_additional", :locals => { :f => f }
+		
+	%fieldset#events
+		= render :partial => "form_events", :locals => { :f => f }
+
+	%fieldset#venues
+		= render :partial => "form_venues", :locals => { :f => f }
+		
+	%fieldset#tagging
+		= render :partial => "form_tags", :locals => { :f => f }
+		
+	%fieldset#assets
+		= render :partial => "form_assets", :locals => { :f => f }
+		
+	%fieldset#publishing
+		= render :partial => "form_publishing", :locals => { :f => f }

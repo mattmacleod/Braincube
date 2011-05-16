@@ -1,0 +1,5 @@
+%legend Additional
+.half= f.text_area :abstract, :maxlength => 255, 		:rows => 5, :label => "Web-only abstract", :note => "This will override the article standfirst for online listing pages"
+.half= f.text_area :footnote, :rows => 5, :note => "This will appear at the foot of the article in print and on the web"
+.full= f.text_field :web_address, :maxlength => 255, :note => "Enter a web link relating to this article. Additional links can be supplied in the footnotes."
+.full.bottom= f.text_area :pullquote, :maxlength => 255, 		:rows => 5

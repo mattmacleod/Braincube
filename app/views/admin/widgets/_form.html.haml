@@ -1,0 +1,29 @@
+= form_errors @widget
+
+.tabbed_fieldsets.widget_forms
+
+	%ul.tabs
+		%li
+			%h2= link_to "Basics", "#basic"
+			%h2= link_to "Image select", "image"
+		- Braincube::Config::WidgetTypes.each_pair do |key, value|
+			%li.type{ :id => "widget_type_#{key}_tab" }
+				%h2= link_to "#{value} options", "##{key}"
+
+	%fieldset#basic
+		%legend Basic info
+		.full= f.text_field :title, :required => true, :maxlength => 255, :note => "This is the reference title of this widget - it will not appear on the front of the site"
+		.half= f.select	:widget_type, [""]+ Braincube::Config::WidgetTypes.map{|k,v|[v,k.to_s]}, :required => true, :note => "Choose the type of this widget."
+	
+	%fieldset#image
+		= note "Images will only be used on widgets that require them"
+		.asset_search_suggestion= @widget.title
+		- @assets_have_urls = true
+		= image_attachments( f )
+		
+	- Braincube::Config::WidgetTypes.each_pair do |key, value|
+		%fieldset{ :id => "widget_type_#{key}_pane" }
+			%legend= value
+			- begin
+				= render( :partial => "/admin/widgets/widget_types/#{key}", :locals => { :f => f })
+			- rescue MissingTemplate

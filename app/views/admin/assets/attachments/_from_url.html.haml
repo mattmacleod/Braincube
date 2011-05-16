@@ -1,0 +1,21 @@
+=labelled_form_for [:admin, @url_upload], :url => attach_admin_asset_folders_path( :anchor => :url ), :html=>{:multipart => true} do |f|
+
+	#left_pane
+		=note "Enter a URL in the box to download and use an asset from another website. The asset will be saved in the asset library in the folder you specify."
+		=form_errors @url_upload
+	
+		.full
+			=f.text_field :url, :required => true, :note => "Enter the full URL of the file to retrieve."
+			
+		.half
+			.full= f.text_field :title, :required => true
+			.full= f.select :asset_folder_id, asset_folder_options(AssetFolder.root, f.object.asset_folder_id), :required => true, :label => "Folder for asset"
+		
+		.half
+			.full= f.text_area :caption, :rows => 4
+			.full= f.text_area :credit, :rows => 3
+	
+	#right_pane	
+		.box
+			%h2 Actions
+			= submit_tag "Download asset", :class => "button new"

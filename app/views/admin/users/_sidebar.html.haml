@@ -1,0 +1,13 @@
+- if @user
+	.box
+		%h2 Actions
+		%fieldset.buttons
+			=link_to "Cancel", admin_users_path, :class=>"button cancel"
+			=f.submit "Save user", :class=>"button save bottom"
+
+- if !@user
+	.box
+		%h2 Tools
+		= link_to "New user", new_admin_user_path, :class => "button new"
+		- unless @users.empty?
+			= link_to "Download user list", {:format=>:csv}, :class => "button export bottom" 

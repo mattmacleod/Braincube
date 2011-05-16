@@ -1,0 +1,13 @@
+=labelled_form_for [:admin, @venue], :url => admin_venues_path do |f|
+	
+	#content_body.content_body
+		- @page_title = "New venue | Venue Manager"
+		%h1 Create new venue
+		=flash_message
+
+		=note "Fill in the form below to create a new venue"
+
+		=render :partial=>"form", :locals=>{:f=>f}
+	
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}

@@ -1,0 +1,4 @@
+- if @assets.blank? && params[:page].blank? && !params[:q].blank?
+	=note "No assets found"
+	
+= render :partial => "asset", :collection => @assets

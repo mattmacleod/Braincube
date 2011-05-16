@@ -1,0 +1,12 @@
+= f.fields_for :page_widgets, page_widget do |ff|
+	%li.widget{ :style => ("display: none" if ff.object._destroy), :class => ("existing" unless ff.object.new_record?)}
+		
+		%h4
+			Drag to re-order
+			= link_to "Remove this", "#", :class => "delete_widget"
+		= ff.hidden_field :_destroy, :class => "destroy_field"
+		= ff.hidden_field :sort_order, :class => "sort_order"
+		= ff.hidden_field :slot, :class => "slot"
+			
+		.full
+			= ff.select :widget_id, Widget.all.map{|w| [w.title,w.id]}

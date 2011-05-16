@@ -1,0 +1,4 @@
+= note "Choose the options for the section home page"
+
+= f.fields_for :properties do |ff|
+	.full= ff.tag_select :section_tags, :label => "Show articles with these tags:", :required => true, :popular => false, :value => f.object.properties[:section_tags]

@@ -1,0 +1,32 @@
+%h1 Choose an asset to attach
+
+.tabbed_fieldsets.asset_attachment_window
+
+
+	%ul.tabs
+		%li
+			%h2= link_to "Asset library", "#library"
+		%li
+			%h2= link_to "Upload", "#upload"
+		%li
+			%h2= link_to "Get from URL", "#url"
+		%li
+			%h2= link_to "Google search", "#google"
+
+	%fieldset#basic
+		%legend Asset Library
+		= render :partial => "/admin/assets/attachments/library"
+		
+	%fieldset#upload
+		%legend Upload
+		= render :partial => "/admin/assets/attachments/upload"
+		
+	%fieldset#url
+		%legend Get from URL
+		= render :partial => "/admin/assets/attachments/from_url"
+
+	%fieldset#google
+		%legend Google search
+		= render :partial => "/admin/assets/attachments/google"
+		
+

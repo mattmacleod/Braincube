@@ -1,0 +1,38 @@
+-@page_title = "Page manager"
+
+%h1 Pages
+
+.search_form
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :pages_search_field, "Search pages:"
+			= text_field_tag :q, params[:q], :id => :pages_search_field, :autocomplete => "off"
+			.buttons
+				= ajax_spinner("search")
+
+= flash_message
+
+#page_list_area
+	#page_list_wrapper
+		- unless @root.blank?
+			= render :partial => "list", :locals=>{ :root => @root }
+		-else
+			= note "There are no pages", :type => :alert
+	
+	#page_tree_loading
+		Loading...
+		
+#page_list_recent
+	%h2.section Recently updated
+	%ul.recent_list
+		- @recent_pages.each do |page|
+			%li
+				.left
+					.title
+						= link_to page.title, edit_admin_page_path( page )
+					.url
+						\/#{ page.url }
+				.updated
+					Updated: #{ print_time( page.updated_at ) }
+		

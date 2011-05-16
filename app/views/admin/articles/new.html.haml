@@ -1,0 +1,11 @@
+= labelled_form_for @article, :url => admin_articles_path do |f|
+
+	#content_body
+		- @page_title = "New article | Article manager"
+		%h1= @article.title.blank? ? "New article" : @article.title
+		= note "This article will not be autosaved until you have manually saved it at least once", :type => :alert
+		= render :partial => "form", :locals => { :f => f }
+	
+	#content_sidebar
+		= render :partial => "sidebar", :locals=>{ :f => f }
+	

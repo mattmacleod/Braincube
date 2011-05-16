@@ -1,0 +1,41 @@
+- @page_title = "Tag: #{ @tag.name }"
+
+#content_body
+	%h1= @tag.name
+	
+	- if @tag.taggables.empty?
+		=note "There are no items associated with this tag", :alert
+	- else
+		=note "There #{@tag.taggables.length==1 ? "is 1 item" : "are #{ @tag.taggables.length} items"} tagged with this tag"
+	
+		%table.list.taggable_list
+			%thead
+				%tr
+					%th Type
+					%th Item
+
+			%tbody#list_body
+
+				- @tag.taggables.each do |taggable|
+					%tr{ :class=>cycle(:even, :odd) }
+						- case taggable.class.name
+						- when "Article"
+							%td.category Article
+							- unless taggable.removed?
+								%td= link_to taggable.title, edit_admin_article_path( taggable )
+							- else
+								%td 
+									%strong Deleted article: 
+									=taggable.title
+						- when "Event"
+							%td.category Event
+							%td= link_to taggable.title, edit_admin_event_path( taggable )
+						- when "Venue"
+							%td.category Venue
+							%td= link_to taggable.title, edit_admin_venue_path( taggable )
+						- else
+							%td.category= taggable.class.name
+							%td= responds_to(:title) ? taggable.title : "Unknown title"
+	
+#content_sidebar
+	=render :partial => "sidebar"

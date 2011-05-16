@@ -1,0 +1,13 @@
+=labelled_form_for :user, :url => admin_users_path do |f|
+	
+	#content_body.content_body
+		- @page_title = "New User | User Manager"
+		%h1 Create new user
+		=flash_message
+
+		=note "Fill in the form below to create a new user account"
+
+		=render :partial=>"form", :locals=>{:f=>f}
+	
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}

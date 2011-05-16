@@ -1,0 +1,11 @@
+%table.list.article_list
+	%thead
+		%tr
+			%th Article title
+			%th Last updated
+			%th.center Words
+			%th.center Assets
+			%th.action_icons Actions
+		
+	%tbody#list_body
+		= render :partial => "/admin/articles/list", :locals => { :articles => articles }

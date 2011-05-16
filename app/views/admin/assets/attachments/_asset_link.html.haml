@@ -1,0 +1,26 @@
+= f.fields_for :asset_links, asset_link do |ff|
+	%li.asset{ :style => ("display: none" if ff.object._destroy), :class => ("existing" unless ff.object.new_record?)}
+		%h4
+			Drag to re-order
+			= link_to "Remove this", "#", :class => "delete_asset"
+		= ff.hidden_field :_destroy, :class => "destroy_field"
+		= ff.hidden_field :sort_order, :class => "sort_order"
+		.thumbnail
+			- if ff.object.asset && !ff.object.asset.new_record?
+				- if ff.object.asset.asset_type==:image
+					= image_tag ff.object.asset.asset.url( :thumb )
+				- else
+					= image_tag "/images/admin/embed/icons/file_types/#{ff.object.asset.asset_type}.png"
+				= ff.hidden_field :asset_id, :class => "asset_id"
+			- else 
+				= "<img src='REPLACE_WITH_THUMBNAIL_PATH'/>".html_safe
+				= ff.hidden_field :asset_id, :class => "asset_id", :value => "REPLACE_WITH_ASSET_ID"
+				
+			
+		.caption
+			- if @assets_have_urls
+				.full= ff.text_area :caption, :label => "Custom caption", :note => "Leave blank to use no caption", :maxlength => 255, :rows => 4
+				.full= ff.text_area :url, :label => "URL for link", :note => "Enter the URL for this image to link to", :maxlength => 255, :rows => 2
+			- else
+				.full= ff.text_area :caption, :label => "Custom caption", :note => "Leave blank to use the default caption", :maxlength => 255, :rows => 4
+			

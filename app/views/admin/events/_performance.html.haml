@@ -1,0 +1,47 @@
+%tr.summary{ :style => ("display: none" if performance._destroy), :class => [cycle(:even, :odd, :name => "summary"), ("existing" unless performance.new_record?), ("expired" unless performance.starts_at > Time::now)].compact.join(" ")}
+		
+	%td.first
+		%strong Start:
+		
+		= performance.starts_at.to_s(:listings)
+		- if performance.ends_at
+			%br/
+			%strong End:
+			= performance.ends_at.to_s(:listings)
+	
+	%td= performance.venue.admin_summary
+	
+	%td.icons.last
+		= link_to "Edit", "#", :class => "edit", :title => "Edit this performance"
+		= link_to "Remove", "#", :class => "remove", :title => "Remove this performance"
+
+%tr.details{ :style => ("display: none" if performance._destroy), :class => [cycle(:even, :odd, :name => "details"), ("existing" unless performance.new_record?)].join(" ")}
+	%td{ :colspan => 4 }
+		
+		%h3 
+			Edit performances
+			= link_to "Hide details", "#"
+		
+		= f.fields_for :performances, performance do |ff|
+		
+			= ff.hidden_field :_destroy, :class => "destroy_field"
+
+			.full= ff.text_field :performer, :label => "Performer / act", :note => "Additional information on the performer or act. Can be left blank if the event title is enough.", :maxlength => 255
+
+			.full
+				.half= ff.text_field :price, :label => "Price", :note => "Text as applicable"
+				.half= ff.text_field :venue_id, :note => "Choose from list or add a new venue first", :class => :venue_selector
+
+			.half
+				.half=ff.text_field 	:starts_at, 			:value => (ff.object.starts_at.to_s(:parseable) if ff.object.starts_at), :required => true, 	:note => "Start date and time. Must be supplied.", :class=>:datetime, :label => "Starts at"
+				.half=ff.text_field 	:ends_at, 				:value => (ff.object.ends_at.to_s(:parseable) if ff.object.ends_at), :required => false, 	:note => "End date and time. Can be left blank.", :class=>:datetime, :label => "Ends at"
+
+			.half= ff.check_box :drop_in, :label => "Drop-in event?", :note => "Check if this performance is an all-day event that can be visited at different times"
+		
+			.full
+				.half
+					.full= ff.select :ticket_type, ([""] + Braincube::Config::TicketTypes.map{|k,v| [k,v]})
+					.full= ff.text_area :notes, :label => "Notes", :note => "Additional information about this performance that does not apply to the event overall.", :rows => 4, :maxlength => 255
+				.half
+					.full= ff.select :affiliate_type, ([""] + Braincube::Config::AffiliateCodes.map{|k,v| [k,v]}), :note => "Overrides the main event affiliate."
+					.full= ff.text_field :affiliate_code

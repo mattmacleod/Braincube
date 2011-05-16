@@ -1,0 +1,3 @@
+%h1 Please wait...
+
+= javascript_tag "if(parent.braincube.admin.asset_manager.attachment.editor_select){ window.location.href=\"/admin/asset_folders/attach_variation/#{ @asset.id }\" } else { parent.braincube.admin.asset_manager.attachment.add_attachment( \"#{ @asset.asset.url(:thumb) }\", \"#{ @asset.id }\" ); parent.$.prettyPhoto.close(); }"

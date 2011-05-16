@@ -1,0 +1,33 @@
+.search_form
+	.summary
+		Found #{ pluralize(@assets.total_entries, "asset") }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search assets:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+=flash_message
+
+#left_pane
+	- if (@assets).length>0	
+		#folder_browser
+			%h2= @current_folder.name
+			#main_folder_wrapper
+				=render :partial => "admin/assets/attachments/folder"	
+	- else
+		#folder_browser
+			%h2= @current_folder.name
+			=note "No assets found"
+
+	=continuous_pagination "asset_manager"
+	
+#right_pane
+	.box
+		%h2 Folders
+		%ul.asset_folder_list.treeview-black
+			=asset_folder_tree(AssetFolder.root)

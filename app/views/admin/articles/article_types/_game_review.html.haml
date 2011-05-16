@@ -1,0 +1,12 @@
+%fieldset.article_type{ :id => "article_type_#{k}" }
+	%legend Game review properties
+	
+	.full
+		= render :partial => "admin/articles/article_types/review_rating", :locals => { :f => f, :k => k }
+	
+	= f.fields_for :properties do |properties|
+		.full= properties.text_field :game_title, :value => f.object.properties[:game_title]
+		.full= properties.text_field :game_publisher, :value => f.object.properties[:game_publisher]
+		.full= properties.text_field :game_release_date, :value => f.object.properties[:game_release_date]
+		.full= properties.text_field :game_consoles, :value => f.object.properties[:game_consoles]
+		.full.bottom= properties.text_field :game_price, :value => f.object.properties[:game_price]

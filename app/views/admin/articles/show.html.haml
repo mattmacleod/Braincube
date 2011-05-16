@@ -1,0 +1,26 @@
+- @page_title = "Show article: #{@article.title}"
+
+%h1= @article.title
+.note 
+	
+-unless @article.standfirst.blank?
+	%h2 Standfirst
+	=simple_format( @article.standfirst )
+	
+-unless @article.pullquote.blank?
+	%h2 Pullquote
+	=simple_format( @article.pullquote )
+	
+%h2 Writers
+= simple_format( @article.cached_authors) 
+
+%h2 Main content
+= @article.content.to_s.html_safe
+
+-unless @article.footnote.blank?
+	%h2 Footnotes
+	= simple_format( @article.footnote )
+
+-unless @article.events.empty?
+	%h2 Associated events
+	= @article.events.map{|e| simple_format("<strong>#{e.title}</strong>, #{e.cached_venues}, #{e.cached_times}, #{e.cached_dates}") }.join.html_safe

@@ -1,0 +1,17 @@
+- content_for :wrapper do
+	%body.default
+		- content_for :body do
+
+			#content_body
+				= yield
+
+			#content_sidebar
+				-begin
+					= render :partial => "sidebar"
+				-rescue MissingTemplate
+					= yield :sidebar 
+		= render :partial => "layouts/admin/parts/wrapper"
+
+= render :partial => "layouts/admin/parts/head"
+
+	

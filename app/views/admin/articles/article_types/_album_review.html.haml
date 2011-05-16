@@ -1,0 +1,11 @@
+%fieldset.article_type{ :id => "article_type_#{k}" }
+	%legend Album review properties
+	
+	.full
+		= render :partial => "admin/articles/article_types/review_rating", :locals => { :f => f, :k => k }
+	
+	= f.fields_for :properties do |properties|
+		.full= properties.text_field :album_title, :value => f.object.properties[:album_title]
+		.full= properties.text_field :album_artist, :value => f.object.properties[:album_artist]
+		.full= properties.text_field :album_label, :value => f.object.properties[:album_label]
+		.full.bottom= properties.text_field :album_release_date, :value => f.object.properties[:album_release_date]

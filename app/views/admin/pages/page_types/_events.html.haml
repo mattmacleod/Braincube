@@ -1,0 +1,9 @@
+= note "Choose the options for events to be displayed on this page"
+
+= f.fields_for :properties do |ff|
+	.full= ff.tag_select :events_tags, :label => "Show events with these tags:", :required => true, :popular => false, :value => f.object.properties[:events_tags]
+	.full= ff.check_box :events_all_tags, :label => "Require all tags?", :note => "Check to only show events matching all tags. Otherwise, will show events matching any tag.", :checked => f.object.properties[:events_all_tags]=="1"
+	.full= ff.select :events_cities, City::options_for_select, :label => "Cities", :required => false, :note => "Show only events in the selected cities", :html_options => { :multiple => true}, :selected => f.object.properties[:events_cities]
+	.full
+		.quarter= ff.text_field :events_items_per_page, :label => "Items per page", :note => "Enter the number of events to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:events_items_per_page]
+		.half= ff.select :events_sort_order, Braincube::Config::PageSortOrder.map{|k,v|[v,k]}, :label => "Default sort order", :value => f.object.properties[:events_sort_order]

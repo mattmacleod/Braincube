@@ -1,0 +1,44 @@
+embed_assets: on
+package_path: packages
+
+javascripts:
+  braincube_frontend:
+    - public/javascripts/application.js
+  braincube_admin:
+    - public/javascripts/admin/libraries.js 
+    - public/javascripts/admin/jquery-1.5.js  
+    - public/javascripts/admin/jquery-ui.js
+    - public/javascripts/admin/jquery-tools.js
+    - public/javascripts/admin/jquery-rails.js
+    - public/javascripts/admin/jquery-form.js
+    - public/javascripts/admin/jquery-googlemaps.js
+    - public/javascripts/admin/jquery-treeview.js
+    - public/javascripts/admin/jquery-jstree.js
+    - public/javascripts/admin/jquery-prettyphoto.js
+    - public/javascripts/admin/jquery-jcrop.js
+    - public/javascripts/admin/jquery-ui-timepicker.js
+    - public/javascripts/tiny_mce/jquery.tinymce.js
+    - public/javascripts/admin/admin.js  
+    - public/javascripts/admin/login_page.js  
+    - public/javascripts/admin/ui.js
+    - public/javascripts/admin/ui.pagination.js
+    - public/javascripts/admin/articles.js
+    - public/javascripts/admin/venues.js
+    - public/javascripts/admin/tagging.js
+    - public/javascripts/admin/tinymce.js
+    - public/javascripts/admin/asset_manager.js
+    - public/javascripts/admin/events.js
+    - public/javascripts/admin/pages.js
+    - public/javascripts/admin/tag_manager.js
+    - public/javascripts/admin/widgets.js
+
+stylesheets:
+  braincube_frontend:
+    - public/stylesheets/styles.css
+  braincube_admin:
+    - public/stylesheets/admin/styles.css
+  braincube_show_article:
+    - public/stylesheets/admin/show_article.css
+  braincube_print_article:
+    - public/stylesheets/admin/print_article.css
+  

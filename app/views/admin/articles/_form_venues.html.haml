@@ -1,0 +1,23 @@
+%fieldset.subform.half.left
+	%legend Find venues
+
+	.ajax_search_field
+		%label Venue search
+		=text_field_tag :venue_search, "", :class => "ajax"
+		=ajax_spinner :venue_search, "eeeeff"
+		%span.form_note Enter some text to search for venues
+
+	.ajax_search_results
+		%h3 Search results
+		#venue_search_results
+			.empty
+				Enter text in the box above to find venues
+
+%fieldset.subform.half.right
+	%legend Associated venues
+	= f.hidden_field :associated_venue_ids, :id => :associated_venue_ids
+	.ajax_search_results			
+		%h3 Currently associated venues
+		#associated_venue_list
+			=render :partial => "/admin/venues/for_attachment", :locals => {:venues => Venue.where(:id => f.object.associated_venue_ids.split(",")), :action => :remove}
+

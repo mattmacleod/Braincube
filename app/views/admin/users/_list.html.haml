@@ -1,0 +1,13 @@
+- if users.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 5}
+			No users found
+			
+- users.each do |user|
+	%tr{ :class=>"#{cycle(:even, :odd)}#{" disabled" unless user.enabled}" }
+		%td= link_to user.name, admin_user_path(user)
+		%td= user.email
+		%td= print_time(user.created_at)
+		%td.center= print_bool(user.enabled)
+		%td.center= print_bool(user.verified)
+		%td= user.role.capitalize

@@ -1,0 +1,16 @@
+=labelled_form_for [:admin, @user] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "#{@user.email} | User Manager"
+		%h1 
+			User 
+			=@user.email
+		=flash_message
+		
+		=note "Edit the user's details using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

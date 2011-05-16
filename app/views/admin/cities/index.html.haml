@@ -1,0 +1,25 @@
+-@page_title = "City manager"
+%h1 Cities
+.search_form
+	.summary
+		Found #{ pluralize(@cities.total_entries, "city") }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search cities:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+
+= flash_message
+
+#pagination_wrapper
+	- unless @cities.blank?
+		= render :partial => "table", :locals=>{:cities => @cities}
+	-else
+		= note "There are no cities", :type=>:alert
+
+=continuous_pagination "cities"

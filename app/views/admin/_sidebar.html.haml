@@ -1,0 +1,31 @@
+.box
+	%h2 Quick actions
+	%fieldset.buttons
+		= link_to "New article", new_admin_article_path, :class=>"button new"
+		- if %w(PUBLISHER ADMIN).include? current_user.role
+			= link_to "Publishing queue", publishing_admin_articles_path, :class=>"button edit"
+		= link_to "Upload an asset", new_admin_asset_path, :class=>"button import"
+		= link_to "Edit listings", admin_events_path, :class=>"button edit"
+
+.box
+	%h2 Stats
+	%table.stats
+		%tbody
+			%tr
+				%th Articles
+				%td= Article.active.count
+			%tr
+				%th Live articles
+				%td= Article.live.count
+			%tr
+				%th Images
+				%td= Asset.count
+			%tr
+				%th Comments
+				%td= Comment.count
+			%tr
+				%th Registered users
+				%td= User.count
+			%tr
+				%th Logged in now
+				%td= User.where("accessed_at > ?", Time::now-1.hour).count

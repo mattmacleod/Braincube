@@ -1,0 +1,15 @@
+-if events.blank?
+	.empty No events found
+	
+%ul.ajax_search_list
+	- events.each do |event|
+		%li{ :class => ("last" if event==events.last) }
+			%span.item_title
+				= event.title
+				- if action==:add
+					%span.item_link= link_to "Use", "", :class => "event_search_add_link", :id => "event_add_link_#{event.id}"
+				- elsif action==:remove
+					%span.item_link= link_to "Remove", "", :class => "event_search_remove_link", :id => "event_remove_link_#{event.id}"
+				
+			%span.item_details_1= event.cached_venues.blank? ? "Unknown venue" : event.cached_venues
+			%span.item_details_2= "#{event.cached_times.blank? ? "Unknown times" : event.cached_times}, #{event.cached_dates.blank? ? "Unknown dates" : event.cached_dates}"

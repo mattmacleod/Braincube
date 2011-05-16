@@ -1,0 +1,22 @@
+=labelled_form_for [:admin, @asset], :html=>{:multipart => true} do |f|
+
+	#content_body.content_body
+
+		- @page_title = "Upload asset | Asset Manager"
+		%h1= @asset.title.blank? ? "New asset" : @asset.title
+
+		=note "Maximum file upload size is #{Braincube::Config::AssetMaxUploadSize/1024/1024} megabytes. Larger uploads will be rejected."
+		=form_errors @asset
+			
+		%fieldset.standard
+			%legend Asset information
+			.half
+				.full= f.text_field :title, :required => true
+				.full= f.select :asset_folder_id, asset_folder_options(AssetFolder.root, f.object.asset_folder_id), :required => true, :label => "Folder for asset"
+				.full= f.file_field :asset, :label => "Asset file", :note => "Choose the file to upload"
+			.half
+				.full= f.text_area :caption, :rows => 4
+				.full= f.text_area :credit, :rows => 3
+					
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}

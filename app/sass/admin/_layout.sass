@@ -1,0 +1,104 @@
+//****************************************************************************
+// Main layout elements and styles for things in 'em
+//***************************************************************************/
+	
+
+//****************************************************************************
+// Header
+//***************************************************************************/
+
+#header
+	height: 110px
+	background: $grey_1
+	position: relative
+
+#header_wrapper
+	@extend .container_12
+	padding: 20px 0px 0px 0px
+	position: relative
+	height: 90px
+	
+#header_title
+	font-size: 4em
+	line-height: 1em
+	font-weight: bold
+	color: $grey_2
+	
+#admin_tools
+	background: $grey_2
+	color: $grey_3
+	position: absolute
+	right: 20px
+	top: -10px
+	padding: 15px 10px 7px 10px
+	@extend .medium_rounded
+	a
+		color: white
+		padding: 0 0.25em
+	
+	
+//****************************************************************************
+// Main layout
+//***************************************************************************/
+
+body
+	background: $grey_5
+	
+#wrapper
+	min-height: 400px
+	background: white
+	
+#main_content
+	@extend .container_12, .clearfix
+	padding: 20px 0px 30px 0px	
+
+#content_body
+	@extend .grid_9, .first
+
+#content_body_wide
+	@extend .grid_12, .first, .last
+			
+#content_sidebar, #right_pane
+	@extend .grid_3, .last
+	
+	.box
+		@extend .clearfix, .small_rounded_top
+		margin-bottom: 2em
+		background: $grey_6
+		padding: 10px
+		
+		h2
+			@extend .small_rounded_top
+			padding: 0.3em 0.5em
+			margin: -10px -10px 10px -10px
+			font-size: 1.2em
+			line-height: 1em
+			color: white
+			background: $grey_1
+			border-bottom: 3px $grey_2 solid
+			
+		input, select
+			margin-bottom: 1em
+	
+	table.stats
+		width: 100%
+		th
+		td
+			font-weight: bold
+			text-align: right
+	
+//****************************************************************************
+// Footer
+//***************************************************************************/
+
+#footer_wrapper
+	background: $grey_5
+	width: 100%
+	bottom: 0
+	font-size: 0.9em
+	
+#footer
+	@extend .container_12
+	padding: 1em
+	
+

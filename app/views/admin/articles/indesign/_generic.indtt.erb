@@ -1,0 +1,9 @@
+<%= indesign_with_newline indesign_header.html_safe -%>
+<%= indesign_with_newline indesign_format( @article.title, "Body \(Feature\)", "Feature").html_safe -%>
+<%= indesign_with_newline simple_indesign_format( indesign_filtered_content(@article.standfirst), "Standfirst").html_safe -%>
+<%= indesign_with_newline simple_indesign_format( indesign_filtered_content(@article.writer_string), "Standfirst", "credit").html_safe -%>
+<%= indesign_with_newline indesign_review_stars( @article ).html_safe -%>
+<%= indesign_with_newline indesign_format( indesign_filtered_content(@article.content), "Body Feature", "Feature").html_safe -%>
+<%= indesign_with_newline simple_indesign_format( @article.footnote, "Footnote").html_safe -%>
+<%= indesign_with_newline simple_indesign_format( @article.web_address, "Footnote").html_safe -%>
+<%= indesign_with_newline simple_indesign_format( indesign_filtered_content(@article.pullquote), "Pullquote").html_safe -%>

@@ -1,0 +1,78 @@
+= form_errors @page
+
+.tabbed_fieldsets.page_forms
+
+	%ul.tabs
+		%li
+			%h2= link_to "Basics", "#basic"
+		%li
+			%h2= link_to "Content", "#content"
+		%li
+			%h2= link_to "Images", "#images"
+		- Braincube::Config::PageTypes.each_pair do |key, value|
+			%li.type{ :id => "page_type_#{key}_tab" }
+				%h2= link_to value, "##{key}"
+		%li
+			%h2= link_to "Publishing", "#publishing"
+		%li
+			%h2= link_to "Widgets", "#widgets"
+
+	%fieldset#basic
+		%legend Basic info
+		.full= f.text_field :title, :required => true, :maxlength => 255, :note => "This will be the main title of the page."
+		.half= f.select :parent_id, "<option></option>"+page_options(Page.root, f.object.parent_id), :label => "Child of...", :note => "Choose the parent page"
+		.half= f.select	:page_type, Braincube::Config::PageTypes.map{|k,v|[v,k.to_s]}, :required => true, :note => "Choose the type of content that will appear on this page."
+		.full= f.text_field :url, :required => true, :maxlength => 255, :note => "This will be the URL of the page relative to the home page. Do not include an initial forward slash."
+						
+	%fieldset#content
+		%legend Main content
+		.full= f.text_area :abstract, :rows => 4, :maxlength => 255, :label => "Abstract", :note => "This will be used as the abstract for this page."
+		.full= f.text_area :content, :rows => 30, :class=>"text_editor", :label => "Text content"
+	
+	%fieldset#images
+		= note "Images will only be used on pages that require them - home page and section landing pages"
+		.asset_search_suggestion= @page.title
+		- @assets_have_urls = true
+		= image_attachments( f )
+	
+	- Braincube::Config::PageTypes.each_pair do |key, value|
+		%fieldset{ :id => "page_type_#{key}_pane" }
+			%legend= value
+			- begin
+				= render( :partial => "/admin/pages/page_types/#{key}", :locals => { :f => f })
+			- rescue MissingTemplate
+			
+	%fieldset#publishing
+		%legend Publishing settings
+		.full
+			.half= f.text_field :starts_at, :value => (f.object.starts_at.to_s(:parseable) if f.object.starts_at), :required => true, 	:note => "When will this page start showing online?", :class=>:datetime, :label => "Publishing date"
+			.half= f.text_field :ends_at, 	:value => (f.object.ends_at.to_s(:parseable) if f.object.ends_at), :required => false, 	:note => "When will this page stop showing online?", :class=>:datetime, :label => "End date"
+		.full
+			.half= f.check_box :enabled, :label => "Page enabled?"
+
+	%fieldset#widgets
+		%legend Widgets
+			
+		=note "Choose the widgets to display on this page. If you do not specify any widgets for a slot, this page will inherit the widgets displayed on its parent."
+		
+		- Braincube::Config::WidgetSlots.each do |key,value|
+			
+			.widget_slot
+				%h3.clear #{ value } widgets
+			
+				.new_page_widget_code
+					= new_page_widget_form( f, key )
+
+				.page_widget_tools
+					= link_to "Add widget", "#", :class => "button new", "data-slot" => key
+					= link_to "Clear all", "#", :class => "button delete", "data-slot" => key
+
+				.page_widget_items
+
+					.empty{ :style => ("display: none" unless f.object.page_widgets.empty?)}
+						There are no widgets
+
+					%ul.page_widget_list
+						- f.object.page_widgets.where(:slot => key).sort{ |a,b| a.sort_order <=> b.sort_order }.each do |page_widget|
+							= render :partial => "/admin/pages/page_widget", :locals => { :f => f, :page_widget => page_widget, :slot => key }
+		

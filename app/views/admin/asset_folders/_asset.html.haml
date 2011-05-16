@@ -1,0 +1,15 @@
+.icon{:class=>"#{asset.asset_type} #{cycle(:first, "", "", "", :last)}"}
+	- if asset.asset_type == :image
+		=image_tag( asset.asset.url(:thumb) )
+	- else
+		.icon_area= asset.asset_type
+	.label
+		%strong= asset.title
+		%em
+			- if asset.asset_type == :image
+				=link_to "Show", asset.asset.url(:original), :class => :asset_show, :rel => "prettyPhoto", :title => asset.title
+			- else
+				=link_to "Download", asset.asset.url(:original), :class => :asset_download, :title => asset.title
+			=link_to "Edit", edit_admin_asset_path(asset), :class => :asset_edit, :title => "Edit asset"
+			=link_to "Delete", admin_asset_path(asset), :method=>:delete, :confirm=>"Are you sure? This asset will be removed from any items it is currently associated with.", :class => :asset_delete, :title => "Delete asset"
+		.clear

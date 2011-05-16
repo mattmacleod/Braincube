@@ -1,0 +1,24 @@
+= form_errors @comment
+- @main_form = f
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Comment details", "#basic"
+		%li
+			%h2= link_to "Content", "#content"
+	
+	%fieldset#basic
+		%legend Comment details
+		- if f.object.user
+			=note "The user #{ link_to f.object.user.email, admin_user_path(f.object.user) } was logged in when this comment was posted"
+		
+		.full= f.text_field :name, :required => true, :note => "Name of the commenter"
+		.full= f.text_field :email, :required => true, :note => "Email of the commenter"
+		.half= f.check_box :reported, :required => true, :note => "Comment marked reported?"
+		.half= f.check_box :approved, :required => true, :note => "Comment approved by moderator?"
+		
+	%fieldset#content	
+		%legend Content
+		.full= f.text_area :content, :required => true, :note => "Content of the comment"

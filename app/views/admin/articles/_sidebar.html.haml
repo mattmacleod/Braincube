@@ -1,0 +1,43 @@
+- if @article
+	#article_lock_info
+		= render :partial => "admin/articles/lock_info", :locals => { :lock_status => @lock_status, :article => @article }
+		
+	.box
+		%h2 Article actions
+		%fieldset.buttons
+			= link_to "Cancel", "#{@article.queue}_admin_articles".to_sym, :class=>"button cancel"
+			
+			- unless @article.new_record?
+				= f.submit "Save draft", :class=>"button save save_draft"
+				= link_to "Obliterate this article", admin_article_path(@article), :method => :delete, :confirm => "Are you sure you want to delete this article?", :class=>"button delete"			
+
+			- unless @article.live?
+				.additional
+			
+					%p When you are finished, check the box below to submit your article to the next editing stage
+					= label_tag :stage_complete, :class => :wrap_label do
+						= check_box_tag :stage_complete, 1, false, :class => :check_box
+						= article_next_stage_name( @article )
+			
+					- if [:pubisher, :admin].include?( current_user.role.downcase.to_sym ) && !( @article.queue==:publishing )
+						%p You have the option of skipping other editing stages and making this article live immediately (subject to the start and end dates given)
+						= label_tag :publish_now, :class => :wrap_label do
+							= check_box_tag :publish_now, 1, false, :class => :check_box
+							Skip stages and publish now
+					
+			= f.submit "Save and close", :class=>"button save bottom"
+			
+
+- if !@article
+	.box
+		%h2 Filter articles
+		=label_tag :publication_id, "Publication:"
+		=select_tag	:publication_id,	publication_options_for_list
+		
+		=label_tag :section_id, "Section:"
+		=select_tag	:section_id,	section_options_for_list
+		
+	.box
+		%h2 Tools
+		= link_to "New article", new_admin_article_path, :class => "button new last"
+		

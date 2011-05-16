@@ -1,0 +1,10 @@
+%h1= @page_title = "500: Internal Server Error"
+
+%p.explanation Sorry, there was a server error while processing your request.
+
+%p.additional We have been notified about this error and will investigate. 
+
+%p.additional Please email #{ mail_to Braincube::Config::SiteEmail } if you require assistance.
+
+.buttons
+	=link_to "Go back", :back, :class => "button back"

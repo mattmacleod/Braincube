@@ -1,0 +1,25 @@
+=form_errors @city
+-@main_form = f
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "City information", "#basic"
+		%li
+			%h2= link_to "Location", "#location"
+	
+	%fieldset#basic
+		%legend City information
+		.full= f.text_field :name, :required => true, :note => "Name of this city."
+
+	%fieldset#location
+		%legend Location
+		= note "Choose the location for this city. You can click on the map to place the marker, drag to move the marker, or enter a custom latitude and longitude."
+		.third
+			.full= f.text_field :lat, :label => "Latitude", :id => :latitude
+			.full= f.text_field :lng, :label => "Longitude", :id => :longitude
+		.two_thirds
+			#braincube_default_map_location= Braincube::Config::DefaultAdminMapLocation
+			#map_area
+				.loading Loading map...

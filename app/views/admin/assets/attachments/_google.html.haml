@@ -1,0 +1,26 @@
+=labelled_form_for [:admin, @google_url_upload], :url => attach_admin_asset_folders_path( :anchor => :google ), :html=>{:multipart => true, :id => "new_google_url_upload"} do |f|
+
+	#google_search_form
+		=note "Use an image from Google by filling in the form then selecting an image."
+		=form_errors @google_url_upload
+		=hidden_field_tag :google, :value => 1
+		
+		.full= f.text_field :title, :required => true, :id => "google_url_upload_title"
+		.full{:style => "display: none"}= f.text_field :url, :required => true, :note => "This is the URL of the image you have selected", :id => "google_url_upload_url"
+		
+		.full= f.select :asset_folder_id, asset_folder_options(AssetFolder.root, f.object.asset_folder_id), :required => true, :label => "Folder to save file into", :id => "google_url_upload_asset_folder_id"
+	
+		.full= f.text_area :caption, :rows => 4, :id => "google_url_upload_caption"
+		.full= f.text_area :credit, :rows => 3, :id => "google_url_upload_credit"
+	
+	#google_search_results
+		%h2 
+			Google search
+			#google_branding
+		
+		#google_search_query
+			= text_field_tag :google_query, @search_suggestion
+			= link_to "Search", "#"
+			
+		.google_image_search
+			.empty Enter a query in the box above and press "search"

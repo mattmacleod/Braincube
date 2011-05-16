@@ -1,0 +1,13 @@
+= labelled_form_for @article, :url => admin_article_path( @article ) do |f|
+
+	#content_body
+		- @page_title = "Edit article | Article manager"
+		%h1= @article.title
+		
+		- if @article.has_draft?
+			= note "This is a draft version of this article and may differ from the live version. #{link_to "Click here", revert_draft_admin_article_path( @article ), :method => :post } to delete the draft.", :type => :info
+		
+		= render :partial => "form", :locals => { :f => f }
+	
+	#content_sidebar
+		= render :partial => "sidebar", :locals=>{ :f => f }

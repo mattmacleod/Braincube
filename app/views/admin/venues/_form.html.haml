@@ -1,0 +1,115 @@
+=form_errors @venue
+-@main_form = f
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Basic information", "#basic"
+		%li
+			%h2= link_to "Location", "#location"
+		%li
+			%h2= link_to "Content", "#content"
+		%li
+			%h2= link_to "Images", "#images"
+		%li
+			%h2= link_to "Tagging", "#tagging"
+		%li
+			%h2= link_to "Opening times", "#opening_times"
+		- unless @venue.new_record?
+			%li
+				%h2= link_to "Events", "#events"
+	
+	%fieldset#basic
+		%legend Basic information
+		.full= f.text_field :title, :required => true, :note => "Main title for the venue. This will be displayed across the site."
+		.half
+			.full= f.text_field :address_1, :label => "Address 1"
+			.full= f.text_field :address_2, :label => "Address 2"
+			.full= f.select :city_id, City::options_for_select, :label => "City", :note => "Contact an administrator if you need to add a new city."
+			.full= f.text_field :postcode, :label => "Post code"
+			
+		.half
+			.full= f.text_field :phone, :note => "This will be displayed to site users, so use a public phone number."
+			.full= f.text_field :email, :note => "This will be displayed to site users, so use a public email."
+			.full= f.text_field :web, :label => "Web address", :note => "Enter the full web address including http://"
+
+	%fieldset#location
+		%legend Location
+		= note "Choose the location for this venue. You can try to auto-locate the venue from the postcode, click on the map to place the marker, drag to move the marker, or enter a custom latitude and longitude."
+		.third
+			.full= f.text_field :lat, :label => "Latitude", :id => "latitude"
+			.full= f.text_field :lng, :label => "Longitude", :id => "longitude"
+			.full.button_area= link_to "Auto-locate venue", "#", :class => "button edit", :id => "venue_auto_locate_button"
+		.two_thirds
+			#braincube_default_map_location= Braincube::Config::DefaultAdminMapLocation
+			#map_area
+				.loading Loading map...
+	
+	%fieldset#content
+		%legend Content
+		.full= f.text_area :abstract, :label => "Short description", :note => "This will appear on listings across the site.", :rows => 3
+		
+		.word_counter
+			%span.label Word count:
+			%span.word_count= @venue.content.to_s.word_count
+		.full
+			= f.text_area :content, :rows => 30, :class=>"text_editor"
+					
+	%fieldset#images
+		%legend Images
+		.asset_search_suggestion= @venue.title
+		= note "Choose the assets to be attached to this item. The first item will be used as the main image."
+		= image_attachments( f )
+		
+	%fieldset#tagging
+		%legend Tagging
+		.full= f.tag_select :tag_list, :label => "Venue tags"
+
+	%fieldset#opening_times
+		%legend Opening times
+		= note "Enter the venue's opening and closing times in 24-hour format e.g. 13:45"
+		= f.fields_for :venue_opening_hours do |oh|
+			.full
+				.quarter= oh.text_field :monday_open, :value => f.object.venue_opening_hours["monday_open"]
+				.quarter= oh.text_field :monday_close, :value => f.object.venue_opening_hours["monday_close"]
+			.full
+				.quarter= oh.text_field :tuesday_open, :value => f.object.venue_opening_hours["tuesday_open"]
+				.quarter= oh.text_field :tuesday_close, :value => f.object.venue_opening_hours["tuesday_close"]
+			.full
+				.quarter= oh.text_field :wednesday_open, :value => f.object.venue_opening_hours["wednesday_open"]
+				.quarter= oh.text_field :wednesday_close, :value => f.object.venue_opening_hours["wednesday_close"]
+			.full
+				.quarter= oh.text_field :thursday_open, :value => f.object.venue_opening_hours["thursday_open"]
+				.quarter= oh.text_field :thursday_close, :value => f.object.venue_opening_hours["thursday_close"]
+			.full
+				.quarter= oh.text_field :friday_open, :value => f.object.venue_opening_hours["friday_open"]
+				.quarter= oh.text_field :friday_close, :value => f.object.venue_opening_hours["friday_close"]
+			.full
+				.quarter= oh.text_field :saturday_open, :value => f.object.venue_opening_hours["saturday_open"]
+				.quarter= oh.text_field :saturday_close, :value => f.object.venue_opening_hours["saturday_close"]
+			.full
+				.quarter= oh.text_field :sunday_open, :value => f.object.venue_opening_hours["sunday_open"]
+				.quarter= oh.text_field :sunday_close, :value => f.object.venue_opening_hours["sunday_close"]
+			
+	- unless @venue.new_record?
+		%fieldset#events
+			%legend Events
+			= note "To create new events, use the #{ link_to "event manager", admin_events_path }."
+
+			%table.list.alternating
+				%thead
+					%tr
+						%th Event name
+				%tbody
+					- if @venue.events.empty?
+						%tr
+							%td.empty
+								No events found
+
+					- @venue.events.uniq.each do |event|
+						%tr{ :class => cycle(:even, :odd) }
+							%td
+								= link_to event.title, edit_admin_event_path( event )
+								%span.extra= [ event.cached_times, event.cached_dates, event.cached_venues ].select{|e| !e.blank? }.join(", ")
+			

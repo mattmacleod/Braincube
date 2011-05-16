@@ -1,0 +1,5 @@
+%h1 Welcome to #{ Braincube::Config::SiteTitle }'s website manager
+
+= note "The most recently updated articles are shown below."
+
+= render :partial => "admin/articles/table", :locals => {:articles => @articles }

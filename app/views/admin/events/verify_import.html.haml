@@ -1,0 +1,16 @@
+= form_tag request.path, :method => :post, :multipart => true do
+	
+	#content_body.content_body
+		-@page_title = "Import | Event manager"
+		%h1 Verify imported events
+
+		= flash_message
+
+		= note "The following events were found in your CSV file. Clear a checkbox to remove an event from the import. Invalid events are marked with an error icon and cannot be imported. When you are finished, click the button to the right."
+
+		= render :partial => "verify_list", :locals => { :imported_performances => @imported_performances }
+				
+	#content_sidebar
+		=render :partial => "sidebar"
+
+

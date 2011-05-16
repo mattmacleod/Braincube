@@ -1,0 +1,9 @@
+%legend Main content
+.full
+	= f.text_area :standfirst, :rows => 4, :maxlength => 255, :label => "Standfirst", :note => "This will be used as the print standfirst. It will also be used as the online abstract unless overriden in the 'web abstract' field."
+
+.word_counter
+	%span.label Word count:
+	%span.word_count= @article.word_count
+.full
+	= f.text_area :content, :rows => 30, :class=>"text_editor"

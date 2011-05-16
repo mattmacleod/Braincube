@@ -1,0 +1,4 @@
+= note "Choose the options for the contact page"
+
+= f.fields_for :properties do |ff|
+	.full= ff.text_field :contact_responses, :label => "Send responses to email address:", :required => true, :value => f.object.properties[:contact_responses]

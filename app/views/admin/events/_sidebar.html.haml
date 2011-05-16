@@ -1,0 +1,21 @@
+- if @event
+	.box
+		%h2 Actions
+		%fieldset.buttons
+			=link_to "Cancel", admin_events_path, :class=>"button cancel"
+			- unless @event.new_record?
+				=link_to "Delete this event", admin_event_path(:id => @event.id), :method => :delete, :confirm => "Are you sure you want to delete this event?", :class=>"button delete"
+			=f.submit "Save this event", :class=>"button save bottom"
+
+- if @imported_performances
+	.box
+		%h2 Actions
+		%fieldset.buttons
+			=link_to "Cancel import", admin_events_path, :class=>"button cancel"
+			=submit_tag "Save these events", :class=>"button save bottom"
+
+- if !@event || !@event.new_record?
+	.box
+		%h2 Tools
+		= link_to "New event", new_admin_event_path, :class => "button new"
+		= link_to "Import from CSV", import_admin_events_path, :class => "button import bottom"

@@ -1,0 +1,2 @@
+module Braincube::ApiHelper
+end

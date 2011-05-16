@@ -1,0 +1,12 @@
+- if events.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 5}
+			No events found
+			
+- events.each do |event|
+	%tr{ :class => cycle(:even, :odd) }
+		%td
+			= link_to event.title, edit_admin_event_path( event )
+			%span.extra= [ event.cached_times, event.cached_dates, event.cached_venues ].select{|e| !e.blank? }.join(", ")
+		%td= print_bool(event.enabled)
+		%td.destroy= delete_link "Delete event", admin_event_path(event.id)

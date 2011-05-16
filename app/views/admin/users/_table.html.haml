@@ -1,0 +1,11 @@
+%table.list.alternating
+	%thead
+		%tr
+			%th Name
+			%th Email
+			%th Created
+			%th.center Enabled
+			%th.center Verified
+			%th Role
+	%tbody
+		= render :partial => "list", :locals => {:users => users}

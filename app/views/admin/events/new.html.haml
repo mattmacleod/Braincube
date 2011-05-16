@@ -1,0 +1,13 @@
+=labelled_form_for [:admin, @event], :url => admin_events_path do |f|
+	
+	#content_body.content_body
+		- @page_title = "New event | Event Manager"
+		%h1 Create new event
+		=flash_message
+
+		=note "Fill in the form below to create a new event"
+
+		=render :partial=>"form", :locals=>{:f=>f}
+	
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}

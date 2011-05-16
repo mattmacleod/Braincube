@@ -1,0 +1,97 @@
+%h1 Create performances
+
+= note "Follow the steps below to create new performances of this event."
+
+= labelled_form_for @performance_run, :url => "#step_3" do |f|
+
+	= form_errors @performance_run
+
+	.tabbed_fieldsets.build_performances_window
+
+
+		%ul.tabs
+			%li
+				%h2= link_to "Step 1: Performance details", "#step_1"
+			%li
+				%h2= link_to "Step 2: Dates and times", "#step_2"
+			%li
+				%h2= link_to "Step 3: Preview", "#step_3"
+
+		%fieldset#step_1
+			%legend Performance details
+		
+			= f.fields_for :performance do |ff|
+		
+				.full= ff.text_field :performer, :label => "Performer / act", :note => "Additional information on the performer or act. Can be left blank if the event title is enough.", :maxlength => 255
+
+				.full
+					.half= ff.text_field :price, :label => "Price", :note => "Enter text as applicable"
+					.half= ff.text_field :venue_id, :note => "Choose from list or add a new venue first", :class => :venue_selector
+
+				.full= ff.check_box :drop_in, :label => "Drop-in event?", :note => "Check if this performance is an all-day event that can be visited at different times"
+		
+				.full
+					.half
+						.full= ff.select :ticket_type, ([""] + Braincube::Config::TicketTypes.map{|k,v| [k,v]})
+						.full= ff.text_area :notes, :label => "Notes", :note => "Additional information about this performance that does not apply to the event overall.", :rows => 4, :maxlength => 255
+					.half
+						.full= ff.select :affiliate_type, ([""] + Braincube::Config::AffiliateCodes.map{|k,v| [k,v]}), :note => "Overrides the main event affiliate."
+						.full= ff.text_field :affiliate_code
+		
+		
+		%fieldset#step_2
+			%legend Dates and times
+			 			
+			.half.performance_type_buttons
+				%h3 Choose run type
+				.full= f.radio_button :run_type, "one_off", :label => "One-off performance"
+				.full= f.radio_button :run_type, "periodic", :label => "Periodic performance"
+				.full= f.radio_button :run_type, "opening_times", :label => "Use venue opening times"
+		
+			.half.performance_types
+			
+				.full.one_off
+					%h3 Choose dates
+					.half= f.text_field 	:one_off_start_time, 		:value => (f.object.one_off_start_time.to_s(:parseable) if f.object.one_off_start_time), :required => true, 	:note => "Start date and time of event.", :class=>:datetime, :label => "Start at"
+					.half= f.text_field 	:one_off_end_time, 			:value => (f.object.one_off_end_time.to_s(:parseable) if f.object.one_off_end_time), :required => false, 	:note => "End date and time if available", :class=>:datetime, :label => "End at"
+					
+				.full.periodic_opening_times
+					%h3 Choose dates
+				
+					.half= f.text_field 	:start_date, 		:value => (f.object.start_date.to_s(:parseable) if f.object.start_date), :required => true, 	:note => "Start date for generating performances.", :class=>:date, :label => "Start date"
+					.half= f.text_field 	:end_date, 			:value => (f.object.end_date.to_s(:parseable) if f.object.end_date), :required => true, 	:note => "End date for generating performances.", :class=>:date, :label => "End date"
+					
+					.full.periodic
+						.full= f.text_field 	:nl_string, :required => true, :label => "Date information", :note => "Enter a description of the days the event runs. Examples: <strong>the 12th</strong>, <strong>every Saturday</strong>, <strong>the first Monday of the month</strong>"
+						.half= f.text_field 	:periodic_start_time, 		:value => (f.object.periodic_start_time.to_s(:parseable_time_only) if f.object.periodic_start_time), :required => true, 	:note => "Start time of event on these days", :class=>:time, :label => "Start time"
+						.half= f.text_field 	:periodic_end_time, 		:value => (f.object.periodic_end_time.to_s(:parseable_time_only) if f.object.periodic_end_time), :required => false, 	:note => "End time of event on these days.", :class=>:time, :label => "End time"
+										
+					.full.opening_times
+						.full 
+						#venue_opening_times
+							- if venue = f.object.performance.venue
+								= render :partial => "/admin/venues/opening_times", :locals => { :venue => f.object.performance.venue }
+							- else
+								=note "You need to select a venue first to see opening times."
+		
+		%fieldset#step_3
+			%legend Preview
+			= note "Click the 'preview' button to see what performances will be generated. #{link_to "Preview", "#", :class => "button edit preview_link"}"
+		
+			- if @performances
+				%table.performance_previews
+					%tr
+						%th.checkbox Save?
+						%th Start time
+						%th End time
+						- @performances.each_with_index do |performance,idx|
+							%tr
+								%td.checkbox
+									= check_box_tag "performances[#{idx}]",  performance.starts_at.to_i, true
+									
+								%td= performance.starts_at.to_s(:listings)
+								%td= performance.ends_at ? performance.ends_at.to_s(:listings) : "(not specified)"
+
+
+				.button_area
+					= submit_tag "Create performances", :class => "button new save_performances"

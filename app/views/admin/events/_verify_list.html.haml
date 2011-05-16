@@ -1,0 +1,62 @@
+%table.list.alternating.import_list
+	%thead
+		%tr
+			%th Event
+			%th Venue
+			%th Times
+			%th Info
+			%th Ft?
+			%th Sv?
+	%tbody
+		- imported_performances.each do |p|
+			%tr{ :class => cycle(:odd, :even) }
+				%td.event
+					.subrow
+						- if p.event
+							%strong Existing:
+							=link_to p.event.title, admin_event_path(p.event), :target => :blank
+						- else
+							%strong New:
+							=p.event_name
+					.description
+						= p.short_description						
+										
+				%td.venue
+					- if p.venue
+						= link_to "#{p.venue.title}, #{p.venue.city.name}", admin_venue_path(p.venue), :target => :blank
+					- else 
+						.subrow
+							%strong.error Venue not found
+						.subrow
+							%em
+								(#{ p.venue_name }, #{p.city_name})
+					
+				%td.times
+					- if p.parsed_start && p.parsed_end
+						.subrow
+							%strong Start:
+							#{ p.parsed_start.to_s(:parseable) }
+						.subrow
+							%strong Ends:
+							#{ p.parsed_end.to_s(:parseable) }
+					- else
+						%strong.error Unknown
+					
+				%td.info
+					.subrow
+						%strong Category: 
+						#{ p.category }
+					.subrow
+						%strong Keywords: 
+						#{ p.keywords }
+					
+					
+				%td.featured
+					= print_bool p.featured
+
+				%td.save
+					- if p.valid_import?
+						= check_box_tag "import_performance[#{p.id}]", 1, :checked => true
+					- else
+						.error_icon
+							Not valid

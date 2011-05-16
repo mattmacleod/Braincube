@@ -1,0 +1,6 @@
+- content_for :wrapper do
+	%body#error
+		#error_wrapper
+			= yield
+
+= render :partial => "layouts/admin/parts/head"

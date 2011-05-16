@@ -1,0 +1,5 @@
+<% begin -%>
+<%= render :partial => ("admin/articles/indesign/#{@article.article_type}" ) -%>
+<% rescue MissingTemplate -%>
+<%= render :partial => ("admin/articles/indesign/generic" ) -%>
+<% end -%>

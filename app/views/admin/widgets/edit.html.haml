@@ -1,0 +1,16 @@
+=labelled_form_for [:admin, @widget] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "#{@widget.title} | Widget Manager"
+		%h1 
+			Widget:
+			=@widget.title
+		=flash_message
+		
+		=note "Edit the widget's details using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

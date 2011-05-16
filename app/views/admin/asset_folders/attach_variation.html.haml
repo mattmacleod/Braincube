@@ -1,0 +1,30 @@
+%h1 Choose an image version #{ link_to "Select a different image", attach_admin_asset_folders_path( @asset.asset_folder.path ), :class => "button back"}
+	
+.tabbed_fieldsets.asset_attachment_window
+
+	.top_buttons
+		
+
+	%ul.tabs
+		- if @asset.image?
+			%li
+				%h2= link_to "Original image", "#original"
+			- Braincube::Config::ImageFileVersions.each_pair do |k,v|
+				%li
+					%h2= link_to k.to_s.capitalize, "##{k}"
+
+
+
+	- if @asset.image?
+
+		%fieldset.preview#original
+			%legend Original
+			=note "This is the original upload. #{link_to "Insert this image", @asset.asset.url(:original), :class => "button edit select_variation"}"
+			
+			=image_tag( @asset.asset.url(:original), :class=>"original", :id=>"image_for_version_original" )
+
+		- Braincube::Config::ImageFileVersions.each_pair do |k,v|
+			%fieldset.preview{:id => k}
+				%legend= k.to_s.capitalize
+				=note "This is the #{k} image style. #{link_to "Insert this image", @asset.asset.url(k), :class => "button edit select_variation"}"
+				=image_tag( @asset.asset.url(k), :id=>"image_for_version_#{k}" )

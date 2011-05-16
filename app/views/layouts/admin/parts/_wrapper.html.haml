@@ -1,0 +1,24 @@
+#header
+	#header_wrapper
+		#header_title= Braincube::Config::SiteTitle
+		#admin_tools
+			#{ current_user.email } | #{link_to "Log out", admin_logout_path } | #{ link_to "Site home", "/" } | #{ link_to "Help", admin_help_path }
+
+		%ul#main_navigation= admin_main_menu
+		
+#sub_navigation_wrapper
+	%ul#sub_navigation= admin_sub_menu
+	
+	
+#wrapper
+	
+	#main_content
+		= yield :body
+
+#footer_wrapper
+	#footer
+		%strong #{ Braincube::Config::SiteTitle } 
+		==// 
+		Powered by Braincube v#{ Braincube::Version }
+		==// 
+		<a href="http://www.braincube.co.uk" rel="external">www.braincube.co.uk</a>

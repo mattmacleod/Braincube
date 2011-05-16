@@ -1,0 +1,318 @@
+Dashboard:
+  order: 0
+  controllers:
+    - admin
+  submenus:
+    Summary:
+      order: 1
+      controller: admin
+      action: index
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    Help:
+      order: 2
+      controller: admin
+      action: help
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+        
+Articles: 
+  order: 1
+  controllers: 
+    - articles
+      
+  submenus:
+    
+    Summary:
+      order: 1
+      controller: articles
+      action: index
+      roles: 
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+        
+    Unsubmitted:
+      order: 2
+      controller: articles
+      action: unsubmitted
+      roles: 
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    Editing:
+      order: 3
+      controller: articles
+      action: editing
+      roles: 
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    Subediting:
+      order: 4
+      controller: articles
+      action: subediting
+      roles: 
+        - subeditor
+        - publisher
+        - admin
+    Publishing:
+      order: 5
+      controller: articles
+      action: publishing
+      roles: 
+        - publisher
+        - admin
+    Download:
+      order: 6
+      controller: articles
+      action: download
+      roles: 
+        - subeditor
+        - publisher
+        - admin
+    Live:
+      order: 7
+      controller: articles
+      action: live
+      roles: 
+        - publisher
+        - admin
+    Inactive:
+      order: 8
+      controller: articles
+      action: inactive
+      roles: 
+        - publisher
+        - admin
+        
+Pages:
+  order: 2
+  controllers: 
+    - pages
+  submenus:
+    Page Stucture Manager:
+      order: 1
+      controller: pages
+      action: index
+      roles:
+        - publisher
+        - admin
+    New Page:
+      order: 2
+      controller: pages
+      action: new
+      roles:
+        - publisher
+        - admin
+
+Media Manager:
+  order: 3
+  controllers: 
+    - assets
+    - asset_folders
+    - galleries
+  submenus:
+    Browse assets:
+      order: 1
+      controller: asset_folders
+      action: index
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    New asset:
+      order: 2
+      controller: assets
+      action: new
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+        
+Listings:
+  order: 4
+  controllers:
+    - events
+    - venues
+    - cities
+  submenus:
+    Events:
+      order: 1
+      controller: events
+      action: index
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    New Event:
+      order: 2
+      controller: events
+      action: new
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    Upload Events:
+      order: 3
+      controller: events
+      action: import
+      roles:
+        - subeditor
+        - publisher
+        - admin
+    Venues:
+      order: 4
+      controller: venues
+      action: index
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    New Venue:
+      order: 5
+      controller: venues
+      action: new
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    Cities:
+      order: 6
+      controller: cities
+      action: index
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+    New City:
+      order: 7
+      controller: cities
+      action: new
+      roles:
+        - writer
+        - editor
+        - subeditor
+        - publisher
+        - admin
+
+Comments:
+  order: 5
+  controllers:
+    - comments
+  submenus:
+    Comment manager:
+      order: 1
+      controller: comments
+      action: index
+      roles:
+        - publisher
+        - admin
+        
+Users:
+  order: 6
+  controllers:
+    - users
+  submenus:
+    User manager:
+      order: 1
+      controller: users
+      action: index
+      roles:
+        - admin
+    New User:
+      order: 2
+      controller: users
+      action: new
+      roles:
+        - admin
+    Writers:
+      order: 3
+      controller: users
+      action: writers
+      roles:
+        - admin
+    Editors:
+      order: 4
+      controller: users
+      action: editors
+      roles:
+        - admin
+    Subeditors:
+      order: 5
+      controller: users
+      action: subeditors
+      roles:
+        - admin
+    Publishers:
+      order: 6
+      controller: users
+      action: publishers
+      roles:
+        - admin
+    Admins:
+      order: 7
+      controller: users
+      action: administrators
+      roles:
+        - admin  
+    Mailing list:
+      order: 8
+      controller: users
+      action: mailing_list_subscribers
+      roles:
+        - admin
+        
+            
+Site management:
+  order: 7
+  controllers:
+    - management
+    - tags
+    - widgets
+  submenus:
+    Site manager:
+      order: 0
+      controller: management
+      action: index
+      roles:
+        - admin
+    Tag manager:
+      order: 1
+      controller: tags
+      action: index
+      roles:
+        - admin
+    Widget manager:
+      order: 2
+      controller: widgets
+      action: index
+      roles:
+        - admin

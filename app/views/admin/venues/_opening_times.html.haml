@@ -1,0 +1,14 @@
+%h3= venue.title
+- if venue.venue_opening_hours.blank?
+	=note "There are no opening times specified for this venue."
+- else
+	%table.opening_times
+		%tr
+			%th Day
+			%th Opening time
+			%th Closing time
+		- %w( monday tuesday wednesday thursday friday saturday sunday).each do |day|
+			%tr
+				%td.day= day.capitalize
+				%td.open= (a=venue.venue_opening_hours["#{day}_open"]).blank? ? "-" : a
+				%td.close= (a=venue.venue_opening_hours["#{day}_close"]).blank? ? "-" : a

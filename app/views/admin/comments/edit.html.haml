@@ -1,0 +1,17 @@
+=labelled_form_for [:admin, @comment] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "Comment by #{@comment.name} | Comment Manager"
+		%h1 
+			Comment by
+			=@comment.name
+
+		=flash_message
+		
+		=note "Edit this comment using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

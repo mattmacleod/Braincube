@@ -1,0 +1,9 @@
+-@page_title = "Widget manager"
+%h1 Widgets
+
+= flash_message
+
+- unless @widgets.blank?
+	= render :partial => "table", :locals=>{:widgets => @widgets}
+-else
+	= note "There are no widgets", :type=>:alert

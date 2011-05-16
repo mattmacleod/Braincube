@@ -1,0 +1,13 @@
+-@page_title = "Import | Event manager"
+%h1 Import events
+
+= flash_message
+
+= form_tag request.path, :method => :post, :multipart => true do
+	%fieldset.standard
+		%legend Upload listings
+		= note "Choose a file to upload. The file must be in CSV format and in the listings template."
+	
+		.half
+			.full= file_field_tag :upload
+			.full.bottom= submit_tag "Upload now...", :class => "button import bottom"

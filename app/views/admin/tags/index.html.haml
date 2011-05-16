@@ -1,0 +1,27 @@
+%h1 Tag manager
+
+.search_form.tags
+	.summary
+		Found #{ pluralize @tags.total_entries, "tag" }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search tags:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+
+= flash_message
+
+= note "Click a tag to see items tagged with that term. Click the delete button to remove a tag."
+
+#pagination_wrapper
+	- if @tags.blank?
+		= note "No tags were found", :type => :alert
+	- else
+		= render :partial => "table", :locals => { :tags => @tags }
+		
+= continuous_pagination "tags"

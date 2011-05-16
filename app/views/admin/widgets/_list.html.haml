@@ -1,0 +1,11 @@
+- if widgets.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 5}
+			No widgets found
+			
+- widgets.each do |widget|
+	%tr{ :class => cycle(:even, :odd) }
+		%td
+			= link_to widget.title, edit_admin_widget_path( widget )
+		%td= Braincube::Config::WidgetTypes[widget.widget_type.to_sym] || "Unknown"
+		%td.destroy= delete_link "Delete widget", admin_widget_path(widget.id)

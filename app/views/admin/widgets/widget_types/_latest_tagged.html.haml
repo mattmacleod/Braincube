@@ -1,0 +1,10 @@
+= note "This widget shows the latest articles tagged with the tags you select below"
+
+= f.fields_for :properties do |ff|
+	.full= ff.text_field :latest_tagged_title, :label => "Title to be displayed on the widget", :required => true
+	.full= ff.tag_select :latest_tagged_tags, :label => "Show latest articles with these tags:", :required => true, :popular => false, :value => f.object.properties[:latest_tagged_tags]
+	.full
+		.quarter= ff.check_box :latest_tagged_all_tags, :label => "Require all tags?", :note => "Check to only show articles matching all tags. Otherwise, will show articles matching any tag.", :checked => f.object.properties[:latest_tagged_all_tags]=="1"
+		.quarter= ff.text_field :latest_tagged_count, :label => "Maximum number to show", :note => "Enter the maximum number of items to show", :maxlength => 3, :cols => 5, :value => f.object.properties[:latest_tagged_count]
+		.quarter= ff.select :latest_tagged_article_type, [""] + Braincube::Config::ArticleTypes.map{|k,v|[v,k]}, :label => "Only this article type", :value => f.object.properties[:latest_tagged_article_type]
+	

@@ -1,0 +1,109 @@
+//****************************************************************************
+// Ajax functionality
+//****************************************************************************
+
+.spinner
+	display: none
+	float: right
+	position: relative
+	width: 16px
+	height: 16px
+	
+.search_form
+	@extend .medium_rounded, .clearfix
+	border: 10px $grey_6 solid
+	padding: 10px
+	margin: 10px 0px 20px 0px
+	font-weight: bold
+	font-size: 0.9em
+	
+	input
+		width: 50%
+		float: left
+		
+	.spinner
+		position: absolute
+		right: -16px
+	
+	label
+		text-transform: uppercase
+		
+	.summary
+		float: right
+		color: $grey_2
+		font-weight: normal
+		width: 40%
+		text-align: right
+		font-size: 1.1em
+		
+	.buttons
+		float: left
+		margin-left: 1em
+		position: relative
+		
+		input, a
+			@extend .small_rounded
+			float: left
+			line-height: 1.2em
+			width: auto
+			padding: 0.2em 0.5em
+			margin-right: 1em
+			cursor: pointer
+			background: $grey_5
+			border: 1px $grey_4 solid
+			font-weight: bold
+			color: $grey_1
+			text-transform: uppercase
+			&:hover
+				@extend .form_glow
+				text-decoration: none
+
+	.options
+		clear: left
+		padding-top: 1em
+		label
+			float: left
+			margin-right: 1em
+		input
+			width: auto
+			margin-right: 0.5em
+	
+#pagination_wrapper
+	@extend .clearfix
+	
+#pagination_loading_wrapper
+	height: 50px
+	margin: 20px
+	
+	#pagination_loading
+		display: none
+		margin: 0px auto
+		width: 100px
+		border: 10px $grey_5 solid
+		padding: 10px 20px
+		font-weight: bold
+		line-height: 2em
+
+
+
+//****************************************************************************
+// Article locks
+//****************************************************************************
+
+#article_lock_info div
+	text-align: center
+	
+#lock_notice,#lock_warning
+	@extend .small_rounded
+	margin: 0px 0px 1em 0
+	padding: 10px
+	font-weight: bold
+	color: white
+	font-size: 0.9em
+	line-height: 1.3em
+	text-align:center
+	
+#lock_notice
+	background: $color_green
+#lock_warning
+	background: $color_red

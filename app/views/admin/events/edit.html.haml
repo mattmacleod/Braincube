@@ -1,0 +1,16 @@
+=labelled_form_for [:admin, @event] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "#{@event.title} | Event Manager"
+		%h1 
+			Event:
+			=@event.title
+		=flash_message
+		
+		=note "Edit the event's details using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

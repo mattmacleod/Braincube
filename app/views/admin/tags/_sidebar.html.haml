@@ -1,0 +1,5 @@
+- if @tag		
+	.box
+		%h2 Tools
+		= link_to "See all active tags", admin_tags_path, :class=>"button edit"
+		= link_to "Delete this tag", admin_tag_path(:id => @tag.id), :method => :delete, :confirm => "Are you sure you want to delete this tag?", :class=>"button delete bottom"

@@ -1,0 +1,28 @@
+%legend Events
+
+=note "You can associate events with this article."
+
+%fieldset.subform.half.left
+	%legend Find events
+	
+	.ajax_search_field
+		%label Event search
+		=text_field_tag :event_search, "", :class => "ajax"
+		=ajax_spinner :event_search, "eeeeff"
+		%span.form_note Enter some text to search for events
+	
+	.ajax_search_results
+		%h3 Search results
+		#event_search_results
+			.empty
+				Enter text in the box above to find events
+	
+%fieldset.subform.half.right
+		
+	%legend Associated events
+	= f.hidden_field :associated_event_ids, :id => :associated_event_ids
+	
+	.ajax_search_results			
+		%h3 Currently associated events
+		#associated_event_list
+			=render :partial => "/admin/events/for_attachment", :locals => {:events => Event.where(:id => f.object.associated_event_ids.split(",")), :action => :remove}

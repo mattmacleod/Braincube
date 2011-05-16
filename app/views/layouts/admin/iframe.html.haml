@@ -1,0 +1,6 @@
+- content_for :wrapper do
+	%body#iframe
+		#iframe_wrapper
+			= yield
+
+= render :partial => "layouts/admin/parts/head"

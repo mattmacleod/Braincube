@@ -1,0 +1,15 @@
+%h1 Please wait...
+
+=labelled_form_for [:admin, Event.new], :url => admin_events_path do |f|
+
+	:javascript
+		parent.braincube.admin.events.performance_generator.save_performances(
+			[
+				#{ 
+					@performances.map do |p| 
+						"\"" + escape_javascript( render(:partial => "performance", :locals => { :f => f, :performance => p })) + "\""
+					end.join(", ")
+				}
+			]
+		); 
+		parent.$.prettyPhoto.close();

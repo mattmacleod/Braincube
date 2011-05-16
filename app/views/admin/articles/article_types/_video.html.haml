@@ -1,0 +1,5 @@
+%fieldset.article_type{ :id => "article_type_#{k}" }
+	%legend Video properties
+
+	= f.fields_for :properties do |properties|
+		.full= properties.text_field :video_url, :value => f.object.properties[:video_url]

@@ -1,0 +1,21 @@
+=labelled_form_for @zip_upload, :url => create_from_zip_admin_assets_path, :html=>{:multipart => true} do |f|
+
+	#content_body.content_body
+
+		- @page_title = "Bulk upload | Asset Manager"
+		%h1= @zip_upload.title.blank? ? "New bulk upload" : @zip_upload.title
+
+		=form_errors @zip_upload
+			
+		%fieldset.standard
+			%legend Upload information
+			.half
+				.full= f.text_field :title, :required => true, :label => "Upload title", :note => "The name of the folder to create from this upload. Image titles will be determined by the file names."
+				.full= f.select :asset_folder_id, asset_folder_options(AssetFolder.root, f.object.asset_folder_id), :required => true, :label => "A new folder will be created inside this folder"
+				.full= f.file_field :upload, :label => "ZIP file", :note => "Choose the ZIP file containing assets to upload"
+			.half
+				.full= f.text_area :caption, :rows => 4, :note => "Will be applied to all uploaded assets"
+				.full= f.text_area :credit, :rows => 3, :note => "Will be applied to all uploaded assets"
+					
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}
