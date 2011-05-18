@@ -1,7 +1,8 @@
 # Load default configuration
 require File.expand_path(File.dirname(__FILE__) + "/../braincube.rb" )
 if defined?( Braincube::Engine )
-  require File.join( Rails.root, "config", "braincube.rb" )
+  app_config_file = File.join( Rails.root, "config", "braincube.rb" )
+  require app_config_file if File.exist?( app_config_file )
 end
 
 # Load the application

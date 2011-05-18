@@ -263,7 +263,6 @@ ActiveRecord::Schema.define(:version => 28) do
     t.datetime "updated_at"
   end
 
-  add_index "page_widgets", ["page_id", "widget_id"], :name => "index_page_widgets_on_page_id_and_widget_id", :unique => true
   add_index "page_widgets", ["page_id"], :name => "index_page_widgets_on_page_id"
   add_index "page_widgets", ["slot"], :name => "index_page_widgets_on_slot"
   add_index "page_widgets", ["widget_id"], :name => "index_page_widgets_on_widget_id"

@@ -1,0 +1,18 @@
+= labelled_form_for @user, :url => admin_setup_path do |f|
+	%fieldset.setup.script
+		%legend Setup your website
+		%p.notice 
+			Welcome to your new website. 
+			%br
+			It's time to get setup, so enter your administrator details below.
+		= form_errors @user
+		.full= f.text_field :name, :required => true
+		.full= f.text_field :email, :required => true
+		.full= f.password_field :password, :required => true
+		.full= f.password_field :password_confirmation, :required => true
+	
+	.buttons
+		= f.submit "Create administrator account", :class => :button
+		
+.noscript
+	You need Javascript enabled to use this tool.

@@ -14,8 +14,8 @@ The project will be evolving over time as I get around to extending the feature 
 
 3. Setup your database.yml as required
 
-4. Run the rake task to setup your application
-	<tt>rake braincube:install</tt>
+4. Run the braincube setup generator to update your application
+	<tt>rails g braincube:setup</tt>
 
 5. Get to work!
 

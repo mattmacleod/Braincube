@@ -27,13 +27,6 @@ class Admin::UsersController < AdminController
       end
       format.csv { send_csv @users, :users }
     end
-    
-    if request.xhr?
-      render(:partial => "list", :locals => {:users => @users})
-      return
-    end
-    
-
 
   end
   

@@ -10,7 +10,7 @@ class AdminController < ApplicationController
   ############################################################################
   
   # All actions will require a valid admin login.
-  before_filter :require_admin_login, :except => [:login, :display_404, :display_403, :display_500]
+  before_filter :require_admin_login, :except => [:setup, :login, :display_404, :display_403, :display_500]
   
   # General prep work
   before_filter :load_defaults
@@ -32,6 +32,29 @@ class AdminController < ApplicationController
   
   def help
     render :layout => "admin/wide"
+  end
+  
+  def setup
+    
+    @user = User.new( :name => "Administrator" )
+    
+    redirect_to :index and return if (User.count > 0)
+    render(:layout => "admin/notice") and return if request.get?
+    
+    # Create user record
+    @user          = User.new( params[:user] )
+    @user.role     = "ADMIN"
+    @user.enabled  = true
+    @user.verified = true
+    
+    if @user.save
+      flash[:notice] = "User created"
+      session[:user_id] = @user.id
+      redirect_to( :action => :index ) and return
+    else
+      render(:layout => "admin/notice") and return
+    end
+
   end
   
   
@@ -118,19 +141,21 @@ class AdminController < ApplicationController
    
   def require_admin_login
     
-    # Check the user's timeout
+    # Valid user
     if current_user && (current_user.accessed_at > (Time::now - Braincube::Config::SessionTimeout))
       return is_admin?
-    elsif current_user
+    elsif current_user # Expired timeout
       flash[:error] = "Your session has timed out"
       session[:user_id] = nil
       session[:next_page] = request.path
       redirect_to admin_login_path and return false
-    else
+    elsif (User.count > 0) # Any users
       flash[:error] = "Login to access that page"
       session[:user_id] = nil
       session[:next_page] = request.path
       redirect_to admin_login_path and return false
+    else # Setup phase
+      redirect_to admin_setup_path and return false
     end
     
   end
