@@ -1,5 +1,5 @@
 body.notice
-	background: $grey_0
+	background: url(/images/admin/embed/background.jpg) $grey_0
 	
 	#notice_wrapper
 		@extend .container_12
@@ -13,13 +13,15 @@ body.notice
 	
 	h1
 		margin-bottom: 0
-		color: $grey_1
+		color: $grey_6
+		text-align: center
 		background: none
 		padding: 0
 	
 	#notice_body
 		padding: 1.5em
 		background: $grey_1
+		@extend .shadow
 		@extend .large_rounded
 	
 	input.button

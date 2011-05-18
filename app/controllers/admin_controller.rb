@@ -48,9 +48,30 @@ class AdminController < ApplicationController
     @user.verified = true
     
     if @user.save
+      
+      # Log user in
       flash[:notice] = "User created"
       session[:user_id] = @user.id
+      
+      # Initial setup
+      # TODO: move this to a better place
+      begin
+        Page.transaction do
+          Menu.create!(:title => "Main site", :domain => Braincube::Config::SiteBaseUrl.gsub("http://", ""))
+          page = Page.new(:parent => nil, :url => "", :title => "Home")
+          page.user = @user
+          page.menu = Menu.first
+          page.save!
+          folder = AssetFolder.new(:parent => nil, :name => "Files")
+          folder.save!
+        end
+      
+      rescue
+        flash[:error] = "Setup failed. Please contact an administrator."
+      end
+      
       redirect_to( :action => :index ) and return
+      
     else
       render(:layout => "admin/notice") and return
     end

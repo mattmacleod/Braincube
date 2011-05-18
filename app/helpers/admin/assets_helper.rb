@@ -19,7 +19,7 @@ module Admin::AssetsHelper
     if c.length > 0
       "<li><a href='#{path}' class='#{("current" if @current_folder.id==folder.id)}'>#{folder.name}</a><ul> #{c.map{|f| asset_folder_tree(f) }.join} </ul></li>".html_safe
     else
-      "<li><a href='#{path}' class='#{("current" if @current_folder.id==folder.id)}'>#{folder.name}</a></li>"
+      "<li><a href='#{path}' class='#{("current" if @current_folder.id==folder.id)}'>#{folder.name}</a></li>".html_safe
     end
   end
   
