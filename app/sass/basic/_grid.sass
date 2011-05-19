@@ -1,0 +1,30 @@
+//****************************************************************************
+// Derived from the 960 Grid System
+//****************************************************************************
+
+.container_12
+	margin: 0 auto
+	width: 960px
+
+.grid
+	float: left
+	display: inline
+	margin-left: 10px
+	margin-right: 10px
+	
+.first
+	margin-left: 0 !important
+
+.top
+	margin-top: 0 !important
+	
+.last
+	margin-right: 0 !important
+
+.bottom
+	margin-bottom: 0 !important
+
+@for $i from 1 through 12
+	.grid_#{$i}
+		@extend .grid
+		width: ( 60px * $i ) + ( ($i - 1) * 20px )

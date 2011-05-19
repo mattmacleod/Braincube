@@ -1,0 +1,12 @@
+- content_for :header do 
+
+	%body
+		= render :partial => "layouts/parts/header"
+		= render :partial => "layouts/parts/menu"
+		= render :partial => "layouts/parts/flash"
+		#main_content
+			= yield :main
+		= render :partial => "layouts/parts/footer"
+		= render :partial => "layouts/parts/code_footer"
+			
+= render :partial => "layouts/parts/wrapper"

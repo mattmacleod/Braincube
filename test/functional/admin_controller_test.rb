@@ -8,6 +8,7 @@ class AdminControllerTest < ActionController::TestCase
   
   should "route to correct admin pages" do
     assert_routing "/admin",        { :controller=>"admin", :action=>"index" }
+    assert_routing "/admin/setup",  { :controller=>"admin", :action=>"setup" }
     assert_routing "/admin/login",  { :controller=>"admin", :action=>"login" }
     assert_routing "/admin/logout", { :controller=>"admin", :action=>"logout" }
     assert_routing "/admin/help",   { :controller=>"admin", :action=>"help" }
@@ -19,6 +20,16 @@ class AdminControllerTest < ActionController::TestCase
   # Tests for when not logged in
   ###########################################################################
   
+  # Setup test
+  ##############################
+  context "when site is not setup" do
+    context "a GET to :index" do
+      setup { get :index } 
+      should respond_with :redirect
+      should redirect_to "/admin/setup"
+    end
+  end
+      
   context "when not logged in" do
     
     setup do

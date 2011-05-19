@@ -1,7 +1,11 @@
 module Braincube::ApplicationHelper
   
-  # General elements
+  # General helpers
   ############################################################################
+  
+  def page_title
+    [@page_title, Braincube::Config::SiteTitle].compact.join(" | ")
+  end
   
   def flash_message
     return unless flash

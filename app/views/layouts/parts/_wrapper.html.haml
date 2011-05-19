@@ -1,0 +1,17 @@
+!!! 5
+%html{html_attrs("en-GB")}
+	
+	%head
+		%meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
+		
+		%title= page_title
+
+		= include_stylesheets :braincube_frontend, :media => "all"
+		= include_javascripts :braincube_frontend
+		
+		%link{:rel => :icon, :type => "image/vnd.microsoft.icon", :href => "/favicon.ico"}
+		%link{:rel => :icon, :type => "image/png", :href => "/favicon.png"}
+		
+		= csrf_meta_tag
+		
+	= yield :header

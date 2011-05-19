@@ -25,7 +25,7 @@ class ActiveSupport::TestCase
       klass = self.name.gsub(/Test$/, '').underscore.to_sym
     
       context "when not logged in" do
-        setup { }
+        setup { @user = Factory(:user) }
         context "on GET of :index on #{klass}" do
           setup { get :index }
           should redirect_to "/admin/login" 

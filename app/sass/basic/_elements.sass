@@ -1,0 +1,59 @@
+//****************************************************************************
+// Standard styles shared between block elements
+//****************************************************************************
+
+
+.clipped_background
+	-moz-background-clip: padding
+	-webkit-background-clip: padding
+	background-clip: padding-box
+
+.rounded
+	@extend .clipped_background
+		
+.not_rounded
+	-webkit-border-radius: 0
+	-moz-border-radius: 0
+	border-radius: 0
+
+.small_rounded
+	@extend .rounded
+	-webkit-border-radius: $radius_small
+	-moz-border-radius: $radius_small
+	border-radius: $radius_small
+
+
+.small_rounded_top
+	@extend .rounded
+	-webkit-border-radius: $radius_small $radius_small 0 0
+	-moz-border-radius: $radius_small $radius_small 0 0
+	border-radius: $radius_small $radius_small 0 0
+
+.small_rounded_bottom
+	@extend .rounded
+	-webkit-border-radius: 0 0 $radius_small $radius_small
+	-moz-border-radius: 0 0 $radius_small $radius_small
+	border-radius: 0 0 $radius_small $radius_small
+	
+.small_rounded_except_top_left
+	@extend .rounded
+	-webkit-border-radius: 0 $radius_small $radius_small $radius_small
+	-moz-border-radius: 0 $radius_small $radius_small $radius_small
+	border-radius: 0 $radius_small $radius_small $radius_small
+
+
+
+.fade
+	-webkit-transition: all 200ms ease-in-out !important
+
+.shadow
+	-moz-box-shadow: 0px 0px 12px $grey_1 !important
+	-webkit-box-shadow: 0px 0px 12px $grey_1 !important
+	box-shadow: 0px 0px 12px $grey_1 !important
+	
+	
+.form_glow
+	border-color: $color_glow !important
+	-moz-box-shadow: 0px 0px 5px $color_glow !important
+	-webkit-box-shadow: 0px 0px 5px $color_glow !important
+	box-shadow: 0px 0px 5px $color_glow !important
