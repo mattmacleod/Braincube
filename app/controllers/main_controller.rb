@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+class MainController < BraincubeApplicationController
   
   # Generic site front-end requirements inherit from here, because 
   # ApplicationController will also be inherited by AdminController
