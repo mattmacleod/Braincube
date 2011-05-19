@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #  Frontend
   ############################################################################
   
-  root :to => "main#index", :page_id => (Page.root.id rescue nil)
+  root :to => "braincube_main#index", :page_id => (Page.root.id rescue nil)
   
   
   ############################################################################

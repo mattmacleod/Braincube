@@ -1,4 +1,4 @@
-class MainController < BraincubeApplicationController
+class BraincubeMainController < BraincubeApplicationController
   
   # Generic site front-end requirements inherit from here, because 
   # ApplicationController will also be inherited by AdminController
@@ -22,6 +22,7 @@ class MainController < BraincubeApplicationController
   # Find out what the current page is, then load it plus properties and widgets
   def load_page
     @page         = params[:page_id].blank? ? Page.root : Page.find( params[:page_id] )
+    redirect_to admin_setup_path and return unless @page
     @pp           = @page.properties
     @widget_slots = @page.widgets_by_slot
   end
