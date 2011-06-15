@@ -1,5 +1,8 @@
 class ZipUpload < ActiveRecord::Base
   
+  require "zip"
+  require "mime/types"
+  
   # Table-less model
   class_inheritable_accessor :columns
   self.columns = []
@@ -82,7 +85,7 @@ class ZipUpload < ActiveRecord::Base
     # Create assets using the unzipped files
     assets = []
     asset_files.each do |asset_file|
-      
+            
       # Get the MIME type of the file
       mime_type = MIME::Types::type_for( asset_file.path )[0].simplified rescue "application/octet-stream"
       
@@ -96,6 +99,9 @@ class ZipUpload < ActiveRecord::Base
       asset.asset = asset_file
       asset.asset_content_type = mime_type
       assets << asset
+      
+      debugger
+      
     end
      
     # Did we find assets?

@@ -24,6 +24,7 @@ class BraincubeMainController < BraincubeApplicationController
     @page         = params[:page_id].blank? ? Page.root : Page.find( params[:page_id] )
     redirect_to admin_setup_path and return unless @page
     @pp           = @page.properties
+    @page_title   = @page.title
     @widget_slots = @page.widgets_by_slot
   end
   

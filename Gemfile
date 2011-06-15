@@ -1,8 +1,5 @@
 source 'http://rubygems.org'
 
-# Only for gem development
-#gem "jammit",       "0.5.4"
-
 gem 'rails', '3.0.4'
 
 # Essentials
@@ -14,7 +11,6 @@ gem "chronic",      "0.3.0"
 gem "tickle",       "0.1.7"
 gem "sunspot_rails"
 
-#gem "newrelic",     "2.13.4"
 gem "paper_trail",  "2.0.1"
 gem "will_paginate", "3.0.pre2"
 
@@ -40,6 +36,7 @@ group :development do
   gem "dr_dre"
   gem "ruby-debug"
   gem "jeweler",      "1.5.2"  
+  gem "jammit",       "0.5.4"
 end
   
 # Testing only
