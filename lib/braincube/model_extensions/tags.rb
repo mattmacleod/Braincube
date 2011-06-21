@@ -49,7 +49,7 @@ module Braincube #:nodoc:
            return select("DISTINCT #{table_name}.*").where(""+
            "((SELECT COUNT(*) FROM taggings INNER JOIN tags "+
            "ON taggings.tag_id = tags.id "+
-           "WHERE taggable_id = #{table_name}.id AND taggable_type = \"#{name}\" "+
+           "WHERE taggable_id = #{table_name}.id AND taggable_type = '#{name}' "+
            "AND #{tags_condition(tags)}) = #{tags.size})")
 
         end
@@ -60,7 +60,7 @@ module Braincube #:nodoc:
            return where("1=0") if tags.empty?
 
            return  select("DISTINCT #{table_name}.*").
-                   where("taggable_id = #{table_name}.id AND taggable_type = \"#{name}\" ").
+                   where("taggable_id = #{table_name}.id AND taggable_type = '#{name}' ").
                    where( tags_condition(tags) ).
                    joins(:taggings => :tag)
 
@@ -98,7 +98,7 @@ module Braincube #:nodoc:
           return Tagging.where(
             "taggable_id!=#{id} "+
             "AND tag_id IN "+
-            "(SELECT tag_id FROM taggings WHERE taggable_type=\"#{self.class.name}\" "+
+            "(SELECT tag_id FROM taggings WHERE taggable_type='#{self.class.name}' "+
             " AND taggable_id=#{id}) ").
             group("taggable_id, taggable_type").
             order("COUNT(taggable_id) DESC").
