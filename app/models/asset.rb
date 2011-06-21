@@ -27,7 +27,7 @@ class Asset < ActiveRecord::Base
   
   # Setup the attachment
   if Braincube::Config::AssetStorageMethod == :s3
-    has_attached_file :attachment, :styles => Braincube::Config::ImageFileVersions,
+    has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
         :path => ":id/:id_:style.:extension",
         :default_url => "asset_placeholders/:style.png",
         :convert_options => { :all => "-strip -colorspace RGB" },
