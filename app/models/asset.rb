@@ -26,13 +26,26 @@ class Asset < ActiveRecord::Base
   ############################################################################
   
   # Setup the attachment
-  has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
-      :path => ":rails_root/public/assets/:rails_env/:id/:id_:style.:extension",
-      :url => "/assets/:rails_env/:id/:id_:style.:extension",
-      :default_url => "/images/asset_placeholders/:style.png",
-      :convert_options => { :all => "-strip -colorspace RGB" },
-      :processors => [:cropper], :whiny => true
-  
+  if Braincube::Config::AssetStorageMethod == :s3
+    has_attached_file :attachment, :styles => Braincube::Config::ImageFileVersions,
+        :path => ":id/:id_:style.:extension",
+        :default_url => "asset_placeholders/:style.png",
+        :convert_options => { :all => "-strip -colorspace RGB" },
+        :whiny => true,
+        :storage => :s3,
+        :s3_credentials => Braincube::Config::S3ConnectionDetails[ Rails.env ],
+        :bucket => Braincube::Config::S3AssetBucketName[ Rails.env ],
+        :url => ":s3_domain_url",
+        :s3_options => { :server =>  "#{Braincube::Config::S3AssetBucketName[ Rails.env ]}.s3.amazonaws.com" }
+    
+  else
+    has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
+        :path => ":rails_root/public/assets/:rails_env/:id/:id_:style.:extension",
+        :url => "/assets/:rails_env/:id/:id_:style.:extension",
+        :default_url => "/images/asset_placeholders/:style.png",
+        :convert_options => { :all => "-strip -colorspace RGB" },
+        :processors => [:cropper], :whiny => true
+  end
   
   # Validate attachments
   validates_attachment_size :asset, :less_than => Braincube::Config::AssetMaxUploadSize
