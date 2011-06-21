@@ -10,7 +10,8 @@ class Comment < ActiveRecord::Base
   # Validation
   validates_presence_of :item, :content
   validates_presence_of :user, :unless => Proc.new { name }
-  validates_presence_of :name, :email, :ip
+  validates_presence_of :name, :ip
+  validates :email, :email => true
   
   
   # Class methods

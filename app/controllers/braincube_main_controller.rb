@@ -29,7 +29,7 @@ class BraincubeMainController < BraincubeApplicationController
   end
   
   def get_per_page( supplied=0 )
-    supplied.to_i==0 ? Grundlebox::Config::ItemsPerPage : supplied.to_i
+    supplied.to_i==0 ? Braincube::Config::ItemsPerPage : supplied.to_i
   end
   
   def request_id( param )
