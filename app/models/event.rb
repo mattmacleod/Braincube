@@ -61,8 +61,7 @@ class Event < ActiveRecord::Base
     
     def upcoming
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", Time::now, Time::now).
-      group("events.*")
+      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", Time::now, Time::now)
     end
     
     def in_range(time_start, time_end)
@@ -75,14 +74,12 @@ class Event < ActiveRecord::Base
     
     def after( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time).
-      group("events.*")
+      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time)
     end
     
     def before( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time).
-      group("events.*")
+      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time)
     end
     
   end
