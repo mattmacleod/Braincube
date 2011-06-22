@@ -89,7 +89,7 @@ class Event < ActiveRecord::Base
   ############################################################################
   
   def upcoming?
-    self.class.upcoming.where("events.id=#{id}").count.length == 1
+    self.class.upcoming.where("events.id=#{id}").count == 1
   end
 
   def next_performance_time

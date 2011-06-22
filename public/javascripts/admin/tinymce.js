@@ -17,16 +17,16 @@ braincube.admin.tinymce = {
 					width: "100%",
 					height: "600px",
 					
-					theme_advanced_buttons1 : "bold,italic,underline,|,formatselect,|,cut,copy,paste,pastetext,pasteword,|,search,replace",
+					theme_advanced_buttons1 : "bold,italic,underline,|,formatselect,styleselect,|,cut,copy,paste,pastetext,pasteword,|,search,replace",
 					theme_advanced_buttons2: "justifyleft,justifycenter,justifyright,|,bullist,numlist,|,undo,redo,|,link,unlink,code,|,iespell,print,fullscreen,|,image,braincube_files",
 					theme_advanced_toolbar_location : "top",
 					theme_advanced_toolbar_align : "left",
 					theme_advanced_statusbar_location : "bottom",
 					theme_advanced_resizing : true,
-
+					theme_advanced_styles:  "Quote=content_quote;Tweet=content_tweet",
 					relative_urls : false,
 					
-					content_css : "/stylesheets/content.css",
+					content_css : "/stylesheets/editor_content.css",
 					valid_elements : "a[href|title|class|id],-strong/-b,-em/-i,br,-strike,-u,-sub,-sup,-p[class|style],-ul[class|style],-ol[class|style],-li[class|style],img[class|src|alt=|title|width|height|style],-h1[class|style],-h2[class|style],-h3[class|style],-h4[style],hr,span[class|style]",
 					
 					init_instance_callback: 'braincube.admin.tinymce.word_counter.init',
