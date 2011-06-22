@@ -96,7 +96,7 @@ module Braincube #:nodoc:
         
         def related(count = 5)
           return Tagging.select(
-            "taggings.*, COUNT(taggings.id) AS related_count").
+            "taggings.taggable_id,taggings.taggable_type").
             where(
             "taggable_id!=#{id} "+
             "AND tag_id IN "+
