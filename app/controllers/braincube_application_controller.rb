@@ -23,7 +23,7 @@ class BraincubeApplicationController < ActionController::Base
     return @current_user if @current_user
     if session[:user_id]
       @current_user = User.find( :first, :conditions=>{:id => session[:user_id]} ) 
-      if (!@current_user.accessed_at || (@current_user.accessed_at > (Time::now - Braincube::Config::SessionTimeout)))
+      if (@(current_user && !@current_user.accessed_at || (@current_user.accessed_at > (Time::now - Braincube::Config::SessionTimeout))))
         @current_user.update_attribute(:accessed_at, Time::now)
       end
       return @current_user
