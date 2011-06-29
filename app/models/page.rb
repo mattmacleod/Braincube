@@ -27,7 +27,7 @@ class Page < ActiveRecord::Base
   braincube_has_tags
   
   # Attributes
-  attr_accessible :url, :page_type, :title, :abstract, :content, :starts_at, :ends_at, :parent_id, :enabled
+  attr_accessible :url, :page_type, :title, :abstract, :content, :starts_at, :ends_at, :parent_id, :enabled, :show_on_main_menu
   
   # Page widgets
   accepts_nested_attributes_for :page_widgets, :allow_destroy => true
@@ -130,6 +130,10 @@ class Page < ActiveRecord::Base
   
   def enabled_children
     return @enabled_children ||= self.class.nodes.select{|n| n && n.live? && n.parent_id == self.id }.sort_by(&:sort_order)
+  end
+  
+  def menu_children
+    return @menu_children ||= self.class.nodes.select{|n| n && n.live? && n.show_on_main_menu && n.parent_id == self.id }.sort_by(&:sort_order)
   end
   
   private

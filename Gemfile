@@ -52,5 +52,4 @@ end
 # Development database
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "jammit"
 end

@@ -19,6 +19,7 @@ class CreatePages < ActiveRecord::Migration
       t.integer :menu_id,     :null => false
       t.integer :sort_order,  :default => 0, :null => false
       t.boolean :enabled,     :null => false, :default => true
+      t.boolean :show_on_main_menu, :null => false, :default => true
     end
     
     add_index :pages, [:url, :menu_id], :unique => true

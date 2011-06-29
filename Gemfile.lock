@@ -74,7 +74,7 @@ GEM
     haml (3.0.25)
     htmlentities (4.2.2)
     i18n (0.5.0)
-    jammit (0.6.0)
+    jammit (0.5.4)
       closure-compiler (>= 0.1.0)
       yui-compressor (>= 0.9.1)
     jeweler (1.5.2)
@@ -165,7 +165,7 @@ DEPENDENCIES
   fastthread
   haml (= 3.0.25)
   htmlentities (= 4.2.2)
-  jammit
+  jammit (= 0.5.4)
   jeweler (= 1.5.2)
   lapluviosilla-tickle!
   mime-types (= 1.16)
