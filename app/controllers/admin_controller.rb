@@ -139,9 +139,9 @@ class AdminController < ApplicationController
   
   # Custom 500 for admin
   def display_500( e )
-    raise e if Rails.env != "production"
-    render :nothing => true, :status => 500 and return unless request.format==:html && !request.xhr?
-    render :template => "admin/error_500", :status => 500, :layout => "admin/error"
+    raise e #if Rails.env != "production"
+    #render :nothing => true, :status => 500 and return unless request.format==:html && !request.xhr?
+    #render :template => "admin/error_500", :status => 500, :layout => "admin/error"
   end
   
   
