@@ -2,13 +2,13 @@ module Paperclip
   class Cropper < Thumbnail 
      
     def transformation_command
-      
+            
       # Get the asset we're working with
       target = @attachment.instance
       
       # Find out what style we are processing
       current_style = Braincube::Config::ImageFileVersions.index( [@options[:geometry], @options[:format]] )
-      
+   
       # If the style does not need to be recropped, do what we were already doing
       unless current_style && target.cropping?( current_style )
         return super
