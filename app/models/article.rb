@@ -226,6 +226,7 @@ class Article < ActiveRecord::Base
         new_status = Status[:ready]
       when Status[:ready]
         new_status = Status[:published]
+        update_attribute(:starts_at, Time::now) if !starts_at
       else
         new_status = status
     end
