@@ -11,6 +11,7 @@ class CreatePageWidgets < ActiveRecord::Migration
     add_index :page_widgets, :page_id
     add_index :page_widgets, :widget_id
     add_index :page_widgets, :slot
+    add_index :page_widgets, [:page_id, :widget_id]
   end
 
   def self.down

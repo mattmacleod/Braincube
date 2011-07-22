@@ -66,6 +66,7 @@ class Braincube::Config
   
   # Asset uploading
   ############################################################################
+  AssetStorageMethod = :filesystem
   AssetMaxUploadSize = 20.megabytes
   AssetContentTypes = [
     "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif",

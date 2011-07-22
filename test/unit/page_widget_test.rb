@@ -19,6 +19,6 @@ class PageWidgetTest < ActiveSupport::TestCase
   
   should have_db_index :page_id
   should have_db_index :widget_id
-  should have_db_index([:page_id, :widget_id]).unique(true)
+  should have_db_index([:page_id, :widget_id])
 
 end
