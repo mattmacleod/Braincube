@@ -37,7 +37,6 @@ group :development do
   gem "dr_dre"
   gem "ruby-debug"
   gem "jeweler",      "1.5.2"  
-  gem "jammit",       "0.5.4"
 end
   
 # Testing only
@@ -53,5 +52,5 @@ end
 # Development database
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "jammit",       "0.5.4"
+  gem "jammit"
 end
