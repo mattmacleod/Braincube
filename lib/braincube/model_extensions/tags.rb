@@ -47,8 +47,7 @@ module Braincube #:nodoc:
            return where("1=0") if tags.empty?
 
            return select("DISTINCT #{table_name}.*").where(""+
-           "((SELECT COUNT(*) FROM taggings INNER JOIN tags "+
-           "ON taggings.tag_id = tags.id "+
+           "((SELECT COUNT(*) FROM taggings " +
            "WHERE taggable_id = #{table_name}.id AND taggable_type = '#{name}' "+
            "AND #{tags_condition(tags)}) = #{tags.size})")
 
@@ -62,7 +61,7 @@ module Braincube #:nodoc:
            return  select("DISTINCT #{table_name}.*").
                    where("taggable_id = #{table_name}.id AND taggable_type = '#{name}' ").
                    where( tags_condition(tags) ).
-                   joins(:taggings => :tag)
+                   joins(:taggings)
 
         end
 
@@ -70,8 +69,7 @@ module Braincube #:nodoc:
        
        # Build a matcher for each tag
        def tags_condition(tags)
-         condition = tags.map { |t| sanitize_sql(["tags.name LIKE ?", t]) }.join(" OR ")
-         "(" + condition + ")"
+         "(tag_id IN (#{ Tag.where( "tags.name IN (?)", tags ).map(&:id).join(", ") }))"
        end
         
        public
