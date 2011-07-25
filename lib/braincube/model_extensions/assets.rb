@@ -31,7 +31,6 @@ module Braincube #:nodoc:
       module InstanceMethods
         
         def main_image
-          return main_image_id if respond_to?(:main_image_id) && main_image_id && main_image_id > 0
           return nil unless asset_links.length > 0
           return asset_links.sort_by(&:sort_order).first
         end
