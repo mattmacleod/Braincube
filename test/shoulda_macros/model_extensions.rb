@@ -169,7 +169,7 @@ class ActiveSupport::TestCase
       context "an existing item" do
         setup { @item = Factory(klass) }
         should "not have a main image" do
-          assert_nil @item.main_image
+          assert_nil @item.main_image_link
         end
         context "with two assets" do
           setup do
@@ -177,7 +177,7 @@ class ActiveSupport::TestCase
             @al2=Factory(:asset_link, :item => @item, :asset=>@a1=Factory(:asset), :sort_order => 2)
           end
           should "return the correct main image" do
-            assert_equal @al1, @item.main_image
+            assert_equal @al1, @item.main_image_link
           end
         end
       end
