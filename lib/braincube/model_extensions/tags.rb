@@ -69,7 +69,8 @@ module Braincube #:nodoc:
        
        # Build a matcher for each tag
        def tags_condition(tags)
-         "(tag_id IN (#{ Tag.where( "tags.name IN (?)", tags ).map(&:id).join(", ") }))"
+         ids = Tag.where( "tags.name IN (?)", tags ).map(&:id).join(", ")
+         ids.blank? ? "1=1" : "(tag_id IN (#{ ids }))"
        end
         
        public
