@@ -182,6 +182,10 @@ class Article < ActiveRecord::Base
       )
     end
     
+    def latest
+      order("starts_at DESC")
+    end
+    
   end
 
 
