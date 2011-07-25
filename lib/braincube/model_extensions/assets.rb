@@ -19,6 +19,8 @@ module Braincube #:nodoc:
           accepts_nested_attributes_for :asset_links, :allow_destroy => true
           attr_accessible :asset_links_attributes
           
+          before_save :cache_main_image
+          
           include Braincube::ModelExtensions::Assets::InstanceMethods
         
         end
@@ -29,8 +31,16 @@ module Braincube #:nodoc:
       module InstanceMethods
         
         def main_image
+          return main_image_id if respond_to?(:main_image_id)
           return nil unless asset_links.length > 0
           return asset_links.sort_by(&:sort_order).first
+        end
+        
+        private
+        
+        def cache_main_image
+          return unless respond_to?( :main_image_id )
+          self.main_image_id = asset_links.sort_by(&:sort_order).first.asset_id rescue nil
         end
         
       end
