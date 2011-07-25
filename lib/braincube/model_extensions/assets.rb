@@ -30,7 +30,7 @@ module Braincube #:nodoc:
 
       module InstanceMethods
         
-        def main_image
+        def main_image_link
           return nil unless asset_links.length > 0
           return asset_links.sort_by(&:sort_order).first
         end
