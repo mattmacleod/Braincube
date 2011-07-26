@@ -48,10 +48,10 @@ module Braincube #:nodoc:
           # This is quite stupid, but we have to work around MySQL's broken
           # subquery optimisations
           tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
-          return where("1=0") if tag_query.empty?
+          return where("1=0") if tag_query.blank?
           
           taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => "Article").where("tag_id IN #{tag_query}").group(:taggable_id).having("COUNT(tag_id)=#{tags.length}").map(&:taggable_id).join(", ")
-          return where("1=0") if taggable_id_query.empty?
+          return where("1=0") if taggable_id_query.blank?
           
           return select("DISTINCT #{table_name}.*").where("#{table_name}.id IN (#{taggable_id_query})")
 
@@ -61,9 +61,9 @@ module Braincube #:nodoc:
 
           # Get a list of tags and construct the query string if req'd
           tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
-          return where("1=0") if tags.empty?
+          return where("1=0") if tags.blank?
           tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
-          return where("1=0") if tag_query.empty?
+          return where("1=0") if tag_query.blank?
           
           # Use a subquery to return all matching items
           return  where("#{table_name}.id IN (SELECT taggable_id FROM taggings WHERE taggable_type = '#{name}' AND tag_id IN #{tag_query})" )
