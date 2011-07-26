@@ -42,26 +42,27 @@ module Braincube #:nodoc:
         # Pass either a tag string, or an array of strings or tags
         def tagged_with_all(tags)
           
-           tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
-
-           return where("1=0") if tags.empty?
-
-           return select("DISTINCT #{table_name}.*").where(""+
-           "((SELECT COUNT(*) FROM taggings " +
-           "WHERE taggable_id = #{table_name}.id AND taggable_type = '#{name}' "+
-           "AND #{tags_condition(tags)}) = #{tags.size})")
+          tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
+          return where("1=0") if tags.empty?
+          
+          # This is quite stupid, but we have to work around MySQL's broken
+          # subquery optimisations
+          tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
+          taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => "Article").where("tag_id IN #{tag_query}").group(:taggable_id).having("COUNT(tag_id)=#{tags.length}").map(&:taggable_id).join(", ")
+          
+          return select("DISTINCT #{table_name}.*").where("#{table_name}.id IN (#{taggable_id_query})")
 
         end
 
         def tagged_with_any(tags)
 
-           tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
-           return where("1=0") if tags.empty?
-
-           return  select("DISTINCT #{table_name}.*").
-                   where("taggable_id = #{table_name}.id AND taggable_type = '#{name}' ").
-                   where( tags_condition(tags) ).
-                   joins(:taggings)
+          # Get a list of tags and construct the query string if req'd
+          tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
+          return where("1=0") if tags.empty?
+          tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
+          
+          # Use a subquery to return all matching items
+          return  where("#{table_name}.id IN (SELECT taggable_id FROM taggings WHERE taggable_type = '#{name}' AND tag_id IN #{tag_query})" )
 
         end
 
