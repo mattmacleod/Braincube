@@ -10,6 +10,11 @@ class Braincube::Config
   SiteBaseUrl = "http://www.braincu.be"
   
   
+  # Admin settings
+  ############################################################################
+  AdminDisableArticleTabs = false
+  
+  
   # Access and authentication
   ############################################################################
   SessionTimeout = 4.hours

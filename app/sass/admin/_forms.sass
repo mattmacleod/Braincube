@@ -289,24 +289,58 @@ fieldset
 
 .tabbed_fieldsets
 
+	// Top tabs
 	h2
 		font-size: 1em
 		margin: 1em 0
 		padding: 0
-			
-	fieldset
-		@extend .small_rounded
-		border: 1px $grey_5 solid
-		padding: 2%
-		margin-bottom: 2em
 		
-		legend
+	div.note.info
+		background: $grey_2
+		border: 1px $grey_1 solid
+		color: white
+		span.icon
+			background-image: $icon_set_1	
+		a
+			color: lighten($colour_link, 20%)
+				
+	// Main tab area		
+	fieldset
+		@extend .not_rounded, .small_rounded_bottom
+		border: none
+		background: $grey_6
+		padding: 2%
+		margin-bottom: 4em
+			
+		fieldset.article_type
+			border: 1px $grey_5 solid
 			@extend .small_rounded
+			padding: 10px
+			legend
+				top: 0
+				@extend .small_rounded
+				margin: 0
+				display: block
+				padding: 1px 7px
+				background: $grey_1
+				color: $grey_6
+				font-weight: bold
+				
+		legend
 			padding: 3px 7px
 			background: $grey_1
 			color: $grey_6
 			font-weight: bold
+			display: block
+			@extend .small_rounded_top
+			position: relative
+			top: -1em
+			margin-left: -2%
 		
+		fieldset
+			margin-bottom: 2em
+			legend
+				display: none
 		h3
 			@extend .small_rounded
 			background: $grey_2
@@ -317,63 +351,43 @@ fieldset
 			&.top
 				margin-top: 0
 				
-	&.tabs_enabled
-	
-		ul.tabs
-			width: 100%
-			overflow: auto
-			margin-bottom: -1px
-			
-		h2
-			float: left
-			margin: 0
-			a
-				@extend .small_rounded_top
-				background: $grey_4
-				padding: 0.5em 1em
-				margin-right: 1em
-				color: $grey_3
-				&.current
-					color: $grey_1
-					background: $grey_6
-				&.has_error
-					padding-left: 2em
-					background-image: url(/images/admin/embed/icons/tab_error.png)
-					background-position: 0.5em center
-					background-repeat: no-repeat
-		
-		legend
-			display: none
-		
-		fieldset
-			@extend .not_rounded, .small_rounded_bottom
-			border: none
-			background: $grey_6
-			&.article_type
-				@extend .small_rounded
-				border: 1px $grey_5 solid
-				padding: 10px
-				legend
-					@extend .small_rounded
-					display: block
-					padding: 1px 7px
-					background: $grey_1
-					color: $grey_6
-					font-weight: bold
-		
-		.note
-			background: $grey_2
-			border: 1px $grey_1 solid
-			color: white
-			span.icon
-				background-image: $icon_set_1	
-			a
-				color: lighten($colour_link, 20%)
 
+	ul.tabs
+		width: 100%
+		overflow: auto
+		margin-bottom: -1px
+		
+	h2
+		float: left
+		margin: 0
+		margin-bottom: 3em
+		a
+			@extend .small_rounded
+			background: $grey_4
+			padding: 0.5em 1em
+			margin-right: 1em
+			color: $grey_2
+			&.current
+				color: $grey_1 !important
+				background: $grey_6
+			&.has_error
+				padding-left: 2em
+				background-image: url(/images/admin/embed/icons/tab_error.png)
+				background-position: 0.5em center
+				background-repeat: no-repeat
 
 	.top_buttons
 		margin: 1em 0 2em 0
 	
+	&.tabs_enabled
+		legend
+			display: none
+		h2
+			margin-bottom: 0
+			a
+				@extend .small_rounded_top
+				color: $grey_3
+			
 	
 //****************************************************************************
 // Errors
