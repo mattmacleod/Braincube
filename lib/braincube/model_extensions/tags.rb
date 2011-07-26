@@ -50,6 +50,8 @@ module Braincube #:nodoc:
           tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
           taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => "Article").where("tag_id IN #{tag_query}").group(:taggable_id).having("COUNT(tag_id)=#{tags.length}").map(&:taggable_id).join(", ")
           
+          return where("1=0") if taggable_id_query.empty?
+          
           return select("DISTINCT #{table_name}.*").where("#{table_name}.id IN (#{taggable_id_query})")
 
         end
