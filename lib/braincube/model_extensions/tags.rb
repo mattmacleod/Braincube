@@ -41,37 +41,45 @@ module Braincube #:nodoc:
         
         # Pass either a tag string, or an array of strings or tags
         def tagged_with_all(tags)
-          
-          tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
-          return where("1=0") if tags.empty?
-          
-          # This is quite stupid, but we have to work around MySQL's broken
-          # subquery optimisations
-          tag_ids = Tag.where( :name => tags ).map(&:id)
-          return where("1=0") if tag_ids.blank?
-          tag_query = "(#{ tag_ids.join(",") })"
-          
-          taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => "Article").where("tag_id IN #{tag_query}").group(:taggable_id).having("COUNT(tag_id)=#{tags.length}").map(&:taggable_id).join(", ")
-          return where("1=0") if taggable_id_query.blank?
-          
-          return select("DISTINCT #{table_name}.*").where("#{table_name}.id IN (#{taggable_id_query})")
-
+          tagged_with( tags, true )
         end
 
         def tagged_with_any(tags)
-
-          # Get a list of tags and construct the query string if req'd
-          tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
-          return where("1=0") if tags.blank?
-          tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
-          return where("1=0") if tag_query.blank?
-          
-          # Use a subquery to return all matching items
-          return  where("#{table_name}.id IN (SELECT taggable_id FROM taggings WHERE taggable_type = '#{name}' AND tag_id IN #{tag_query})" )
-
+          tagged_with( tags, false )
         end
 
        private
+       
+       def tagged_with( tags, match_all = false )
+         
+         tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
+         return where("1=0") if tags.blank?
+         
+         # This is quite stupid, but we have to work around MySQL's broken
+         # subquery optimisations by doing them seperately.
+         
+         # First, get the tag IDs...
+         tag_ids = Tag.where( :name => tags ).map(&:id)
+         return where("1=0") if tag_ids.blank?
+         tag_query = "(#{ tag_ids.join(",") })"
+         
+         # ... then get the matching taggable IDs ...
+         taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => name).where("tag_id IN #{tag_query}").group(:taggable_id)
+         
+         # If we need to match all tags, then add a 'having' clause
+         if match_all
+           taggable_id_query = taggable_id_query.having("COUNT(tag_id)=#{tags.length}")
+         end
+         
+         #... then build a SQL string ...
+         taggable_query_string = taggable_id_query.all.map(&:taggable_id).join(", ")
+         return where("1=0") if taggable_query_string.blank?
+         
+         # ... then find all matching taggables!
+         return where("#{table_name}.id IN (#{taggable_query_string})")
+         
+         
+       end
        
        # Build a matcher for each tag
        def tags_condition(tags)
