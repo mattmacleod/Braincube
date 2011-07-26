@@ -62,6 +62,7 @@ module Braincube #:nodoc:
           tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
           return where("1=0") if tags.empty?
           tag_query = "(#{ Tag.where( :name => tags ).map(&:id).join(",")})"
+          return where("1=0") if tag_query.empty?
           
           # Use a subquery to return all matching items
           return  where("#{table_name}.id IN (SELECT taggable_id FROM taggings WHERE taggable_type = '#{name}' AND tag_id IN #{tag_query})" )
