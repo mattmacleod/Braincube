@@ -4,7 +4,7 @@
 	%h1= @tag.name
 	
 	- if @tag.taggables.empty?
-		=note "There are no items associated with this tag", :alert
+		=note "There are no items associated with this tag", :type => :alert
 	- else
 		=note "There #{@tag.taggables.length==1 ? "is 1 item" : "are #{ @tag.taggables.length} items"} tagged with this tag"
 	

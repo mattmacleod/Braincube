@@ -20,7 +20,7 @@ class Tag < ActiveRecord::Base
     end
     
     def popular
-      Tag.joins(:taggings).group(:tag_id).order("COUNT(tag_id) DESC")
+      Tag.group("tags.id").order("COUNT(tags.id) DESC")
     end
     
   end
