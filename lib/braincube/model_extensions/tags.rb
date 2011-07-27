@@ -105,10 +105,10 @@ module Braincube #:nodoc:
           tag_ids = self.taggings.map(&:tag_id)
           return where("1=0") if tag_ids.blank?
           
-          taggable_ids = Tagging.where("taggable_id!=#{id}").where(:tag_id => tag_ids).where(:taggable_type => self.class.name).group("taggable_id, taggable_type").order("COUNT(taggable_id) DESC").map(&:id)
+          taggable_ids = Tagging.where("taggable_id!=#{id}").where(:tag_id => tag_ids).where(:taggable_type => self.class.name).group("taggable_id, taggable_type").order("COUNT(taggable_id) DESC").map(&:taggable_id)
           return where("1=0") if taggable_ids.blank?
           
-          return self.class.where(:id => taggable_ids.map(&:taggable_id))
+          return self.class.where(:id => taggable_ids)
         end
         
         private 
