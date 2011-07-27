@@ -16,7 +16,7 @@ class Admin::TagsController < AdminController
     @tags ||= Tag.popular
 
     # Filters
-    @tags = @tags.where(["tags.name LIKE ?", "%#{params[:q]}%"]) if params[:q]
+    @tags = @tags.where(["tags.name LIKE ?", "#{params[:q]}%"]) if params[:q]
         
     respond_to do |format|
       format.js do
