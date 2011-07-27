@@ -70,6 +70,9 @@ class ActiveSupport::TestCase
         should "have related items" do
           assert_same_elements [@item2, @item3], @item1.related.all
         end
+        should "limit related item count" do
+          assert_same_elements [@item2], @item1.related(1).all
+        end
         should "order related items by tag count" do
           assert_equal [@item2, @item3], @item1.related.all
         end
