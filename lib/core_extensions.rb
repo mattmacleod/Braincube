@@ -47,7 +47,7 @@ String.class_eval do
   
   def truncate_words(count)
     truncated_text = self.split[0..(count-1)].join(" ")
-    return (truncated_text == self) ? self : (truncated_text+"...")
+    return (truncated_text == self.chomp) ? self : (truncated_text+"...")
   end
   
 end
