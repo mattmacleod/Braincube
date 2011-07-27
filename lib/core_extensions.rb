@@ -44,6 +44,12 @@ String.class_eval do
     strip_html.split(/\s/).length
   end
   
+  
+  def truncate_words(count)
+    truncated_text = self.split[0..(count-1)].join(" ")
+    return (truncated_text == self) ? self : (truncated_text+"...")
+  end
+  
 end
 
 Array.class_eval do
