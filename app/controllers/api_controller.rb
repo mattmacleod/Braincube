@@ -76,12 +76,7 @@ class ApiController < ApplicationController
     end
     
   end
-  
-  # This is a hack.
-  def flush_pages
-    Rails.application.reload_routes!
-    render :nothing => true
-  end
+
   
   # Protected utility methods
   ############################################################################
