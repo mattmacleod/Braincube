@@ -17,6 +17,7 @@ javascripts:
     - public/javascripts/admin/jquery-jstree.js
     - public/javascripts/admin/jquery-prettyphoto.js
     - public/javascripts/admin/jquery-jcrop.js
+    - public/javascripts/admin/jquery-chosen.js
     - public/javascripts/admin/jquery-ui-timepicker.js
     - public/javascripts/tiny_mce/jquery.tinymce.js
     - public/javascripts/admin/admin.js  
