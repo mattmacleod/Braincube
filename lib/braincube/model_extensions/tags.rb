@@ -60,7 +60,7 @@ module Braincube #:nodoc:
          
          # First, get the tag IDs...
          tag_ids = Tag.where( :name => tags ).map(&:id)
-         return where("1=0") if tag_ids.blank?
+         return where("2=0") if tag_ids.blank?
          tag_query = "(#{ tag_ids.join(",") })"
          
          # ... then get the matching taggable IDs ...
@@ -73,7 +73,7 @@ module Braincube #:nodoc:
          
          #... then build a SQL string ...
          taggable_query_string = taggable_id_query.all.map(&:taggable_id).join(", ")
-         return where("1=0") if taggable_query_string.blank?
+         return where("3=0") if taggable_query_string.blank?
          
          # ... then find all matching taggables!
          return where("#{table_name}.id IN (#{taggable_query_string})")
@@ -101,12 +101,12 @@ module Braincube #:nodoc:
           @tag_list = TagList.from(value)
         end
         
-        def related
+        def related 
           tag_ids = self.taggings.map(&:tag_id)
-          return where("1=0") if tag_ids.blank?
+          return where("4=0") if tag_ids.blank?
           
           taggable_ids = Tagging.select("taggings.taggable_id, COUNT(tag_id) AS tag_count").where("taggable_id!=#{id}").having("tag_count >= 2").where(:tag_id => tag_ids).where(:taggable_type => self.class.name).group("taggable_id, taggable_type").map(&:taggable_id)
-          return where("1=0") if taggable_ids.blank?
+          return where("5=0") if taggable_ids.blank?
           
           return self.class.where(:id => taggable_ids)
         end
