@@ -26,7 +26,7 @@
 
 				.full
 					.half= ff.text_field :price, :label => "Price", :note => "Enter text as applicable"
-					.half= ff.text_field :venue_id, :note => "Choose from list or add a new venue first", :class => :venue_selector
+					.half= ff.select :venue_id, Venue.options_for_select, :note => "Choose from list", :html_options => {:class => :venue_selector}
 
 				.full= ff.check_box :drop_in, :label => "Drop-in event?", :note => "Check if this performance is an all-day event that can be visited at different times"
 		

@@ -10,7 +10,8 @@ braincube.admin.events = {
 	init: function(){
 		this.setup_accordion();								// Setup the accordian table rows
 		this.performance_generator.init();		// Performance generation stuff
-		this.attachment.init();								// Attachment to items
+		this.attachment.init();	
+		this.setup_venue_selector();
 	},
 	
 	// Setup accordion table rows on the event form. Also delete buttons.
@@ -50,30 +51,12 @@ braincube.admin.events = {
 		
 	},
 	
-	setup_venue_autocomplete: function(){
+	setup_venue_selector: function(){
 		
-		$("input.venue_selector").autocomplete({
-
-			source: function( request, response ) {
-
-				$.ajax({
-
-					url: "/admin/venues",
-					dataType: "json",
-					data: { q: request.term },
-
-					success: function( data ) {
-						response( $.map( data, function( item ) {
-							return { label: item.title, value: item.title };
-						}));
-					}
-
-				});
-
-			}
-		});
+		console.log("Venue selector init");
+		$(".venue_selector").chosen();
 		
-		},
+	},
 		
 	// Remove a specific performance by the first TR element
 	remove_performance: function( element ){
