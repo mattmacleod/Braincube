@@ -59,8 +59,7 @@ module Braincube #:nodoc:
          # subquery optimisations by doing them seperately.
          
          # First, get the tag IDs...
-         tag_conditions = tags.map{|t| "(name LIKE ?)" }.join(" OR ")
-         tag_ids = Tag.where( tag_conditions, *tags ).map(&:id)
+         tag_ids = Tag.where( :name => tags ).map(&:id)
          return where("2=0") if tag_ids.blank?
          tag_query = "(#{ tag_ids.join(",") })"
          
