@@ -52,10 +52,7 @@ braincube.admin.events = {
 	},
 	
 	setup_venue_selector: function(){
-		
-		console.log("Venue selector init");
 		$(".venue_selector").chosen();
-		
 	},
 		
 	// Remove a specific performance by the first TR element
