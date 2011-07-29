@@ -249,10 +249,12 @@ class Admin::ArticlesController < AdminController
     if @article.save
       
       # Move to editing queue if submission checkbox ticked
-      if params[:stage_complete]
+      if params[:publish_now] && [:publisher, :admin].include?( current_user.role.downcase.to_sym )
+         @article.publish_now! 
+         @article.reload
+      elsif params[:stage_complete]
         @article.stage_complete!
         @article.reload
-        flash[:notice] = "Article has been submitted"
       else
         flash[:notice] = "Article has been saved"
       end
