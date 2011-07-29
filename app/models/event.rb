@@ -46,12 +46,11 @@ class Event < ActiveRecord::Base
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
-    text :title, :default_boost => 2
+    text :title, :default_boost => 5
     text :short_content
     text :content
     text :cached_venues
     boolean(:active){ upcoming? && enabled }
-    time(:default_sort){ next_performance_time }
   end
     
   # Class methods

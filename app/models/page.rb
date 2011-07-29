@@ -40,10 +40,9 @@ class Page < ActiveRecord::Base
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
-    text :title, :default_boost => 2
+    text :title, :default_boost => 5
     text :content
     boolean(:active){ live? }
-    time(:default_sort){ starts_at }
   end
   
   # Class methods

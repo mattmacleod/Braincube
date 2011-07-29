@@ -100,7 +100,6 @@ class Article < ActiveRecord::Base
     text :content
     text :cached_authors
     boolean(:active){ live? }
-    time(:default_sort){ starts_at }
   end
   
   # Special method generation for ratings

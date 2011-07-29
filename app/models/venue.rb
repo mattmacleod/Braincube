@@ -61,7 +61,6 @@ class Venue < ActiveRecord::Base
     text :phone
     text :email
     text :content
-    time(:default_sort){ Time::now+10.years }
     boolean(:active){ enabled }
   end
   
