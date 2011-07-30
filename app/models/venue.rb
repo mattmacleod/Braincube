@@ -77,7 +77,7 @@ class Venue < ActiveRecord::Base
     end
     
     def options_for_select
-      @options_for_select ||= all.map{|v| [v.admin_summary, v.id] }
+      @options_for_select ||= includes(:city).map{|v| [v.admin_summary, v.id] }
     end
     
     def enabled

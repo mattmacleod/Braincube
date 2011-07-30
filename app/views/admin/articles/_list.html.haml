@@ -7,7 +7,7 @@
 	%tr{:class=>cycle(:even, :odd)}
 		%td
 			%strong
-				= article.title
+				= link_to article.title, edit_admin_article_path( article )
 				- if article.has_draft?
 					%span.label draft
 				= review_stars(article)
