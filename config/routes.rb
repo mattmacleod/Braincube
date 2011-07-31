@@ -87,10 +87,11 @@ Rails.application.routes.draw do
     
     resources :events do
       collection do
+				get "download(.:format)"				=> "events#download", :as => :download
         match "build_performances"    => "events#build_performances", :as => :build_performances
         match "for_attachment"        => "events#for_attachment", :as => :for_attachment
         match "import"                => "events#import", :as => :import
-        match "verify_import"          => "events#verify_import", :as => :verify_import
+        match "verify_import"         => "events#verify_import", :as => :verify_import
       end
     end
     

@@ -61,6 +61,10 @@ class Performance < ActiveRecord::Base
     def before( the_time )
       where("starts_at<=? OR (NOT ends_at IS NULL AND ends_at<=?)", the_time, the_time)
     end
+
+		def in_city( city )
+			includes(:venue).where( "venues.city_id" => city.id )
+		end
     
   end
 

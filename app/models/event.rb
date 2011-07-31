@@ -73,13 +73,19 @@ class Event < ActiveRecord::Base
     
     def after( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time)
+      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time).
+			group("events.id")
     end
     
     def before( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time)
+      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time).
+			group("events.id")
     end
+
+		def in_city( city )
+			includes(:performances => :venue).where( "venues.city_id" => city.id )
+		end
     
   end
 

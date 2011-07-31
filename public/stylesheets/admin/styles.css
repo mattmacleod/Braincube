@@ -1219,6 +1219,17 @@ span.icon.error {
   width: auto;
   margin-right: 0.5em;
 }
+.search_form .field.date select {
+  width: auto;
+}
+.search_form .field.buttons {
+  padding: 0;
+  margin: 0;
+}
+.search_form .field.buttons input {
+  padding: 5px;
+  margin: 7px 0 0 0;
+}
 
 #pagination_loading_wrapper {
   height: 50px;

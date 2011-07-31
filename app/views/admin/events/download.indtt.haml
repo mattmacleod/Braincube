@@ -1,0 +1,18 @@
+= indesign_with_newline indesign_header.html_safe
+
+- if @grouping==:venue
+  - @results.each do |venue, events|
+    = indesign_listings_venue( venue )
+    - for event in events
+      = indesign_listings_event_title(event)
+      = indesign_listings_event_data(event)
+      = indesign_listings_event_description(event)
+
+- elsif @grouping==:date
+  - @results.each do |date, performances|
+    = indesign_listings_date( date )
+    - for performance in performances
+      = indesign_listings_title(performance)
+      = indesign_listings_data(performance)
+      = indesign_listings_description(performance)
+

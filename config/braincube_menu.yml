@@ -182,8 +182,16 @@ Listings:
         - subeditor
         - publisher
         - admin
-    Venues:
+    Download Events:
       order: 4
+      controller: events
+      action: download
+      roles:
+        - subeditor
+        - publisher
+        - admin
+    Venues:
+      order: 5
       controller: venues
       action: index
       roles:
@@ -193,7 +201,7 @@ Listings:
         - publisher
         - admin
     New Venue:
-      order: 5
+      order: 6
       controller: venues
       action: new
       roles:
@@ -203,7 +211,7 @@ Listings:
         - publisher
         - admin
     Cities:
-      order: 6
+      order: 7
       controller: cities
       action: index
       roles:
@@ -213,7 +221,7 @@ Listings:
         - publisher
         - admin
     New City:
-      order: 7
+      order: 8
       controller: cities
       action: new
       roles:
