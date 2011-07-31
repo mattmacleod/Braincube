@@ -130,5 +130,17 @@ Rails.application.routes.draw do
   get "api/v:version/venues(.:format)" => "api#venues", :as => :api_venues
   get "api/v:version/articles(.:format)" => "api#articles", :as => :api_articles
   
+
+  ############################################################################
+  # 404 page
+  ############################################################################
+
+	begin
+		if Kernel.const_get("SiteController")
+			match "*path" => "site#display_404"
+		end
+	rescue NameError
+		match "*path" => "braincube_main#display_404"
+	end
   
 end

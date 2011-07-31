@@ -1,8 +1,0 @@
-= note "Choose the options for the video page"
-
-= f.fields_for :properties do |ff|
-	.full= ff.tag_select :videos_tags, :label => "Show videos tagged with:", :required => true, :popular => false, :value => f.object.properties[:videos_tags]
-	.full
-		.quarter= ff.check_box :videos_all_tags, :label => "Require all tags?", :note => "Check to only show videos matching all tags. Otherwise, will show videos matching any tag.", :checked => f.object.properties[:videos_all_tags]=="1"
-		.quarter= ff.text_field :videos_items_per_page, :label => "Items per page", :note => "Enter the number of videos to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:videos_items_per_page]
-		.half= ff.select :videos_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :value => f.object.properties[:videos_sort_order]

@@ -1,4 +1,0 @@
-= note "This widget will insert the ad slot you choose from the list below"
-
-= f.fields_for :properties do |ff|
-	.full= ff.select :ad_slot_code, Braincube::Config::WidgetAdSlots.map{|k,v| [v,k]}, :label => "Use this ad slot:", :required => true, :value => f.object.properties[:ad_slot_code]

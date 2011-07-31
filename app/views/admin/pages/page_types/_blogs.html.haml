@@ -1,8 +1,0 @@
-= note "Choose the options for blog posts to be displayed on this page"
-
-= f.fields_for :properties do |ff|
-	.full= ff.tag_select :blogs_tags, :label => "Show blog posts with these tags:", :required => true, :popular => false, :value => f.object.properties[:blogs_tags]
-	.full
-		.quarter= ff.check_box :blogs_all_tags, :label => "Require all tags?", :note => "Check to only show blog posts matching all tags. Otherwise, will show blog posts matching any tag.", :checked => f.object.properties[:blogs_all_tags]=="1"
-		.quarter= ff.text_field :blogs_items_per_page, :label => "Items per page", :note => "Enter the number of blog posts to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:blogs_items_per_page]
-		.half= ff.select :blogs_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :value => f.object.properties[:blogs_sort_order]
