@@ -57,6 +57,7 @@ class Venue < ActiveRecord::Base
   # Search
   searchable :auto_index => true, :auto_remove => true do
     text :title, :boost => 10
+		text :stripped_title, :boost => 10
     text(:address){ address_elements.join(", ") }
     text :phone
     text :email
@@ -93,7 +94,10 @@ class Venue < ActiveRecord::Base
 
   # Instance methods
   ############################################################################
-  
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+		 
   def has_location?
     return !lat.nil? && !lng.nil?
   end

@@ -96,7 +96,8 @@ class Article < ActiveRecord::Base
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
-    text :title, :default_boost => 2
+    text :title, :default_boost => 5
+		text :stripped_title, :default_boost => 5
     text :content
     text :cached_authors
     boolean(:active){ live? }
@@ -191,6 +192,10 @@ class Article < ActiveRecord::Base
   # Instance methods
   ############################################################################
   
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+	
   def queue
     case status
     when Status[:unsubmitted]

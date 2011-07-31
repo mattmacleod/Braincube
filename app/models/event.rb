@@ -47,6 +47,7 @@ class Event < ActiveRecord::Base
   # Search
   searchable :auto_index => true, :auto_remove => true do
     text :title, :default_boost => 5
+		text :stripped_title, :default_boost => 5
     text :short_content
     text :content
     text :cached_venues
@@ -93,6 +94,10 @@ class Event < ActiveRecord::Base
   # Instance methods
   ############################################################################
   
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+	
   def upcoming?
     self.class.upcoming.where("events.id=#{id}").count == 1
   end
