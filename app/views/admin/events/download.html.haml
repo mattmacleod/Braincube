@@ -9,7 +9,7 @@
 		%fieldset
 			.field.half
 				= label_tag :type, "Choose type"
-				= select_tag :type, options_for_select(@types.map{|t| [t,t.downcase] })
+				= select_tag :type, options_for_select(@types)
 			.field.half
 				= label_tag :city_id, "Choose city"
 				= select_tag :city_id, options_for_select( City.options_for_select ), :include_blank => true 
