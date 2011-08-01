@@ -150,7 +150,7 @@ module Admin::ArticlesHelper
     gsub("</b>", "<CharStyle:>").html_safe
   end
   
-  def simple_indesign_format(text, paratype, texttype=nil)
+  def simple_indesign_format(text, paratype, texttype=nil, firstpara=nil)
     return "" if text.blank?
     string = text.
     gsub("<em>", "<CharStyle:Italic>").
@@ -161,11 +161,16 @@ module Admin::ArticlesHelper
     gsub("</strong>", "<CharStyle:>").
     gsub("<b>", "<CharStyle:Bold>").
     gsub("</b>", "<CharStyle:>").html_safe
-    if texttype
-      return "<ParaStyle:#{paratype}><CharStyle:#{texttype}>#{string}<CharStyle:>"
-    else
-      return "<ParaStyle:#{paratype}>#{string}"
-    end
+
+		out_string = ""
+		
+		out_string << (firstpara ? "<ParaStyle:#{firstpara}>" : "<ParaStyle:#{paratype}>")
+    out_string << "<CharStyle:#{texttype}>" if texttype
+		out_string << string.gsub(/\n+/, "<ParaStyle:#{paratype}>")
+    out_string << "<CharStyle:>" if texttype
+
+    return out_string
+
   end
   
   # Work out review stars
