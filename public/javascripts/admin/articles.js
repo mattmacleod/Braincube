@@ -102,35 +102,38 @@ braincube.admin.articles = {
 		// The tag list is empty, so when we change the section or page type
 		// dropdowns, rewrite the tag list. Once we've chosen both, disable
 		// the event (so we don't overwrite subsequent tags)
-		$("#article_section_id,#article_article_type").change(function(){
+		$("#article_section_id,#article_article_type").change( this.handle_article_or_section_change );
+		
+	},
+	
+	handle_article_or_section_change: function(){
+		
+		if( ($("#article_article_type option:selected").html().length > 0) && ($("#article_section_id option:selected").html().length > 0) ){
 			
-			if( ($("#article_article_type option:selected").html().length > 0) && ($("#article_section_id option:selected").html().length > 0) ){
-				
-				// We've selected both, so remove this handler
-				$(this).unbind("change");
-				$("#article_tag_list").val( 
-					[$("#article_article_type option:selected").html(), $("#article_section_id option:selected").html()].join(", ")
-				);
-								
-			} else if( $("#article_article_type option:selected").html().length > 0){
-				
-				$("#article_tag_list").val( 
-					$("#article_article_type option:selected").html()
-				);
-				
-			} else if( $("#article_section_id option:selected").html().length > 0){
-				
-				$("#article_tag_list").val( 
-					$("#article_section_id option:selected").html()
-				);
-								
-			} else {
-				
-				return;
-				
-			}
+			// We've selected both, so remove this handler
+			$(this).unbind("change", braincube.admin.articles.handle_article_or_section_change);
 			
-		});
+			$("#article_tag_list").val( 
+				[$("#article_article_type option:selected").html(), $("#article_section_id option:selected").html()].join(", ")
+			);
+							
+		} else if( $("#article_article_type option:selected").html().length > 0){
+			
+			$("#article_tag_list").val( 
+				$("#article_article_type option:selected").html()
+			);
+			
+		} else if( $("#article_section_id option:selected").html().length > 0){
+			
+			$("#article_tag_list").val( 
+				$("#article_section_id option:selected").html()
+			);
+							
+		} else {
+			
+			return;
+			
+		}
 		
 	},
 	
