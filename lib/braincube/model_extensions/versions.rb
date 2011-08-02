@@ -38,7 +38,7 @@ module Braincube #:nodoc:
         def load_draft
           return self unless self.drafts.first
           drafts.first.item_data.each_pair do |attribute, value|
-            self.send("#{attribute}=", value)
+            self.send("#{attribute}=", value) rescue nil
           end
           valid? # There's a good reason for this.
           return self
