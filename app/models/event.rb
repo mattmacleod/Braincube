@@ -94,6 +94,10 @@ class Event < ActiveRecord::Base
   # Instance methods
   ############################################################################
   
+	def live_review
+		review if review && review.live?
+	end
+	
   def stripped_title
 		return title.gsub(/[^(\w|\s)]/i, "")
 	end
