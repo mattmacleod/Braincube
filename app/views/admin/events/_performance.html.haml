@@ -30,7 +30,7 @@
 
 			.full
 				.half= ff.text_field :price, :label => "Price", :note => "Text as applicable"
-				.half= ff.select :venue_id, Venue.options_for_select, :note => "Choose from list", :include_blank => true, :html_options => {:class => :venue_selector}
+				.half= ff.text_field :venue_id, :note => "Enter the ID code of the venue"
 
 			.half
 				.half=ff.text_field 	:starts_at, 			:value => (ff.object.starts_at.to_s(:parseable) if ff.object.starts_at), :required => true, 	:note => "Start date and time. Must be supplied.", :class=>:datetime, :label => "Starts at"
