@@ -95,7 +95,8 @@ class Event < ActiveRecord::Base
   ############################################################################
   
 	def live_review
-		review if review && review.live?
+		r = articles.where("review_rating > 0").first
+		r if r && r.live?
 	end
 	
   def stripped_title
