@@ -100,7 +100,7 @@ class Admin::ArticlesController < AdminController
         # format that InDesign will read without complaining). Need to convert
         # line endings back to CR then, something to do with Mac formatting.
         out_string = HTMLEntities.new.decode( 
-          render_to_string.gsub("\r", "\n").gsub("\n+", "\n").gsub(/\t+/, "")
+          render_to_string.gsub("\r", "\n").gsub(/\n+/, "\n").gsub(/\t+/, "")
         )
         out_string = Iconv.iconv('utf-16be', 'utf-8', out_string )[0].gsub("\n", "\r").gsub(/\r+/, "\r")
       
