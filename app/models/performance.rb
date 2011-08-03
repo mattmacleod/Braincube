@@ -39,7 +39,7 @@ class Performance < ActiveRecord::Base
   # Attribute protection
   attr_accessible :price, :performer, :starts_at, :ends_at, :drop_in, 
                   :ticket_type, :notes, :affiliate_type, :affiliate_code,
-                  :venue_id, :event_id, :venue, :event
+                  :venue_id, :event_id, :venue, :event, :skip_event_cache_update
   
   # Class methods
   ############################################################################
@@ -129,6 +129,7 @@ class Performance < ActiveRecord::Base
   
   # Avoid callbacks!
   def update_event_caches
+		return if skip_event_cache_update
     Event.update_all( {
       :cached_times => event.time_string, :cached_dates => event.date_string, 
       :cached_prices=> event.price_string, :cached_venues=> event.venue_string
