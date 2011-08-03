@@ -102,7 +102,7 @@ class Admin::ArticlesController < AdminController
         out_string = HTMLEntities.new.decode( 
           render_to_string.gsub("\r", "\n").gsub("\n+", "\n").gsub(/\t+/, "")
         )
-        out_string = Iconv.iconv('utf-16be', 'utf-8', out_string.gsub("\n", "\r") )
+        out_string = Iconv.iconv('utf-16be', 'utf-8', out_string ).gsub("\n", "\r").gsub(/\r+/, "\r")
       
         send_data out_string[0], 
           :disposition => "attachment; filename=#{@article.id}-#{@article.url}.indesign.txt", 
