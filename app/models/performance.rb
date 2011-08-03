@@ -41,6 +41,7 @@ class Performance < ActiveRecord::Base
                   :ticket_type, :notes, :affiliate_type, :affiliate_code,
                   :venue_id, :event_id, :venue, :event, :skip_event_cache_update
   
+
   # Class methods
   ############################################################################
   
@@ -135,5 +136,6 @@ class Performance < ActiveRecord::Base
       :cached_prices=> event.price_string, :cached_venues=> event.venue_string
     }, {:id=>event.id} )
   end
+	attr_accessor :skip_event_cache_update
   
 end
