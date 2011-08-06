@@ -251,10 +251,10 @@ class Event < ActiveRecord::Base
       if test_dates.all?{|d| performance_dates.include? d }
         # All days have a performance on them - consecutive run
         run_type = "" 
-      elsif test_dates.all?{|d| performance_dates.include?(d) || d.wday==0 }
+      elsif test_dates.all?{|d| performance_dates.include?(d) ^ d.wday==0 }
         # Sundays do not have performances
         run_type = "no_sundays"
-      elsif test_dates.all?{|d| performance_dates.include?(d) || d.wday==0 || d.wday==6 }
+      elsif test_dates.all?{|d| performance_dates.include?(d) ^ (d.wday==0 || d.wday==6) }
         # Weekends do not have performances
         run_type = "weekdays"
       elsif (performance_dates.length >= 4) && (test_dates.reject{|d| performance_dates.include? d }.length <= 4)
