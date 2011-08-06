@@ -11,6 +11,14 @@
 				- unless params[:q].blank?
 					= link_to "Show all", request.path, :class => :button 
 				= ajax_spinner("search")
+				.options
+					%label
+						%input.radio{ :type => :radio, :name => :location, :value => :this, :checked => (params[:location]=="this" || !params[:location]) }
+						This folder
+					%label
+						%input.radio{ :type => :radio, :name => :location, :value => :all, :checked => (params[:location]=="all") }
+						All folders
+				
 =flash_message
 
 #left_pane
