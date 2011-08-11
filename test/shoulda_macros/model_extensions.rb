@@ -68,10 +68,13 @@ class ActiveSupport::TestCase
           assert_equal [@item1, @item2, @item3], klass.tagged_with_any(["Tag 1", "Tag 2"]).all
         end
         should "have related items" do
-          assert_same_elements [@item2, @item3], @item1.related.all
+          assert_same_elements [@item2, @item3], @item1.related.map(&:taggable)
+        end
+        should "limit related item count" do
+          assert_same_elements [@item2], @item1.related(1).map(&:taggable)
         end
         should "order related items by tag count" do
-          assert_equal [@item2, @item3], @item1.related.all
+          assert_equal [@item2, @item3], @item1.related.map(&:taggable)
         end
         context "when tags are replaced" do
           setup do
