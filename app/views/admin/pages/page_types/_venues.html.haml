@@ -6,4 +6,4 @@
 	.full= ff.select :venues_cities, City::options_for_select, :label => "Cities", :required => false, :note => "Show only venues in the selected cities", :html_options => { :multiple => true}, :selected => f.object.properties[:venues_cities]
 	.full
 		.quarter= ff.text_field :venues_items_per_page, :label => "Items per page", :note => "Enter the number of venues to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:venues_items_per_page]
-		.half= ff.select :venues_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :value => f.object.properties[:venues_sort_order]
+		.half= ff.select :venues_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :select => f.object.properties[:venues_sort_order]
