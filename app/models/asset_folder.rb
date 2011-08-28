@@ -12,7 +12,7 @@ class AssetFolder < ActiveRecord::Base
   
   # Validations
   validates :name, :presence => true
-  validates_uniqueness_of :name, :scope => :parent_id
+  validates_uniqueness_of :name, :scope => :parent_id, :case_sensitive => false
   validates_associated :parent
   validates :parent_id, :tree => true
   
