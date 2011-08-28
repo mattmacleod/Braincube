@@ -73,7 +73,7 @@ class AssetFolder < ActiveRecord::Base
   end
     
   def clear_node_cache
-    self.clear_node_cache!
+    self.class.clear_node_cache!
     self.child_ids = nil
   end
   
