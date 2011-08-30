@@ -1,9 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.9'
 
 # Essentials
-gem "haml",         "3.0.25"
+gem "haml",         "3.1.2"
+gem "sass",         "3.1.2"
 gem "fastercsv",    "1.5.3"
 gem "htmlentities", "4.2.2"
 gem "zip",          "2.0.2"
@@ -36,7 +37,6 @@ group :development do
   gem "dr_dre"
   gem "ruby-debug"
   gem "jeweler",      "1.5.2"  
-  gem "jammit",       "0.5.4"
 end
   
 # Testing only
@@ -52,4 +52,5 @@ end
 # Development database
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "jammit"
 end

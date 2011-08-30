@@ -39,8 +39,9 @@ class Performance < ActiveRecord::Base
   # Attribute protection
   attr_accessible :price, :performer, :starts_at, :ends_at, :drop_in, 
                   :ticket_type, :notes, :affiliate_type, :affiliate_code,
-                  :venue_id, :event_id, :venue, :event
+                  :venue_id, :event_id, :venue, :event, :skip_event_cache_update
   
+
   # Class methods
   ############################################################################
   
@@ -61,6 +62,10 @@ class Performance < ActiveRecord::Base
     def before( the_time )
       where("starts_at<=? OR (NOT ends_at IS NULL AND ends_at<=?)", the_time, the_time)
     end
+
+		def in_city( city )
+			includes(:venue).where( "venues.city_id" => city.id )
+		end
     
   end
 
@@ -125,10 +130,12 @@ class Performance < ActiveRecord::Base
   
   # Avoid callbacks!
   def update_event_caches
+		return if skip_event_cache_update
     Event.update_all( {
       :cached_times => event.time_string, :cached_dates => event.date_string, 
       :cached_prices=> event.price_string, :cached_venues=> event.venue_string
     }, {:id=>event.id} )
   end
+	attr_accessor :skip_event_cache_update
   
 end

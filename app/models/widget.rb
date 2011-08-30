@@ -4,7 +4,7 @@ class Widget < ActiveRecord::Base
   ############################################################################
   
   # Relationships
-  has_many :page_widgets
+  has_many :page_widgets, :dependent => :destroy
   has_many :pages, :through => :page_widgets
   
   # Validations

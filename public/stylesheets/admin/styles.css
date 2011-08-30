@@ -276,19 +276,19 @@ a.zip {
   background-position: -80px -128px;
 }
 
-.clipped_background, .rounded, .small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4, .small_rounded_top_left, .event_performance_items table th.first, .event_performance_items table th#content_body, .event_performance_items table th#content_body_wide, .event_performance_items table th#page_list_area, .small_rounded_top_right, .event_performance_items table th.last, .event_performance_items table th#content_sidebar, .event_performance_items table th#right_pane, .event_performance_items table th#page_list_recent, .small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets.tabs_enabled fieldset, #page_tree_loading, .small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets.tabs_enabled fieldset.article_type, .tabbed_fieldsets.tabs_enabled fieldset.article_type legend, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a, .medium_rounded, #admin_tools, li.token-input-token, .search_form, .asset_attachment_items ul.asset_attachment_list li.asset h4 a, .page_widget_items ul.page_widget_list li.widget h4 a, .medium_rounded_top, .medium_rounded_bottom, .large_rounded, a.event_search_add_link, a.event_search_remove_link, a.venue_search_add_link, a.venue_search_remove_link, body.notice #notice_body {
+.clipped_background, .rounded, .small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4, .small_rounded_top_left, .event_performance_items table th.first, .event_performance_items table th#content_body, .event_performance_items table th#content_body_wide, .event_performance_items table th#page_list_area, .small_rounded_top_right, .event_performance_items table th.last, .event_performance_items table th#content_sidebar, .event_performance_items table th#right_pane, .event_performance_items table th#page_list_recent, .small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets fieldset, #page_tree_loading, .small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a, .medium_rounded, #admin_tools, li.token-input-token, .search_form, .asset_attachment_items ul.asset_attachment_list li.asset h4 a, .page_widget_items ul.page_widget_list li.widget h4 a, .medium_rounded_top, .medium_rounded_bottom, .large_rounded, a.event_search_add_link, a.event_search_remove_link, a.venue_search_add_link, a.venue_search_remove_link, body.notice #notice_body {
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   background-clip: padding-box;
 }
 
-.not_rounded, .tabbed_fieldsets.tabs_enabled fieldset {
+.not_rounded, .tabbed_fieldsets fieldset {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
 }
 
-.small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4 {
+.small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4 {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
@@ -306,13 +306,13 @@ a.zip {
   border-radius: 0 4px 0 0;
 }
 
-.small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets.tabs_enabled fieldset, #page_tree_loading {
+.small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets fieldset, #page_tree_loading {
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
 
-.small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets.tabs_enabled fieldset.article_type, .tabbed_fieldsets.tabs_enabled fieldset.article_type legend, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a {
+.small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -846,16 +846,51 @@ fieldset div.button_area {
   margin: 1em 0;
   padding: 0;
 }
+.tabbed_fieldsets div.note.info {
+  background: #555566;
+  border: 1px #333344 solid;
+  color: white;
+}
+.tabbed_fieldsets div.note.info span.icon {
+  background-image: url(/images/admin/embed/icons/icons_fff.png);
+}
+.tabbed_fieldsets div.note.info a {
+  color: #66a3ff;
+}
 .tabbed_fieldsets fieldset {
-  border: 1px #ddddee solid;
+  border: none;
+  background: #eeeeff;
   padding: 2%;
-  margin-bottom: 2em;
+  margin-bottom: 4em;
+}
+.tabbed_fieldsets fieldset fieldset.article_type {
+  border: 1px #ddddee solid;
+  padding: 10px;
+}
+.tabbed_fieldsets fieldset fieldset.article_type legend {
+  top: 0;
+  margin: 0;
+  display: block;
+  padding: 1px 7px;
+  background: #333344;
+  color: #eeeeff;
+  font-weight: bold;
 }
 .tabbed_fieldsets fieldset legend {
   padding: 3px 7px;
   background: #333344;
   color: #eeeeff;
   font-weight: bold;
+  display: block;
+  position: relative;
+  top: -1em;
+  margin-left: -2%;
+}
+.tabbed_fieldsets fieldset fieldset {
+  margin-bottom: 2em;
+}
+.tabbed_fieldsets fieldset fieldset legend {
+  display: none;
 }
 .tabbed_fieldsets fieldset h3 {
   background: #555566;
@@ -867,62 +902,43 @@ fieldset div.button_area {
 .tabbed_fieldsets fieldset h3.top {
   margin-top: 0;
 }
-.tabbed_fieldsets.tabs_enabled ul.tabs {
+.tabbed_fieldsets ul.tabs {
   width: 100%;
   overflow: auto;
   margin-bottom: -1px;
 }
-.tabbed_fieldsets.tabs_enabled h2 {
+.tabbed_fieldsets h2 {
   float: left;
   margin: 0;
+  margin-bottom: 3em;
 }
-.tabbed_fieldsets.tabs_enabled h2 a {
+.tabbed_fieldsets h2 a {
   background: #ccccdd;
   padding: 0.5em 1em;
   margin-right: 1em;
-  color: #888899;
+  color: #555566;
 }
-.tabbed_fieldsets.tabs_enabled h2 a.current {
-  color: #333344;
+.tabbed_fieldsets h2 a.current {
+  color: #333344 !important;
   background: #eeeeff;
 }
-.tabbed_fieldsets.tabs_enabled h2 a.has_error {
+.tabbed_fieldsets h2 a.has_error {
   padding-left: 2em;
   background-image: url(/images/admin/embed/icons/tab_error.png);
   background-position: 0.5em center;
   background-repeat: no-repeat;
 }
+.tabbed_fieldsets .top_buttons {
+  margin: 1em 0 2em 0;
+}
 .tabbed_fieldsets.tabs_enabled legend {
   display: none;
 }
-.tabbed_fieldsets.tabs_enabled fieldset {
-  border: none;
-  background: #eeeeff;
+.tabbed_fieldsets.tabs_enabled h2 {
+  margin-bottom: 0;
 }
-.tabbed_fieldsets.tabs_enabled fieldset.article_type {
-  border: 1px #ddddee solid;
-  padding: 10px;
-}
-.tabbed_fieldsets.tabs_enabled fieldset.article_type legend {
-  display: block;
-  padding: 1px 7px;
-  background: #333344;
-  color: #eeeeff;
-  font-weight: bold;
-}
-.tabbed_fieldsets.tabs_enabled .note {
-  background: #555566;
-  border: 1px #333344 solid;
-  color: white;
-}
-.tabbed_fieldsets.tabs_enabled .note span.icon {
-  background-image: url(/images/admin/embed/icons/icons_fff.png);
-}
-.tabbed_fieldsets.tabs_enabled .note a {
-  color: #66a3ff;
-}
-.tabbed_fieldsets .top_buttons {
-  margin: 1em 0 2em 0;
+.tabbed_fieldsets.tabs_enabled h2 a {
+  color: #888899;
 }
 
 form .errors {
@@ -1202,6 +1218,17 @@ span.icon.error {
 .search_form .options input {
   width: auto;
   margin-right: 0.5em;
+}
+.search_form .field.date select {
+  width: auto;
+}
+.search_form .field.buttons {
+  padding: 0;
+  margin: 0;
+}
+.search_form .field.buttons input {
+  padding: 5px;
+  margin: 7px 0 0 0;
 }
 
 #pagination_loading_wrapper {
@@ -4417,3 +4444,329 @@ div.ppt {
 }
 
 /* End hide from IE-mac */
+div.chzn-container {
+  font-size: 13px;
+  position: relative;
+}
+div.chzn-container input {
+  background: white;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+  background: -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+  background: -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 );
+  background: linear-gradient(top, white 85%, #eeeeee 99%);
+  border: 1px solid #aaaaaa;
+  font-family: sans-serif;
+  font-size: 1em;
+  margin: 0px;
+  padding: 4px 5px;
+  outline: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+}
+div.chzn-container textarea:focus {
+  border-color: #058cf5;
+  -moz-box-shadow: 0px 0px 3px #aaaaaa;
+  -webkit-box-shadow: 0px 0px 3px #aaaaaa;
+  box-shadow: 0px 0px 3px #aaaaaa;
+}
+div.chzn-container div.chzn-drop {
+  background: white;
+  border: 1px solid #aaaaaa;
+  border-width: 0 1px 1px;
+  left: 0;
+  position: absolute;
+  top: 29px;
+  -webkit-box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+  z-index: 20;
+}
+div.chzn-container-single div.chzn-drop {
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -khtml-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+div.chzn-container a.chzn-single {
+  background: white;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, white));
+  background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+  background-image: -o-linear-gradient(top, #eeeeee 0%, white 50%);
+  background-image: -ms-linear-gradient(top, #eeeeee 0%, white 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 );
+  background-image: linear-gradient(top, #eeeeee 0%, white 50%);
+  border: 1px solid #aaaaaa;
+  display: block;
+  overflow: hidden;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  height: 25px;
+  color: #444444;
+  line-height: 26px;
+  padding: 0px 0px 0px 8px;
+  position: relative;
+  text-decoration: none;
+  z-index: 19;
+  white-space: nowrap;
+}
+div.chzn-container a.chzn-single span {
+  display: block;
+  margin-right: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.chzn-container a.chzn-single div {
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -o-border-top-right-radius: 4px;
+  -ms-border-top-right-radius: 4px;
+  -khtml-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -o-border-bottom-right-radius: 4px;
+  -ms-border-bottom-right-radius: 4px;
+  -khtml-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background: #cccccc;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cccccc), color-stop(0.6, #eeeeee));
+  background-image: -moz-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -o-linear-gradient(bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -ms-linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#eeeeee',GradientType=0 );
+  background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+  border-left: 1px solid #aaaaaa;
+  display: block;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 18px;
+}
+div.chzn-container a.chzn-single div b {
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 0 1px;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+div.chzn-container div.chzn-search {
+  padding: 3px 4px;
+  margin: 0px;
+  white-space: nowrap;
+}
+div.chzn-container div.chzn-search input {
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, white;
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  background: url("/images/admin/embed/chosen-sprite.png") no-repeat 97% -35px, -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  background: linear-gradient(top, white 85%, #eeeeee 99%);
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -khtml-border-radius: 0px;
+  border-radius: 0px;
+  margin: 1px 0;
+  outline: 0;
+}
+div.chzn-container ul.chzn-choices {
+  background: white;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+  background-image: -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background-image: -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+  background-image: -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 );
+  background-image: linear-gradient(top, white 85%, #eeeeee 99%);
+  margin: 0;
+  cursor: text;
+  border: 1px solid #aaaaaa;
+  overflow: hidden;
+  height: auto !important;
+  height: 1%;
+  padding: 0;
+  position: relative;
+}
+div.chzn-container ul.chzn-choices:focus {
+  border-color: #058cf5;
+  -moz-box-shadow: 0px 0px 5px #999999;
+  -webkit-box-shadow: 0px 0px 5px #999999;
+  box-shadow: 0px 0px 5px #999999;
+}
+div.chzn-container ul.chzn-choices li {
+  float: left;
+  list-style-type: none;
+  margin: 0px;
+}
+div.chzn-container ul.chzn-choices li.search-field {
+  margin: 0px;
+  white-space: nowrap;
+  padding: 0px;
+}
+div.chzn-container ul.chzn-choices li.search-field input {
+  color: #666666;
+  background: transparent !important;
+  border: 0px !important;
+  padding: 5px;
+  margin: 1px 0;
+  outline: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+div.chzn-container ul.chzn-choices li.search-field input.default {
+  color: #999999;
+}
+div.chzn-container ul.chzn-choices li.search-choice {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #e4e4e4;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e4e4e4), color-stop(0.7, #eeeeee));
+  background-image: -moz-linear-gradient(center bottom, #e4e4e4 0%, #eeeeee 70%);
+  background-image: -o-linear-gradient(bottom, #e4e4e4 0%, #eeeeee 70%);
+  background: -ms-linear-gradient(top, #e4e4e4 0%, #eeeeee 70%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e4e4e4', endColorstr='#eeeeee',GradientType=0 );
+  background: linear-gradient(top, #e4e4e4 0%, #eeeeee 70%);
+  color: #333333;
+  border: 1px solid #b4b4b4;
+  line-height: 13px;
+  padding: 3px 19px 3px 6px;
+  position: relative;
+  margin: 3px 0px 3px 5px;
+}
+div.chzn-container ul.chzn-choices li.search-choice span {
+  cursor: default;
+}
+div.chzn-container ul.chzn-choices li.search-choice.search-choice-focus {
+  background: #d4d4d4;
+}
+div.chzn-container ul.chzn-choices li.search-choice a.search-choice-close {
+  position: absolute;
+  right: 5px;
+  top: 6px;
+  display: block;
+  width: 8px;
+  height: 9px;
+  font-size: 1px;
+  background: url(/images/admin/embed/chosen-sprite.png) right top no-repeat;
+}
+div.chzn-container ul.chzn-choices li.search-choice a.search-choice-close:hover {
+  background-position: right -9px;
+}
+div.chzn-container ul.chzn-choices li.search-choice.search-choice-focus a.search-choice-close {
+  background-position: right -9px;
+}
+div.chzn-container ul.chzn-results {
+  margin: 0 4px 4px 0;
+  max-height: 190px;
+  padding: 0 0 0 4px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 20;
+}
+div.chzn-container-multi ul.chzn-results {
+  margin: -1px 0 0;
+  padding: 0;
+}
+div.chzn-container-multi ul.chzn-results li {
+  border-left: 0px !important;
+  border-right: 0px !important;
+}
+div.chzn-container ul.chzn-results li {
+  line-height: 80%;
+  padding: 7px 7px 8px;
+  z-index: 22;
+  margin: 0;
+  list-style-type: none;
+}
+div.chzn-container ul.chzn-results li.active-result {
+  cursor: pointer;
+}
+div.chzn-container ul.chzn-results li em {
+  font-style: normal;
+  background: #feffdc;
+}
+div.chzn-container ul.chzn-results li.highlighted {
+  background: #3875d7;
+  color: white;
+}
+div.chzn-container ul.chzn-results li.highlighted em {
+  background: transparent;
+}
+div.chzn-container ul.chzn-results li.no-results {
+  background: #f4f4f4;
+}
+div.chzn-container ul.chzn-results li.group-result {
+  cursor: default;
+  color: #999999;
+  font-weight: bold;
+}
+div.chzn-container ul.chzn-results li.group-option {
+  padding-left: 20px;
+}
+div.chzn-container-multi div.chzn-drop li.result-selected {
+  display: none;
+}
+div.chzn-container-active a.chzn-single {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #5897fb;
+}
+div.chzn-container-active a.chzn-single-with-drop {
+  border: 1px solid #aaaaaa;
+  border-width: 1px 1px 1px;
+  -moz-box-shadow: 0px 1px 0px white inset;
+  -webkit-box-shadow: 0px 1px 0px white inset;
+  box-shadow: 0px 1px 0px white inset;
+  background: #eeeeee;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
+  background-image: -moz-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+  background-image: -o-linear-gradient(bottom, white 0%, #eeeeee 50%);
+  background-image: -ms-linear-gradient(top, white 0%, #eeeeee 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 );
+  background-image: linear-gradient(top, white 0%, #eeeeee 50%);
+  -webkit-border-bottom-left-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -moz-border-radius-bottomright: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+div.chzn-container-active a.chzn-single-with-drop div {
+  background: transparent;
+  border-left: none;
+}
+div.chzn-container-active a.chzn-single-with-drop div b {
+  background-position: -18px 1px;
+}
+div.chzn-container-active ul.chzn-choices {
+  z-index: 21;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #5897fb;
+}
+div.chzn-container-active ul.chzn-choices input {
+  color: #111111 !important;
+}
+
+/* SINGLE */
+/* Multi */
+/* Results */
+/* Active */

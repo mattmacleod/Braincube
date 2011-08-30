@@ -40,6 +40,7 @@ class CreateArticles < ActiveRecord::Migration
       # Caches
       t.string  :cached_authors
       t.string  :cached_tags
+      t.string  :main_image_id
       t.string  :url,           :null=>false
       
     end

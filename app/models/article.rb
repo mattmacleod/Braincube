@@ -96,11 +96,11 @@ class Article < ActiveRecord::Base
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
-    text :title, :default_boost => 2
+    text :title, :default_boost => 5
+		text :stripped_title, :default_boost => 5
     text :content
     text :cached_authors
     boolean(:active){ live? }
-    time(:default_sort){ starts_at }
   end
   
   # Special method generation for ratings
@@ -182,12 +182,20 @@ class Article < ActiveRecord::Base
       )
     end
     
+    def latest
+      order("starts_at DESC")
+    end
+    
   end
 
 
   # Instance methods
   ############################################################################
   
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+	
   def queue
     case status
     when Status[:unsubmitted]

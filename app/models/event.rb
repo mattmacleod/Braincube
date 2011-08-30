@@ -46,12 +46,12 @@ class Event < ActiveRecord::Base
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
-    text :title, :default_boost => 2
+    text :title, :default_boost => 5
+		text :stripped_title, :default_boost => 5
     text :short_content
     text :content
     text :cached_venues
     boolean(:active){ upcoming? && enabled }
-    time(:default_sort){ next_performance_time }
   end
     
   # Class methods
@@ -60,7 +60,7 @@ class Event < ActiveRecord::Base
   class << self
     
     def upcoming
-      joins("INNER JOIN performances ON performances.event_id=events.id").
+      includes(:performances).
       where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", Time::now, Time::now)
     end
     
@@ -74,13 +74,19 @@ class Event < ActiveRecord::Base
     
     def after( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time)
+      where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time).
+			group("events.id")
     end
     
     def before( the_time )
       joins("INNER JOIN performances ON performances.event_id=events.id").
-      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time)
+      where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time).
+			group("events.id")
     end
+
+		def in_city( city )
+			includes(:performances => :venue).where( "venues.city_id" => city.id )
+		end
     
   end
 
@@ -88,6 +94,15 @@ class Event < ActiveRecord::Base
   # Instance methods
   ############################################################################
   
+	def live_review
+		r = articles.where("review_rating > 0").first
+		r if r && r.live?
+	end
+	
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+	
   def upcoming?
     self.class.upcoming.where("events.id=#{id}").count == 1
   end
@@ -236,10 +251,10 @@ class Event < ActiveRecord::Base
       if test_dates.all?{|d| performance_dates.include? d }
         # All days have a performance on them - consecutive run
         run_type = "" 
-      elsif test_dates.all?{|d| performance_dates.include?(d) || d.wday==0 }
+      elsif test_dates.all?{|d| performance_dates.include?(d) ^ d.wday==0 }
         # Sundays do not have performances
         run_type = "no_sundays"
-      elsif test_dates.all?{|d| performance_dates.include?(d) || d.wday==0 || d.wday==6 }
+      elsif test_dates.all?{|d| performance_dates.include?(d) ^ (d.wday==0 || d.wday==6) }
         # Weekends do not have performances
         run_type = "weekdays"
       elsif (performance_dates.length >= 4) && (test_dates.reject{|d| performance_dates.include? d }.length <= 4)

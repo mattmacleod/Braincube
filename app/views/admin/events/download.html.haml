@@ -1,0 +1,30 @@
+-@page_title = "Download events"
+%h1 Download events
+
+= note "Select the events you want to download using the form below"
+
+.search_form
+
+	%form{ :action => url_for(:format => :indtt) }
+		%fieldset
+			.field.half
+				= label_tag :type, "Choose type"
+				= select_tag :type, options_for_select(@types)
+			.field.half
+				= label_tag :city_id, "Choose city"
+				= select_tag :city_id, options_for_select( City.options_for_select ), :include_blank => true 
+			.field.half.date
+				= label_tag :start_date, "From date"
+				= select_date nil, :prefix => :start_date, :order => [:year, :month, :day], :start_year => Date::today.year, :include_blank => true
+			.field.half.date
+				= label_tag :end_date, "End date"
+				= select_date nil, :prefix => :end_date, :order => [:year, :month, :day], :start_year => Date::today.year, :include_blank => true
+			.field.half
+				= label_tag :grouping, "Group by..."
+				= select_tag :grouping, options_for_select([["Date", "date"], ["Venue", "venue"]])
+				
+			.field.half.buttons
+				%input.button{ :type => :submit, :value => "Download listings" }
+				
+= flash_message
+	

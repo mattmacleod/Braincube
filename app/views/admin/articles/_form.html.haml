@@ -1,7 +1,7 @@
 = form_errors @article
 = hidden_field_tag(:current_article_id, f.object.id) unless f.object.new_record?
 
-.tabbed_fieldsets
+.tabbed_fieldsets{ :class => (:disable_tabs if Braincube::Config::AdminDisableArticleTabs) }
 
 	%ul.tabs
 		%li

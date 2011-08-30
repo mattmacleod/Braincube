@@ -38,7 +38,6 @@ class Admin::PagesController < AdminController
     @page.menu = Menu.first #TODO
     @page.sort_order = @page.parent ? ((@page.parent.children.last.sort_order + 1) rescue @page.parent.sort_order+1) : 1
     if @page.save
-      flush_routes
       flash[:updated_page_id] = @page.id
       flash[:notice] = "Page has been created"
       redirect_to( :action=>:index )
@@ -62,7 +61,6 @@ class Admin::PagesController < AdminController
     @page = Page.find( params[:id] )
     @page.attributes = params[:page]
     if @page.save
-      flush_routes
       flash[:updated_page_id] = @page.id
       flash[:notice] = "Page has been saved"
       redirect_to( :action => :index )
@@ -90,7 +88,7 @@ class Admin::PagesController < AdminController
     @root = Page.root
     
     # Update the parent of the page
-    @page = Page.find( params[:m] )
+    @updated_page = @page = Page.find( params[:m] )
     @page.parent_id = params[:p]
     
     # Save the page
@@ -102,7 +100,6 @@ class Admin::PagesController < AdminController
       
       # Reload the node cache
       Page.clear_nodes
-      flush_routes
       updated_page = @page
       
       render :partial => "list", :status => 200, :locals => { :root => @root }
@@ -112,11 +109,6 @@ class Admin::PagesController < AdminController
     end
     
   end
-  
-  private
-  
-  def flush_routes
-    Rails.application.reload_routes!
-  end
+
 
 end

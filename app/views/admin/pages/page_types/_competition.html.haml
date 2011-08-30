@@ -1,6 +1,0 @@
-= note "Choose the options for the competition"
-
-= f.fields_for :properties do |ff|
-	.full= ff.text_field :competition_responses, :label => "Send responses to email address:", :required => true, :value => f.object.properties[:competition_responses]
-	.full
-		.quarter= ff.text_field :competition_minimum_age, :label => "Minimum age of entrant", :note => "Entrants will be asked for their date of birth. Leave blank for none.", :maxlength => 3, :cols => 5, :value => f.object.properties[:competition_minimum_age]

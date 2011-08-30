@@ -10,6 +10,11 @@ class Braincube::Config
   SiteBaseUrl = "http://www.braincu.be"
   
   
+  # Admin settings
+  ############################################################################
+  AdminDisableArticleTabs = false
+  
+  
   # Access and authentication
   ############################################################################
   SessionTimeout = 4.hours
@@ -26,7 +31,6 @@ class Braincube::Config
   ############################################################################
   ArticleTemplates  = ["Normal"]  
   ArticleTypes  = { 
-    :article       => "Article",
     :feature       => "Feature",
     :review        => "Review",
     :blog_post     => "Blog post",
@@ -39,15 +43,13 @@ class Braincube::Config
     :articles    => "Article listing",
     :events      => "Event listing",
     :venues      => "Venue listing",
-    :videos      => "Video listing",
-    :blogs       => "Blog listing",
-    :staff       => "Staff listing",
     :text        => "Static text",
     :contact     => "Contact form"
   }
   PageSortOrder = {
     :newest => "Newest",
-    :name   => "Alphabetical"
+    :name   => "Alphabetical",
+    :start  => "Upcoming"
   }
   
   
@@ -66,6 +68,7 @@ class Braincube::Config
   
   # Asset uploading
   ############################################################################
+  AssetStorageMethod = :filesystem
   AssetMaxUploadSize = 20.megabytes
   AssetContentTypes = [
     "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/gif",
@@ -114,16 +117,12 @@ class Braincube::Config
   # Widgets
   ############################################################################
   WidgetTypes = {
-    :latest_tagged   => "Latest tagged articles",
-    :latest_comments => "Latest comments",
     :custom_html     => "Custom HTML",
     :image           => "Image link"
   }
 
   WidgetSlots = {
-    :header         => "Header bar",
-    :sidebar_1      => "Sidebar 1",
-    :sidebar_2      => "Sidebar 2"
+    :sidebar      => "Sidebar 1"
   }
   
 end

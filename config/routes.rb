@@ -87,10 +87,11 @@ Rails.application.routes.draw do
     
     resources :events do
       collection do
+				get "download(.:format)"				=> "events#download", :as => :download
         match "build_performances"    => "events#build_performances", :as => :build_performances
         match "for_attachment"        => "events#for_attachment", :as => :for_attachment
         match "import"                => "events#import", :as => :import
-        match "verify_import"          => "events#verify_import", :as => :verify_import
+        match "verify_import"         => "events#verify_import", :as => :verify_import
       end
     end
     
@@ -125,11 +126,21 @@ Rails.application.routes.draw do
   ############################################################################
   # API section
   ############################################################################
-  get "api/flush_pages" => "api#flush_pages", :as => :flush_pages
-  get "api/v:version/users(.:format)" => "api#users", :as => :api_users
   get "api/v:version/events(.:format)" => "api#events", :as => :api_events
   get "api/v:version/venues(.:format)" => "api#venues", :as => :api_venues
   get "api/v:version/articles(.:format)" => "api#articles", :as => :api_articles
   
+
+  ############################################################################
+  # 404 page
+  ############################################################################
+
+	begin
+		if Kernel.const_get("SiteController")
+			match "*path" => "site#display_404"
+		end
+	rescue NameError
+		match "*path" => "braincube_main#display_404"
+	end
   
 end

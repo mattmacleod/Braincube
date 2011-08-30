@@ -36,15 +36,15 @@ braincube.admin.ui = {
 	setup_tabbed_forms: function(){
 		
 		// Return unless there are tabbed fieldsets to process
-		if( $(".tabbed_fieldsets").length===0 ){ return; }
+		if( $(".tabbed_fieldsets:not(.disable_tabs)").length===0 ){ return; }
 		
 		// Enable the tabs
-		$(".tabbed_fieldsets").addClass("tabs_enabled");
-		$(".tabbed_fieldsets ul.tabs").tabs(".tabbed_fieldsets > fieldset");
+		$(".tabbed_fieldsets:not(.disable_tabs)").addClass("tabs_enabled");
+		$(".tabbed_fieldsets:not(.disable_tabs) ul.tabs").tabs(".tabbed_fieldsets > fieldset");
 		
 		// If any tabs have errors, update the corresponding link to include
 		// an error notification on it.
-		$(".tabbed_fieldsets > fieldset").each(function(){
+		$(".tabbed_fieldsets:not(.disable_tabs) > fieldset").each(function(){
 			if( $(this).find(".field_with_errors").length>0 ){
 				$(this).parent().find("a[href=#"+$(this).attr("id")+"]").addClass("has_error");
 			}

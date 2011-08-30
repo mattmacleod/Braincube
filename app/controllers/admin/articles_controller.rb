@@ -100,11 +100,11 @@ class Admin::ArticlesController < AdminController
         # format that InDesign will read without complaining). Need to convert
         # line endings back to CR then, something to do with Mac formatting.
         out_string = HTMLEntities.new.decode( 
-          render_to_string.gsub("\r\n", "\n").gsub("\n+", "\n") 
+          render_to_string.gsub("\r", "\n").gsub(/\n+/, "\n").gsub(/\t+/, "")
         )
-        out_string = Iconv.iconv('utf-16be', 'utf-8', out_string.gsub("\n", "\r") )
+        out_string = Iconv.iconv('utf-16be', 'utf-8', out_string )[0].gsub("\n", "\r").gsub(/\r+/, "\r")
       
-        send_data out_string[0], 
+        send_data out_string, 
           :disposition => "attachment; filename=#{@article.id}-#{@article.url}.indesign.txt", 
           :type=>"text/plain; charset=utf-16be"
       end
@@ -249,10 +249,12 @@ class Admin::ArticlesController < AdminController
     if @article.save
       
       # Move to editing queue if submission checkbox ticked
-      if params[:stage_complete]
+      if params[:publish_now] && [:publisher, :admin].include?( current_user.role.downcase.to_sym )
+         @article.publish_now! 
+         @article.reload
+      elsif params[:stage_complete]
         @article.stage_complete!
         @article.reload
-        flash[:notice] = "Article has been submitted"
       else
         flash[:notice] = "Article has been saved"
       end
@@ -339,7 +341,7 @@ class Admin::ArticlesController < AdminController
   # Get the sections and publictions - needed pretty much all over
   def load_defaults
     @all_sections = Section.order(:name)
-    @all_publications = Publication.all.group_by(&:direction)
+    @all_publications = Publication.all.group_by(&:direction).to_a
   end
   
   

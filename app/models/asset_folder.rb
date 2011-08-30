@@ -71,12 +71,14 @@ class AssetFolder < ActiveRecord::Base
   def get_children
     return self.child_ids.blank? ? [] : child_ids.map{|c| AssetFolder::nodes[c] }.sort_by(&:name)
   end
-  
-  private
-  
+    
   def clear_node_cache
-    self.class.nodes = nil
+    self.clear_node_cache!
     self.child_ids = nil
   end
   
+	def self.clear_node_cache!
+		self.nodes = nil
+	end
+
 end

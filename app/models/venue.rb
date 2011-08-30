@@ -57,11 +57,11 @@ class Venue < ActiveRecord::Base
   # Search
   searchable :auto_index => true, :auto_remove => true do
     text :title, :boost => 10
+		text :stripped_title, :boost => 10
     text(:address){ address_elements.join(", ") }
     text :phone
     text :email
     text :content
-    time(:default_sort){ Time::now+10.years }
     boolean(:active){ enabled }
   end
   
@@ -78,7 +78,7 @@ class Venue < ActiveRecord::Base
     end
     
     def options_for_select
-      @options_for_select ||= all.map{|v| [v.admin_summary, v.id] }
+      @options_for_select ||= includes(:city).map{|v| [v.admin_summary, v.id] }
     end
     
     def enabled
@@ -94,7 +94,10 @@ class Venue < ActiveRecord::Base
 
   # Instance methods
   ############################################################################
-  
+  def stripped_title
+		return title.gsub(/[^(\w|\s)]/i, "")
+	end
+		 
   def has_location?
     return !lat.nil? && !lng.nil?
   end

@@ -268,10 +268,10 @@ ActiveRecord::Schema.define(:version => 28) do
   add_index "page_widgets", ["widget_id"], :name => "index_page_widgets_on_widget_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "url",                            :null => false
-    t.string   "page_type",  :default => "TEXT", :null => false
-    t.integer  "user_id",                        :null => false
-    t.string   "title",                          :null => false
+    t.string   "url",                                   :null => false
+    t.string   "page_type",         :default => "TEXT", :null => false
+    t.integer  "user_id",                               :null => false
+    t.string   "title",                                 :null => false
     t.text     "abstract"
     t.text     "content"
     t.datetime "created_at"
@@ -280,9 +280,10 @@ ActiveRecord::Schema.define(:version => 28) do
     t.datetime "ends_at"
     t.text     "properties"
     t.integer  "parent_id"
-    t.integer  "menu_id",                        :null => false
-    t.integer  "sort_order", :default => 0,      :null => false
-    t.boolean  "enabled",    :default => true,   :null => false
+    t.integer  "menu_id",                               :null => false
+    t.integer  "sort_order",        :default => 0,      :null => false
+    t.boolean  "enabled",           :default => true,   :null => false
+    t.boolean  "show_on_main_menu", :default => true,   :null => false
   end
 
   add_index "pages", ["parent_id", "menu_id", "starts_at", "ends_at", "enabled"], :name => "page_index"
