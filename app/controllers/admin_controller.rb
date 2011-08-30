@@ -6,6 +6,9 @@ class AdminController < ApplicationController
   # Remember that all admin controllers should inherit from this one. Need to 
   # override things that we want to change!
   
+  cache_sweeper :node_sweeper
+  before_filter :flush_node_cache
+
   # Controller setup
   ############################################################################
   
@@ -205,4 +208,20 @@ class AdminController < ApplicationController
     @forced_active_subsection = title
   end
     
+
+	# Clear the node cache if required
+	def flush_node_cache
+    
+    # Get the time of the last flush request
+    flush_timestamp = File.read("#{Rails.root}/tmp/flush_node_cache.txt").to_i rescue nil
+    return unless flush_timestamp
+    
+    unless flush_timestamp <= Braincube::NodeCache::node_flush_timestamp
+			AssetFolder.clear_node_cache!
+			Page.clear_nodes
+			Braincube::NodeCache::node_flush_timestamp = Time::now.to_i
+    end
+    
+  end
+
 end

@@ -48,7 +48,7 @@ class AssetFolder < ActiveRecord::Base
   cattr_accessor :nodes
   attr_accessor :child_ids
   def self.nodes
-    #return @nodes if ( @nodes && !Rails.env.test? )
+    return @nodes if ( @nodes && !Rails.env.test? )
     @nodes = []
     order(:id).each{|n| @nodes[n.id] = n }
     @nodes.each do |n| 
@@ -78,7 +78,7 @@ class AssetFolder < ActiveRecord::Base
   end
   
 	def self.clear_node_cache!
-		self.nodes = nil
+		@nodes = nil
 	end
 
 end
