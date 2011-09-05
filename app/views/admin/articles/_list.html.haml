@@ -13,7 +13,7 @@
 				= review_stars(article)
 			%span.extra
 				= article.cached_authors
-		%td.nowrap
+		%td
 			= print_time article.updated_at
 			- if ["index", "download"].include?(controller.action_name)
 				%span.extra
