@@ -113,7 +113,7 @@ class Performance < ActiveRecord::Base
   end
   
   def get_title
-    performer.blank? ? event.title : "#{event.title} – #{performer}"
+    performer.blank? ? event.title : "#{event.title} (#{performer})"
   end
   
   # Cached value updates
