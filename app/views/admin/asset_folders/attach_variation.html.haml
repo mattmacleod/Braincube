@@ -21,7 +21,7 @@
 			%legend Original
 			=note "This is the original upload. #{link_to "Insert this image", @asset.asset.url(:original), :class => "button edit select_variation"}"
 			
-			=image_tag( @asset.asset.url(:original), :class=>"original", :id=>"image_for_version_original" )
+			.original_image_wrapper=image_tag( @asset.asset.url(:original), :class=>"original", :id=>"image_for_version_original" )
 
 		- Braincube::Config::ImageFileVersions.each_pair do |k,v|
 			%fieldset.preview{:id => k}

@@ -1475,7 +1475,6 @@ table.import_list strong.error {
   background-position: 3px center;
 }
 
-/* Browser */
 #folder_browser h2 {
   font-size: 2em;
   font-weight: bold;
@@ -1499,7 +1498,6 @@ table.import_list strong.error {
   padding: 11px;
 }
 
-/* Icons */
 #folder_browser h2, .google_image_search h2 {
   padding: 0;
   margin: 0 0 10px 0;
@@ -1583,9 +1581,12 @@ table.import_list strong.error {
   background-image: url(/images/admin/embed/icons/icons_yellow.png);
 }
 
-/* Cropper */
 fieldset.preview {
-  max-width: 672px;
+  width: 672px;
+  overflow: auto;
+}
+fieldset.preview .original_image_wrapper {
+  width: 672px;
   overflow: auto;
 }
 fieldset.preview img.original {

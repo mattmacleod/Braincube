@@ -46,7 +46,7 @@
 				%fieldset.preview#original
 					%legend Original
 					=note "This is the original image that was uploaded. To modify this image, upload a new file."
-					=image_tag( @asset.asset.url(:original), :class=>"original", :id=>"image_for_version_original" )
+					.original_image_wrapper=image_tag( @asset.asset.url(:original), :class=>"original", :id=>"image_for_version_original" )
 			
 				- Braincube::Config::ImageFileVersions.each_pair do |k,v|
 					%fieldset.preview{:id => k}

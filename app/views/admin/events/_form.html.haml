@@ -1,7 +1,7 @@
 =form_errors @event
 -@main_form = f
 
-.tabbed_fieldsets
+.tabbed_fieldsets{ :class => (:disable_tabs if Braincube::Config::AdminDisableArticleTabs) }
 
 	%ul.tabs
 		%li
