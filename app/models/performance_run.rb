@@ -72,7 +72,7 @@ class PerformanceRun < ActiveRecord::Base
       dates = []
       current_date = start_date
       while( current_date && (current_date <= end_date) ) do
-        parsed = Tickle.parse( "#{nl_string}", :now => current_date, :start => current_date )
+        parsed = Tickle.parse( "#{nl_string}", :now => current_date, :start => current_date ) rescue nil
         return false unless parsed
         break if parsed[:next] > end_date
         dates << parsed[:next]

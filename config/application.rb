@@ -9,6 +9,6 @@ module Braincube
 
     config.encoding = "utf-8"
     config.filter_parameters += [:password]
-    
+		
   end
 end
