@@ -85,10 +85,16 @@ class ImportedPerformance < ActiveRecord::Base
           event    = Event.find_by_title( data[:event_name] )
           city     = City.find_by_name(data[:city]) || City.first
           venue    = Venue.find(:first, :conditions => { :title => data[:venue_name], :city_id => city.id})
-          start_at = Time::parse( "#{data[:start_date]} #{data[:start_time]}") rescue nil
-          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ) rescue nil
+          start_at = Time::parse( "#{data[:start_date]} #{data[:start_time]}").getlocal rescue nil
+          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ).getlocal rescue nil
           
           end_at = (end_at + 1.day) if end_at  && start_at && (end_at < start_at)
+          
+          # Bit of a hack to account for DST
+          if start_at.dst?
+            start_at += 1.hour
+            end_at += 1.hour if end_at
+          end
           
           imported_attributes = {
             :event_name        => data[:event_name],

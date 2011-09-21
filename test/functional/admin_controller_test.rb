@@ -44,7 +44,6 @@ class AdminControllerTest < ActionController::TestCase
       should_require_admin_login
     end
     
-    
     # Logging in/out
     ##############################
     
