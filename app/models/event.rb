@@ -73,13 +73,13 @@ class Event < ActiveRecord::Base
     end
     
     def after( the_time )
-      joins("INNER JOIN performances ON performances.event_id=events.id").
+      joins(:performances).
       where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time).
 			group("events.id")
     end
     
     def before( the_time )
-      joins("INNER JOIN performances ON performances.event_id=events.id").
+      joins(:performances).
       where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time).
 			group("events.id")
     end
