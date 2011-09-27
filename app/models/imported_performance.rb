@@ -154,7 +154,7 @@ class ImportedPerformance < ActiveRecord::Base
       
       # Get all of the imported performances
       to_import = self.find(:all, :conditions => { :id => selected_ids })
-      
+            
       # Loop through them
       to_import.each do |import|
         
@@ -163,7 +163,7 @@ class ImportedPerformance < ActiveRecord::Base
           
             # Load or create an event
             event = import.event
-            event ||= Event.new( :title => import.event_name )
+            event ||= Event.find_or_create_by_title( import.event_name )
         
             # Update the event attribtues
             event.abstract = event.short_content = import.short_description unless import.short_description.blank?
