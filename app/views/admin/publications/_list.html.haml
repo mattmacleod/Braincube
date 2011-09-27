@@ -1,0 +1,11 @@
+- if publications.empty? && !params[:page]
+	%tr
+		%td.empty{:colspan => 3}
+			No publications found
+			
+- publications.each do |publication|
+	%tr{ :class => cycle(:even, :odd) }
+		%td= link_to publication.name, edit_admin_publication_path( publication )
+		%td= publication.date_street.strftime("%A %d %B %Y") if publication.date_street
+		%td= publication.date_deadline.strftime("%A %d %B %Y") if publication.date_deadline
+		%td.destroy= delete_link "Delete publication", admin_publication_path(publication.id)

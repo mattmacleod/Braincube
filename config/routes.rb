@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :tags
     resources :cities
     resources :widgets
+    resources :publications
     
     # More complex...
     resources :users do

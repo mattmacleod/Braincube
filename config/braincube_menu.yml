@@ -324,3 +324,9 @@ Site management:
       action: index
       roles:
         - admin
+    Publications manager:
+      order: 3
+      controller: publications
+      action: index
+      roles:
+        - admin

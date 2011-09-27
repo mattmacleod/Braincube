@@ -1,0 +1,13 @@
+=labelled_form_for [:admin, @publication], :url => admin_publications_path do |f|
+	
+	#content_body.content_body
+		- @page_title = "New publication | Publication Manager"
+		%h1 Create new publication
+		=flash_message
+
+		=note "Fill in the form below to create a new publication"
+
+		=render :partial=>"form", :locals=>{:f=>f}
+	
+	#content_sidebar
+		=render :partial => "sidebar", :locals=>{:f=>f}
