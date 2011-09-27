@@ -120,7 +120,7 @@ braincube.admin.events = {
 			
 			// Setup the venue AJAX
 			$("#performance_run_performance_attributes_venue_id").change( this.load_venue_opening_times );
-
+      
 		},
 		
 		update_performance_type_panels: function(){
@@ -141,6 +141,7 @@ braincube.admin.events = {
 		},
 		
 		load_preview: function(){
+		  $("#performance_preview_wrapper").html("Please wait, loading details...")
 			$(this).parents("form").submit();
 		},
 		
