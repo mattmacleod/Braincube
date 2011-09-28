@@ -91,13 +91,13 @@
 							%th.checkbox Save?
 							%th Start time
 							%th End time
-							- @performances.each_with_index do |performance,idx|
+							- @performances.each do |performance|
 								%tr
 									%td.checkbox
-										= check_box_tag "performances[#{idx}]",  performance.starts_at.to_i, true
+										= check_box_tag "performance[#{performance.starts_at.to_i}][selected]",  true, true
 									
-									%td= performance.starts_at.to_s(:listings)
-									%td= performance.ends_at ? performance.ends_at.to_s(:listings) : "(not specified)"
+									%td= text_field_tag "performance[#{performance.starts_at.to_i}][start]", performance.starts_at.strftime("%Y-%m-%d %H:%M"), :class => :datetime#performance.starts_at.to_s(:listings)
+									%td= text_field_tag "performance[#{performance.starts_at.to_i}][end]", (performance.ends_at.strftime("%Y-%m-%d %H:%M") rescue nil), :class => :datetime
 
 
 					.button_area

@@ -89,11 +89,24 @@ class Admin::EventsController < AdminController
 
 			@performances = @performance_run.get_performances
 			
-			# If this is a save, remove any that aren't to be saved
+			# If this is a save, update the performances as required and remove any that aren't selected
 			if params[:commit] == "Create performances"
-				@performances.select{|p| params[:performances].values.include?( p.starts_at.to_i.to_s ) }
+			  
+			  # Loop through each performance. Check if it's selected based on the start time,
+			  # then update the start time and add it to the output array
+			  updated_performances = []
+			  @performances.each do |p|
+			    pp = params[:performance][p.starts_at.to_i.to_s]
+		      if pp && pp[:selected]=="true"
+		        p.starts_at = pp[:start]
+		        p.ends_at = pp[:end]
+		        updated_performances << p
+	        end
+		    end
+		    @performances = updated_performances
 				render :template => "/admin/events/save_performances", :layout => "admin/iframe"
 				return
+				
 			end
 								 
 		else
