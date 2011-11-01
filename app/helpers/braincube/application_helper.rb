@@ -36,7 +36,7 @@ module Braincube::ApplicationHelper
   			out << '<link href="/packages/' + group.to_s + '-datauri.css?' + Braincube::Version + '" media="all" rel="stylesheet" type="text/css" />'
   			out << '<!--<![endif]-->'
   			out << '<!--[if lte IE 7]>'
-  			out << '<link href="/packages/' + group.to_s + '-mhtml.css" media="all" rel="stylesheet" type="text/css" />'
+  			out << '<link href="/packages/' + group.to_s + '.css" media="all" rel="stylesheet" type="text/css" />'
   			out << '<![endif]-->'
   			out << '<script src="/packages/' + group.to_s + '.js?' + Braincube::Version + '" type="text/javascript"></script>'
   	  end
@@ -50,8 +50,8 @@ module Braincube::ApplicationHelper
         out << '<link href="/packages/braincube_print_article-datauri.css?' + Braincube::Version + '" media="print" rel="stylesheet" type="text/css" />'
         out << '<!--<![endif]-->'
         out << '<!--[if lte IE 7]>'
-        out << '<link href="/packages/braincube_show_article-mhtml.css" media="all" rel="stylesheet" type="text/css" />'
-        out << '<link href="/packages/braincube_print_article-mhtml.css" media="print" rel="stylesheet" type="text/css" />'
+        out << '<link href="/packages/braincube_show_article.css" media="all" rel="stylesheet" type="text/css" />'
+        out << '<link href="/packages/braincube_print_article.css" media="print" rel="stylesheet" type="text/css" />'
         out << '<![endif]-->'
       end
     end
