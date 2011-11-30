@@ -86,8 +86,11 @@ class ImportedPerformance < ActiveRecord::Base
           city     = City.find_by_name(data[:city]) || City.first
           venue    = Venue.find(:first, :conditions => { :title => data[:venue_name], :city_id => city.id})
           start_at = Time::parse( "#{data[:start_date]} #{data[:start_time]}").getlocal rescue nil
-          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ).getlocal rescue nil
-          
+					if data[:end_date].blank
+						end_at   = Time::parse( "#{data[:start_date]} #{data[:end_time]}" ).getlocal rescue nil
+          else
+	          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ).getlocal rescue nil
+					end
           end_at = (end_at + 1.day) if end_at  && start_at && (end_at < start_at)
           
           # Bit of a hack to account for DST
@@ -204,7 +207,10 @@ class ImportedPerformance < ActiveRecord::Base
         end
         
       end
-      
+
+			# Force an index
+			Sunspot.index( new_events + updated_events )
+
       return saved_performances, failed_imports, new_events, updated_events
       
     end
