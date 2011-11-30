@@ -135,7 +135,7 @@ class Admin::AssetFoldersController < AdminController
       
     end
     
-    @assets = @current_folder.assets
+    @assets = (params[:location] == "all") ? Asset.where("asset_folder_id > 0") : @current_folder.assets
     @assets = @assets.where(["assets.title LIKE ?", "%#{params[:q]}%"]) if params[:q]
     @assets = @assets.paginate( :page => params[:page], :per_page => Braincube::Config::AdminAssetPaginationLimit )
     

@@ -1,7 +1,7 @@
 /*
 Syntax error: File to import not found or unreadable: constants.
-              Load path: /Users/matt/Desktop/matt/Braincube/app/sass
-        on line 5 of /Users/matt/Desktop/matt/Braincube/app/sass/content.sass
+              Load path: /Users/matt/Desktop/Work/Braincube/Code/braincube/app/sass
+        on line 5 of /Users/matt/Desktop/Work/Braincube/Code/braincube/app/sass/content.sass
 
 1: //****************************************************************************
 2: // tinyMCE-only stylesheet - uses other styles too!
@@ -15,7 +15,7 @@ Syntax error: File to import not found or unreadable: constants.
 10: 	background: #aab
 
 Backtrace:
-/Users/matt/Desktop/matt/Braincube/app/sass/content.sass:5
+/Users/matt/Desktop/Work/Braincube/Code/braincube/app/sass/content.sass:5
 /Users/matt/.rvm/gems/ree-1.8.7-2010.02/gems/sass-3.1.2/lib/sass/../sass/tree/import_node.rb:64:in `import'
 /Users/matt/.rvm/gems/ree-1.8.7-2010.02/gems/sass-3.1.2/lib/sass/../sass/tree/import_node.rb:25:in `imported_file'
 /Users/matt/.rvm/gems/ree-1.8.7-2010.02/gems/sass-3.1.2/lib/sass/../sass/tree/visitors/perform.rb:148:in `visit_import'
@@ -103,4 +103,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: constants.\A               Load path: /Users/matt/Desktop/matt/Braincube/app/sass\A         on line 5 of /Users/matt/Desktop/matt/Braincube/app/sass/content.sass\A \A 1: //****************************************************************************\A 2: // tinyMCE-only stylesheet - uses other styles too!\A 3: //****************************************************************************\A 4: \A 5: @import constants\A 6: @import reset\A 7: @import text\A 8: \A 9: html\A 10: 	background: #aab"; }
+  content: "Syntax error: File to import not found or unreadable: constants.\A               Load path: /Users/matt/Desktop/Work/Braincube/Code/braincube/app/sass\A         on line 5 of /Users/matt/Desktop/Work/Braincube/Code/braincube/app/sass/content.sass\A \A 1: //****************************************************************************\A 2: // tinyMCE-only stylesheet - uses other styles too!\A 3: //****************************************************************************\A 4: \A 5: @import constants\A 6: @import reset\A 7: @import text\A 8: \A 9: html\A 10: 	background: #aab"; }

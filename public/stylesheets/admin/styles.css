@@ -1216,12 +1216,12 @@ span.icon.error {
   text-decoration: none;
 }
 .search_form .options {
-  clear: left;
-  padding-top: 1em;
+  float: left;
 }
 .search_form .options label {
-  float: left;
-  margin-right: 1em;
+  display: block;
+  clear: left;
+  margin-bottom: 0.5em;
 }
 .search_form .options input {
   width: auto;
