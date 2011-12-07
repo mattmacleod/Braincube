@@ -62,9 +62,13 @@ class Venue < ActiveRecord::Base
     text :phone
     text :email
     text :content
+		time :search_time
     boolean(:active){ enabled }
   end
-  
+  def search_time
+		created_at
+	end
+	
   # Class methods
   ############################################################################
   

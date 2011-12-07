@@ -42,8 +42,13 @@ class Page < ActiveRecord::Base
   searchable :auto_index => true, :auto_remove => true do
     text :title, :default_boost => 5
     text :content
+		time :search_time
     boolean(:active){ live? }
   end
+	def search_time
+		starts_at || created_at
+	end
+
   
   # Class methods
   ############################################################################

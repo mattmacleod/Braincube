@@ -51,9 +51,13 @@ class Event < ActiveRecord::Base
     text :short_content
     text :content
     text :cached_venues
+    time :search_time
     boolean(:active){ upcoming? && enabled }
   end
-    
+  def search_time
+		next_performance_time
+	end
+	
   # Class methods
   ############################################################################
   

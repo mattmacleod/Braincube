@@ -100,8 +100,12 @@ class Article < ActiveRecord::Base
 		text :stripped_title, :default_boost => 5
     text :content
     text :cached_authors
+		time :search_time
     boolean(:active){ live? }
   end
+	def search_time
+		starts_at || created_at
+	end
   
   # Special method generation for ratings
   Braincube::Config::ArticleTypes.each_pair do |k,v|
