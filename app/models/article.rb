@@ -71,7 +71,7 @@ class Article < ActiveRecord::Base
   braincube_has_assets
   braincube_has_url   :url, :generated_from => :title
   braincube_has_lock
-  braincube_has_properties
+  braincube_has_properties :properties, :seo
   braincube_has_versions :title, :abstract, :standfirst, :pullquote, :content, :footnote, :asset_link_attributes
   
   # Validations

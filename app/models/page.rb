@@ -21,7 +21,7 @@ class Page < ActiveRecord::Base
   
   # Libraries
   braincube_has_comments
-  braincube_has_properties
+  braincube_has_properties :properties, :seo  
   braincube_has_assets
   braincube_has_versions :title, :abstract, :content
   braincube_has_tags

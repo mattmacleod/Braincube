@@ -45,6 +45,7 @@ class Venue < ActiveRecord::Base
   braincube_has_lock
   braincube_has_url   :url, :generated_from => :title
   braincube_has_versions :title, :abstract, :content
+  braincube_has_properties :seo
   
   # Opening times
   serialize :opening_hours

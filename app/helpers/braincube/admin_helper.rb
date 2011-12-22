@@ -129,7 +129,6 @@ module Braincube::AdminHelper
     # No menu!
     return nil unless current_menu
     
-    puts current_menu.inspect
     # For each submenu item in the selected submenu, check to see if we can 
     # access as the current user, then render if we can.
     current_menu["submenus"].sort_by{|h| h[1]["order"] }.each do |title,submenu|

@@ -15,7 +15,9 @@
 		%li
 			%h2= link_to "Tagging", "#tagging"
 		%li
-			%h2= link_to "Opening times", "#opening_times"
+			%h2= link_to "SEO", "#seo"
+		%li
+			%h2= link_to "Opening", "#opening_times"
 		- unless @venue.new_record?
 			%li
 				%h2= link_to "Events", "#events"
@@ -65,6 +67,13 @@
 	%fieldset#tagging
 		%legend Tagging
 		.full= f.tag_select :tag_list, :label => "Venue tags"
+
+	%fieldset#seo
+		%legend SEO settings
+		= f.fields_for :seo do |ff|
+			.full= ff.text_field :title, :value => (f.object.seo["title"]), :label => "Meta Title"
+			.full= ff.text_area :description, :value => (f.object.seo["description"]), :label => "Meta Description", :rows => 4
+			.full= ff.text_field :keywords, :value => (f.object.seo["keywords"]), :label => "Meta Keywords"
 
 	%fieldset#opening_times
 		%legend Opening times
