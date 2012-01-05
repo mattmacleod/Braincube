@@ -8,7 +8,7 @@ class Widget < ActiveRecord::Base
   has_many :pages, :through => :page_widgets
   
   # Validations
-  validates_presence_of :title, :widget_type, :properties
+  validates_presence_of :title, :widget_type
   attr_accessible :title, :widget_type
   
   # Library bits
