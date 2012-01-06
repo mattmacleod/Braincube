@@ -24,7 +24,11 @@ module Braincube #:nodoc:
               end
 
               define_method "#{column}" do
-                self[column] || {}
+								if self[column] && !self[column].blank?
+									return self[column].symbolize_keys.merge(self[column].stringify_keys)
+								else
+	                return {}
+								end
               end
             end
             include Braincube::ModelExtensions::Properties::InstanceMethods
