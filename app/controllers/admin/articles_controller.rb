@@ -352,7 +352,7 @@ class Admin::ArticlesController < AdminController
     
     unless user_can_edit( @article )
       flash[:error] = "You do not have permission to edit that article"
-      render :nothing => true if request.xhr?
+      render :nothing => true and return if request.xhr?
       redirect_to admin_articles_path and return false
     end
     
