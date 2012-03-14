@@ -27,7 +27,7 @@ braincube.admin.tinymce = {
 					relative_urls : false,
 					
 					content_css : "/stylesheets/editor_content.css",
-					valid_elements : "*[*]",
+					valid_elements : "*[*],script[type|language|src]",
 					
 					init_instance_callback: 'braincube.admin.tinymce.word_counter.init',
 					
