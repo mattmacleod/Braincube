@@ -2,7 +2,7 @@ class Admin::EventsController < AdminController
 	
 	# Define controller subsections
 	braincube_permissions(
-		{ :actions => [:index, :show, :edit, :update, :new, :create], :roles => [:admin, :publisher] }
+		{ :actions => [:index, :show, :edit, :update, :new, :create, :toggle_featured], :roles => [:admin, :publisher] }
 	)
 	
 	# Lists
@@ -69,6 +69,12 @@ class Admin::EventsController < AdminController
 			flash[:notice] = "Event deleted"
 		end
 		redirect_to :action => :index
+	end
+	
+	def toggle_featured
+		@event = Event.find(params[:id])
+		@event.toggle!(:featured)
+		render :text => @event.featured
 	end
 	
 	

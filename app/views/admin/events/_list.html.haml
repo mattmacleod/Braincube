@@ -8,5 +8,5 @@
 		%td
 			= link_to event.title, edit_admin_event_path( event )
 			%span.extra= [ event.cached_times, event.cached_dates, event.cached_venues ].select{|e| !e.blank? }.join(", ")
-		%td= print_bool(event.enabled)
+		%td= event_featured( event )
 		%td.destroy= delete_link "Delete event", admin_event_path(event.id)

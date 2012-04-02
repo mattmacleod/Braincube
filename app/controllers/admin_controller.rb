@@ -164,7 +164,7 @@ class AdminController < ApplicationController
   #
    
   def require_admin_login
-    
+   
     # Valid user
     if current_user && (current_user.accessed_at > (Time::now - Braincube::Config::SessionTimeout))
       return is_admin?

@@ -1919,6 +1919,21 @@ a.event_search_remove_link, a.venue_search_remove_link {
   background-image: url(/images/admin/embed/icons/small_button_delete.png);
 }
 
+table.list a.event_featured_toggle {
+  width: 24px;
+  height: 24px;
+  display: block;
+  text-indent: -999em;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+table.list a.event_featured_toggle.tick {
+  background-image: url(/images/admin/embed/icons/ajax_tick.png);
+}
+table.list a.event_featured_toggle.cross {
+  background-image: url(/images/admin/embed/icons/ajax_cross.png);
+}
+
 #page_list_area #page_tree {
   margin-top: 10px;
 }

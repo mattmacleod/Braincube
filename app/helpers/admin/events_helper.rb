@@ -1,6 +1,10 @@
 module Admin::EventsHelper
 	
 	
+	def event_featured( event )
+		link_to (event.featured? ? "Yes" : "No"), "#", :"data-event-id" => event.id, :class => "#{(event.featured ? :tick : :cross)} event_featured_toggle"
+	end
+	
 	############################################################################
 	# Indesign helpers
 	############################################################################
