@@ -5,21 +5,23 @@
 
 	%ul.tabs
 		%li
-			%h2= link_to "Basics", "#basic"
+			%h2= link_to "Basic", "#basic"
 		%li
 			%h2= link_to "Content", "#content"
 		%li
-			%h2= link_to "Additional", "#additional"
+			%h2= link_to "More", "#additional"
 		%li
 			%h2= link_to "Events", "#events"
 		%li
 			%h2= link_to "Venues", "#venues"
 		%li
-			%h2= link_to "Tagging", "#tagging"
+			%h2= link_to "Tags", "#tagging"
 		%li
 			%h2= link_to "Images", "#assets"
 		%li
 			%h2= link_to "Publishing", "#publishing"
+		%li
+			%h2= link_to "SEO", "#seo"
 
 	%fieldset#basic
 		= render :partial => "form_basic", :locals => { :f => f }
@@ -44,3 +46,8 @@
 		
 	%fieldset#publishing
 		= render :partial => "form_publishing", :locals => { :f => f }
+		
+	%fieldset#seo
+		= render :partial => "form_seo", :locals => { :f => f }
+		
+		

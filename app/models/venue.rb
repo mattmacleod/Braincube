@@ -45,6 +45,7 @@ class Venue < ActiveRecord::Base
   braincube_has_lock
   braincube_has_url   :url, :generated_from => :title
   braincube_has_versions :title, :abstract, :content
+  braincube_has_properties :seo
   
   # Opening times
   serialize :opening_hours
@@ -62,9 +63,13 @@ class Venue < ActiveRecord::Base
     text :phone
     text :email
     text :content
+		time :search_time
     boolean(:active){ enabled }
   end
-  
+  def search_time
+		created_at
+	end
+	
   # Class methods
   ############################################################################
   

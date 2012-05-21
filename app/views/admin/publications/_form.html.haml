@@ -1,0 +1,14 @@
+=form_errors @publication
+-@main_form = f
+
+.tabbed_fieldsets
+
+	%ul.tabs
+		%li
+			%h2= link_to "Publication information", "#basic"
+	
+	%fieldset#basic
+		%legend Publication information
+		.full= f.text_field :name, :required => true, :note => "Name of this publication."
+		.half= f.text_field :date_street, :required => true, :note => "Street date.", :class => :date
+		.half= f.text_field :date_deadline, :required => true, :note => "Publication date.", :class => :date

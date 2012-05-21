@@ -1,0 +1,9 @@
+%table.list.alternating
+	%thead
+		%tr
+			%th Publication name
+			%th Street Date
+			%th Deadline Date
+			%th 
+	%tbody
+		= render :partial => "list", :locals => {:publications => publications}

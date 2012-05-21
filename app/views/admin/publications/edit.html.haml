@@ -1,0 +1,16 @@
+=labelled_form_for [:admin, @publication] do |f|
+	
+	#content_body.content_body
+
+		- @page_title = "#{@publication.name} | Publication Manager"
+		%h1 
+			Publication:
+			=@publication.name
+		=flash_message
+		
+		=note "Edit the publication's details using the form below"
+		
+		=render :partial=>"form", :locals=>{:f=>f}
+		
+	#content_sidebar
+		=render :partial => "sidebar", :locals => {:f => f}

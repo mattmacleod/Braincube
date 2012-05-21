@@ -1,7 +1,7 @@
 =form_errors @event
 -@main_form = f
 
-.tabbed_fieldsets
+.tabbed_fieldsets{ :class => (:disable_tabs if Braincube::Config::AdminDisableArticleTabs) }
 
 	%ul.tabs
 		%li
@@ -14,7 +14,9 @@
 			%h2= link_to "Tagging", "#tagging"
 		%li
 			%h2= link_to "Performances", "#performances"
-	
+		%li
+			%h2= link_to "SEO", "#seo"
+			
 	%fieldset#basic
 		%legend Basic information
 		.full= f.text_field :title, :required => true, :note => "Main title for the event. This will be displayed across the site."
@@ -47,7 +49,14 @@
 	%fieldset#tagging
 		%legend Tagging
 		.full= f.tag_select :tag_list, :label => "Event tags"
-		
+
+	%fieldset#seo
+		%legend SEO settings
+		= f.fields_for :seo do |ff|
+			.full= ff.text_field :title, :value => (f.object.seo["title"]), :label => "Meta Title"
+			.full= ff.text_area :description, :value => (f.object.seo["description"]), :label => "Meta Description", :rows => 4
+			.full= ff.text_field :keywords, :value => (f.object.seo["keywords"]), :label => "Meta Keywords"
+	
 	%fieldset#performances
 		%legend Performances
 		=note "Create performances for this event. Performances are times when the event runs."

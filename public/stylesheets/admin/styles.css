@@ -276,7 +276,7 @@ a.zip {
   background-position: -80px -128px;
 }
 
-.clipped_background, .rounded, .small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4, .small_rounded_top_left, .event_performance_items table th.first, .event_performance_items table th#content_body, .event_performance_items table th#content_body_wide, .event_performance_items table th#page_list_area, .small_rounded_top_right, .event_performance_items table th.last, .event_performance_items table th#content_sidebar, .event_performance_items table th#right_pane, .event_performance_items table th#page_list_recent, .small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets fieldset, #page_tree_loading, .small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a, .medium_rounded, #admin_tools, li.token-input-token, .search_form, .asset_attachment_items ul.asset_attachment_list li.asset h4 a, .page_widget_items ul.page_widget_list li.widget h4 a, .medium_rounded_top, .medium_rounded_bottom, .large_rounded, a.event_search_add_link, a.event_search_remove_link, a.venue_search_add_link, a.venue_search_remove_link, body.notice #notice_body {
+.clipped_background, .rounded, .small_rounded_top, #content_sidebar .box, #right_pane .box, #content_sidebar .box h2, #right_pane .box h2, ul#main_navigation li a, #sub_navigation_wrapper ul#sub_navigation li a, .tabbed_fieldsets fieldset legend, .tabbed_fieldsets.tabs_enabled h2 a, .word_counter, .asset_attachment_items ul.asset_attachment_list li.asset h4, #google_search_results h2, #page_list_recent h2, #page_list_wrapper h2, .page_widget_items ul.page_widget_list li.widget h4, .small_rounded_top_left, .event_performance_items table th.first, .event_performance_items table th#content_body, .event_performance_items table th#content_body_wide, .event_performance_items table th#page_list_area, .small_rounded_top_right, .event_performance_items table th.last, .event_performance_items table th#content_sidebar, .event_performance_items table th#right_pane, .event_performance_items table th#page_list_recent, .small_rounded_bottom, div.token-input-dropdown, .tabbed_fieldsets fieldset, #page_tree_loading, .small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, a.small_button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a, .medium_rounded, #admin_tools, li.token-input-token, .search_form, .asset_attachment_items ul.asset_attachment_list li.asset h4 a, .page_widget_items ul.page_widget_list li.widget h4 a, .medium_rounded_top, .medium_rounded_bottom, .large_rounded, a.event_search_add_link, a.event_search_remove_link, a.venue_search_add_link, a.venue_search_remove_link, body.notice #notice_body {
   -moz-background-clip: padding;
   -webkit-background-clip: padding;
   background-clip: padding-box;
@@ -312,7 +312,7 @@ a.zip {
   border-radius: 0 0 4px 4px;
 }
 
-.small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a {
+.small_rounded, h1, a.download_asset, input, textarea, select, ul.token-input-list, .button, a.small_button, fieldset.standard, fieldset.standard legend, .tabbed_fieldsets fieldset fieldset.article_type, .tabbed_fieldsets fieldset fieldset.article_type legend, .tabbed_fieldsets fieldset h3, .tabbed_fieldsets h2 a, form .errors, .ajax_search_results, .ajax_search_list, div.flash, div.note, .search_form .buttons input, .search_form .buttons a, #lock_notice, #lock_warning, table.list td span.label, span.tag, a.tag, #map_area, #map_area .loading, .asset_folder_list a.current, .asset_attachment_items .empty, .asset_attachment_items ul.asset_attachment_list li.placeholder, .asset_attachment_items ul.asset_attachment_list li.asset, .asset_attachment_items ul.asset_attachment_list li.asset .thumbnail, #google_search_query a, #google_branding, .google_image_search .result .label em a, .event_performance_items .empty, .page_widget_items .empty, .page_widget_items ul.page_widget_list li.placeholder, .page_widget_items ul.page_widget_list li.widget, body.notice .noscript, #error #error_wrapper, .jstree-braincube a {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -779,6 +779,14 @@ a.destroy.loading, a.approve.loading {
   background: url(/images/admin/spinner_transparent.gif) center center no-repeat !important;
 }
 
+a.small_button {
+  background: #555566;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  padding: 2px 5px;
+}
+
 fieldset.half {
   width: 45%;
 }
@@ -1208,12 +1216,12 @@ span.icon.error {
   text-decoration: none;
 }
 .search_form .options {
-  clear: left;
-  padding-top: 1em;
+  float: left;
 }
 .search_form .options label {
-  float: left;
-  margin-right: 1em;
+  display: block;
+  clear: left;
+  margin-bottom: 0.5em;
 }
 .search_form .options input {
   width: auto;
@@ -1475,7 +1483,6 @@ table.import_list strong.error {
   background-position: 3px center;
 }
 
-/* Browser */
 #folder_browser h2 {
   font-size: 2em;
   font-weight: bold;
@@ -1499,7 +1506,6 @@ table.import_list strong.error {
   padding: 11px;
 }
 
-/* Icons */
 #folder_browser h2, .google_image_search h2 {
   padding: 0;
   margin: 0 0 10px 0;
@@ -1583,9 +1589,12 @@ table.import_list strong.error {
   background-image: url(/images/admin/embed/icons/icons_yellow.png);
 }
 
-/* Cropper */
 fieldset.preview {
-  max-width: 672px;
+  width: 672px;
+  overflow: auto;
+}
+fieldset.preview .original_image_wrapper {
+  width: 672px;
   overflow: auto;
 }
 fieldset.preview img.original {
@@ -1908,6 +1917,21 @@ a.event_search_add_link, a.venue_search_add_link {
 
 a.event_search_remove_link, a.venue_search_remove_link {
   background-image: url(/images/admin/embed/icons/small_button_delete.png);
+}
+
+table.list a.event_featured_toggle {
+  width: 24px;
+  height: 24px;
+  display: block;
+  text-indent: -999em;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+table.list a.event_featured_toggle.tick {
+  background-image: url(/images/admin/embed/icons/ajax_tick.png);
+}
+table.list a.event_featured_toggle.cross {
+  background-image: url(/images/admin/embed/icons/ajax_cross.png);
 }
 
 #page_list_area #page_tree {

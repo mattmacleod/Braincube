@@ -21,7 +21,7 @@ class Page < ActiveRecord::Base
   
   # Libraries
   braincube_has_comments
-  braincube_has_properties
+  braincube_has_properties :properties, :seo  
   braincube_has_assets
   braincube_has_versions :title, :abstract, :content
   braincube_has_tags
@@ -42,8 +42,13 @@ class Page < ActiveRecord::Base
   searchable :auto_index => true, :auto_remove => true do
     text :title, :default_boost => 5
     text :content
+		time :search_time
     boolean(:active){ live? }
   end
+	def search_time
+		starts_at || created_at
+	end
+
   
   # Class methods
   ############################################################################

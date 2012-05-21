@@ -12,6 +12,7 @@ braincube.admin.events = {
 		this.performance_generator.init();		// Performance generation stuff
 		this.attachment.init();	
 		this.setup_venue_selector();
+		this.setup_event_featured_toggle();
 	},
 	
 	// Setup accordion table rows on the event form. Also delete buttons.
@@ -120,7 +121,7 @@ braincube.admin.events = {
 			
 			// Setup the venue AJAX
 			$("#performance_run_performance_attributes_venue_id").change( this.load_venue_opening_times );
-
+      
 		},
 		
 		update_performance_type_panels: function(){
@@ -141,6 +142,7 @@ braincube.admin.events = {
 		},
 		
 		load_preview: function(){
+		  $("#performance_preview_wrapper").html("Please wait, loading details...")
 			$(this).parents("form").submit();
 		},
 		
@@ -270,6 +272,30 @@ braincube.admin.events = {
 			this.reload_event_list(link);
 			
 		}
+		
+	},
+	
+	setup_event_featured_toggle: function(){
+		
+		$("a.event_featured_toggle").live("click", function(){
+			
+			var url = "/admin/events/" + $(this).data("event-id") + "/toggle_featured";
+			
+			var $this = $(this);
+			
+			$.get( url, function( data ){
+				if( data=="true" ){
+					$this.removeClass("cross").addClass("tick");
+					$this.html("Yes");
+				} else {
+					$this.removeClass("tick").addClass("cross");
+					$this.html("No");
+				}
+			} );
+			
+			return false;
+			
+		});
 		
 	}
 	

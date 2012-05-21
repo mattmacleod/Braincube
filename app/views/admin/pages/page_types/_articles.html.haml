@@ -5,6 +5,6 @@
 	.full
 		.quarter= ff.check_box :articles_all_tags, :label => "Require all tags?", :note => "Check to only show articles matching all tags. Otherwise, will show articles matching any tag.", :checked => f.object.properties[:articles_all_tags]=="1"
 		.quarter= ff.text_field :articles_items_per_page, :label => "Items per page", :note => "Enter the number of articles to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:articles_items_per_page]
-		.quarter= ff.select :articles_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :value => f.object.properties[:articles_sort_order]
-		.quarter= ff.select :articles_article_type, [""] + Braincube::Config::ArticleTypes.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Only this article type", :value => f.object.properties[:articles_article_type]
+		.quarter= ff.select :articles_sort_order, Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :selected => f.object.properties[:articles_sort_order] || "newest"
+		.quarter= ff.select :articles_article_type, [""] + Braincube::Config::ArticleTypes.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Only this article type", :selected => f.object.properties[:articles_article_type]
 		

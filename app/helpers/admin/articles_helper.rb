@@ -237,7 +237,7 @@ module Admin::ArticlesHelper
   
   def publication_options_for_list(selected = nil)
     out = @all_publications.map do |key, value|
-      options = value.map{|v|
+      options = value.sort{|a,b| b.date_street<=>a.date_street}.map{|v|
         content_tag( 
           :option, 
           v.name, 
@@ -250,7 +250,7 @@ module Admin::ArticlesHelper
         )
       }.join.html_safe
       content_tag( :optgroup, options, :label => (key==:past ? "Past publications" : "Future publications"))
-    end
+    end.sort
     out = out.unshift(
       content_tag( 
         :option, 

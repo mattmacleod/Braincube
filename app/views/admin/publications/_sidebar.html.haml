@@ -1,0 +1,12 @@
+- if @publication
+	.box
+		%h2 Actions
+		%fieldset.buttons
+			=link_to "Cancel", admin_publications_path, :class=>"button cancel"
+			- unless @publication.new_record?
+				=link_to "Delete this publication", admin_publication_path(:id => @publication.id), :method => :delete, :confirm => "Are you sure you want to delete this publication?", :class=>"button delete"
+			=f.submit "Save this publication", :class=>"button save bottom"
+- if !@publication || !@publication.new_record?
+	.box
+		%h2 Tools
+		= link_to "New publication", new_admin_publication_path, :class => "button new bottom"

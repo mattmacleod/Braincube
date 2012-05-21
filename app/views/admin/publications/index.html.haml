@@ -1,0 +1,25 @@
+-@page_title = "Publications manager"
+%h1 Publications
+.search_form
+	.summary
+		Found #{ pluralize(@publications.total_entries, "publication") }
+
+	%form{ :action => request.path }
+		%fieldset
+			= label_tag :search_field, "Search publications:"
+			= text_field_tag :q, params[:q], :id => :search_field
+			.buttons
+				%input.button{ :type => :submit, :value => "Search" }
+				- unless params[:q].blank?
+					= link_to "Show all", request.path, :class => :button 
+				= ajax_spinner("search")
+
+= flash_message
+
+#pagination_wrapper
+	- unless @publications.blank?
+		= render :partial => "table", :locals=>{:publications => @publications}
+	-else
+		= note "There are no publications", :type=>:alert
+
+=continuous_pagination "publications"

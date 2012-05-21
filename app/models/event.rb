@@ -36,6 +36,7 @@ class Event < ActiveRecord::Base
   braincube_has_lock
   braincube_has_assets
   braincube_has_versions :title, :abstract, :short_content, :content
+  braincube_has_properties :seo
   
   # Need to set accessible attributes
   attr_accessible :title, :abstract, :short_content, :content, :featured, :review_id,
@@ -51,9 +52,13 @@ class Event < ActiveRecord::Base
     text :short_content
     text :content
     text :cached_venues
+    time :search_time
     boolean(:active){ upcoming? && enabled }
   end
-    
+  def search_time
+		next_performance_time
+	end
+	
   # Class methods
   ############################################################################
   
@@ -73,13 +78,13 @@ class Event < ActiveRecord::Base
     end
     
     def after( the_time )
-      joins("INNER JOIN performances ON performances.event_id=events.id").
+      joins(:performances).
       where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", the_time, the_time).
 			group("events.id")
     end
     
     def before( the_time )
-      joins("INNER JOIN performances ON performances.event_id=events.id").
+      joins(:performances).
       where("performances.starts_at<=? OR (NOT performances.ends_at IS NULL AND performances.ends_at<=?)", the_time, the_time).
 			group("events.id")
     end

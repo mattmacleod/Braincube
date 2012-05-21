@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :tags
     resources :cities
     resources :widgets
+    resources :publications
     
     # More complex...
     resources :users do
@@ -86,6 +87,9 @@ Rails.application.routes.draw do
     end
     
     resources :events do
+			member do
+				get "toggle_featured" => "events#toggle_featured", :as => :toggle_featured
+			end
       collection do
 				get "download(.:format)"				=> "events#download", :as => :download
         match "build_performances"    => "events#build_performances", :as => :build_performances

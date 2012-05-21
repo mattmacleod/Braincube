@@ -15,6 +15,8 @@
 		%li
 			%h2= link_to "Publishing", "#publishing"
 		%li
+			%h2= link_to "SEO", "#seo"
+		%li
 			%h2= link_to "Widgets", "#widgets"
 
 	%fieldset#basic
@@ -50,6 +52,15 @@
 		.full
 			.half= f.text_field :starts_at, :value => (f.object.starts_at.to_s(:parseable) if f.object.starts_at), :required => true, 	:note => "When will this page start showing online?", :class=>:datetime, :label => "Publishing date"
 			.half= f.text_field :ends_at, 	:value => (f.object.ends_at.to_s(:parseable) if f.object.ends_at), :required => false, 	:note => "When will this page stop showing online?", :class=>:datetime, :label => "End date"
+
+	%fieldset#seo
+		%legend SEO settings
+		= f.fields_for :seo do |ff|
+			.full= ff.text_field :title, :value => (f.object.seo["title"]), :label => "Meta Title"
+			.full= ff.text_area :description, :value => (f.object.seo["description"]), :label => "Meta Description", :rows => 4
+			.full= ff.text_field :keywords, :value => (f.object.seo["keywords"]), :label => "Meta Keywords"
+			
+
 
 	%fieldset#widgets
 		%legend Widgets

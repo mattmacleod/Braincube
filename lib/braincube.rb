@@ -24,6 +24,7 @@ module Braincube
   require "braincube/validators"
   require "braincube/util"
   require "braincube/labelled_form_builder"
+  require "braincube/node_cache"
   
   # Load model extensions
   Dir[ File.expand_path(File.dirname(__FILE__) + '/braincube/model_extensions/*.rb') ].each do |file| 
@@ -32,5 +33,5 @@ module Braincube
 
   # Setup JSON configuration
   ActiveRecord::Base.include_root_in_json = false
-    
+	
 end

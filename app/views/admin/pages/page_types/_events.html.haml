@@ -6,4 +6,4 @@
 	.full= ff.select :events_cities, City::options_for_select, :label => "Cities", :required => false, :note => "Show only events in the selected cities", :html_options => { :multiple => true}, :selected => f.object.properties[:events_cities]
 	.full
 		.quarter= ff.text_field :events_items_per_page, :label => "Items per page", :note => "Enter the number of events to be displayed on each page", :maxlength => 3, :cols => 5, :value => f.object.properties[:events_items_per_page]
-		.half= ff.select :events_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :value => f.object.properties[:events_sort_order]
+		.half= ff.select :events_sort_order, [""] + Braincube::Config::PageSortOrder.map{|k,v|[v,k]}.sort_by{|a|a[0]}, :label => "Default sort order", :selected => f.object.properties[:events_sort_order]

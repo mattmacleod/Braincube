@@ -85,10 +85,19 @@ class ImportedPerformance < ActiveRecord::Base
           event    = Event.find_by_title( data[:event_name] )
           city     = City.find_by_name(data[:city]) || City.first
           venue    = Venue.find(:first, :conditions => { :title => data[:venue_name], :city_id => city.id})
-          start_at = Time::parse( "#{data[:start_date]} #{data[:start_time]}") rescue nil
-          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ) rescue nil
-          
+          start_at = Time::parse( "#{data[:start_date]} #{data[:start_time]}").getlocal rescue nil
+					if data[:end_date].blank?
+						end_at   = Time::parse( "#{data[:start_date]} #{data[:end_time]}" ).getlocal rescue nil
+          else
+	          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ).getlocal rescue nil
+					end
           end_at = (end_at + 1.day) if end_at  && start_at && (end_at < start_at)
+          
+          # Bit of a hack to account for DST
+          if start_at.dst?
+            start_at += 1.hour
+            end_at += 1.hour if end_at
+          end
           
           imported_attributes = {
             :event_name        => data[:event_name],
@@ -148,7 +157,7 @@ class ImportedPerformance < ActiveRecord::Base
       
       # Get all of the imported performances
       to_import = self.find(:all, :conditions => { :id => selected_ids })
-      
+            
       # Loop through them
       to_import.each do |import|
         
@@ -157,7 +166,7 @@ class ImportedPerformance < ActiveRecord::Base
           
             # Load or create an event
             event = import.event
-            event ||= Event.new( :title => import.event_name )
+            event ||= Event.find_or_create_by_title( import.event_name )
         
             # Update the event attribtues
             event.abstract = event.short_content = import.short_description unless import.short_description.blank?
@@ -198,7 +207,10 @@ class ImportedPerformance < ActiveRecord::Base
         end
         
       end
-      
+
+			# Force an index
+			Sunspot.index( new_events + updated_events )
+
       return saved_performances, failed_imports, new_events, updated_events
       
     end

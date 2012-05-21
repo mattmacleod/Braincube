@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 28) do
+ActiveRecord::Schema.define(:version => 20111221101125) do
 
   create_table "api_keys", :force => true do |t|
     t.string   "code",                            :null => false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 28) do
     t.string   "cached_authors"
     t.string   "cached_tags"
     t.string   "url",                                                :null => false
+    t.text     "seo"
   end
 
   add_index "articles", ["review", "review_rating"], :name => "index_articles_review"
@@ -193,6 +194,7 @@ ActiveRecord::Schema.define(:version => 28) do
     t.string   "cached_prices"
     t.string   "cached_venues"
     t.string   "url",                               :null => false
+    t.text     "seo"
   end
 
   add_index "events", ["print", "enabled"], :name => "index_events_on_print_and_enabled"
@@ -284,6 +286,7 @@ ActiveRecord::Schema.define(:version => 28) do
     t.integer  "sort_order",        :default => 0,      :null => false
     t.boolean  "enabled",           :default => true,   :null => false
     t.boolean  "show_on_main_menu", :default => true,   :null => false
+    t.text     "seo"
   end
 
   add_index "pages", ["parent_id", "menu_id", "starts_at", "ends_at", "enabled"], :name => "page_index"
@@ -389,6 +392,7 @@ ActiveRecord::Schema.define(:version => 28) do
     t.text     "opening_hours"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "seo"
   end
 
   add_index "venues", ["city_id"], :name => "index_venues_on_city_id"

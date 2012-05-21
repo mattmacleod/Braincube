@@ -1,4 +1,4 @@
 = note "This widget will show the custom HTML code you select below"
 
 = f.fields_for :properties do |ff|
-	.full= ff.text_area :custom_html_content, :label => "Custom HTML content", :required => true, :value => f.object.properties[:custom_html_content], :rows => 10
+	.full= ff.text_area :custom_html_content, :label => "Custom HTML content", :required => true, :value => f.object.properties["custom_html_content"], :rows => 10
