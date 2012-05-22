@@ -8,30 +8,30 @@
 //***************************************************************************/
 
 #header
-	height: 110px
-	background: url(/images/admin/embed/background.jpg) $grey_1
+	height: 90px
+	background: $highlight_1
 	position: relative
 
 #header_wrapper
 	@extend .container_12
-	padding: 20px 0px 0px 0px
 	position: relative
 	height: 90px
 	
 #header_title
-	font-size: 4em
+	font-size: 30px
 	line-height: 1em
 	font-weight: bold
-	color: $grey_2
+	color: mix($highlight_1, white)
+	padding: 5px 0
 	
 #admin_tools
-	background: $grey_2
-	color: $grey_3
+	background: mix($highlight_1, black, 70%)
+	color: mix($highlight_1, white, 40%)
 	position: absolute
 	right: 20px
 	top: -10px
 	padding: 15px 10px 7px 10px
-	@extend .medium_rounded
+	+adjust-font-size-to(12px,1)
 	a
 		color: white
 		padding: 0 0.25em

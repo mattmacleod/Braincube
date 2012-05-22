@@ -10,13 +10,15 @@ input, textarea, select
 	border: 1px $grey_2 solid
 	margin: 0
 	padding: 0.25em
-	@extend .small_rounded
-	@extend .fade
 	width: 97%
+	+transition(all, 200ms)
 	
-input:focus, textarea:focus
-	@extend .form_glow
-
+input,textarea
+	&:focus
+		border-color: $color_glow
+		outline: 0
+		+box-shadow(0 0 5px $color_glow)
+		
 .check_box
 	width: auto
 
@@ -109,7 +111,6 @@ div.token-input-dropdown
 	background-color: white
 	border: 1px $grey_2 solid
 	border-top: none
-	margin-top: -$radius_small
 	cursor: default
 	z-index: 1
 	p
@@ -149,20 +150,7 @@ div.token-input-dropdown
 	
 	
 .button
-	@extend .small_rounded
-	
-	width: auto
-	padding: 9px 12px 9px 32px
-	
-	font-size: 1em
-	line-height: 1em
-	
-	cursor: pointer
-	font-weight: bold
-	
-	background-color: $grey_5
-	border: 1px $grey_4 solid
-	color: $grey_0
+	@extend .standard_button
 		
 	&.cancel
 		@include button_background( "cancel.png" )
@@ -192,7 +180,6 @@ div.token-input-dropdown
 		@include button_background( "loader.gif" )
 		
 	&:hover
-		background-color: $grey_6 !important
 		text-decoration: none
 			
 			
@@ -423,10 +410,8 @@ fieldset
 			@extend .fade
 			background: lighten($color_flash_error, 45%) !important
 			border: 1px $color_flash_error solid !important
-			&:focus
-				-moz-box-shadow: 0px 0px 5px $color_flash_error !important
-				-webkit-box-shadow: 0px 0px 5px $color_flash_error !important
-				box-shadow: 0px 0px 5px $color_flash_error !important
+
+				
 				
 									
 

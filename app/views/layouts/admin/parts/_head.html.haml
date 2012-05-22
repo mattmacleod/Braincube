@@ -5,7 +5,6 @@
 		%meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
 		%title= page_title
 		= include_assets
-		= javascript_include_tag "http://www.google.com/jsapi?key=#{Braincube::Config::GoogleApiKey}"
 		= csrf_meta_tag
 		
 	= yield :wrapper

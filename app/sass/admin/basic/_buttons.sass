@@ -1,0 +1,25 @@
+.standard_button
+	display: inline-block
+	padding: 0.75em $gutter-width
+	margin: 0
+	border: none
+	width: auto
+	
+	font-family: $default-font-stack
+	+adjust-font-size-to(14px,1)
+	text-align: left
+	
+	cursor: pointer
+	background-color: $highlight_1
+	color: white
+	
+	+transition-property("background color")
+	+transition-duration(400ms)	
+	
+	&:hover
+		background-color: transparentize($highlight_1, 0.2)
+
+.secondary_button
+	background-color: $grey_2
+	&:hover
+		background-color: transparentize($grey_2, 0.3)
