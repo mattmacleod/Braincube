@@ -1,6 +1,6 @@
 -@page_title = "Page manager"
 
-%h1 Pages
+%h1 Page Manager
 
 .search_form
 
@@ -28,11 +28,10 @@
 	%ul.recent_list
 		- @recent_pages.each do |page|
 			%li
-				.left
-					.title
-						= link_to page.title, edit_admin_page_path( page )
+				= link_to edit_admin_page_path( page ) do
+					%h3= page.title
 					.url
 						\/#{ page.url }
-				.updated
-					Updated: #{ print_time( page.updated_at ) }
+					.updated
+						Updated: #{ print_time( page.updated_at ) }
 		

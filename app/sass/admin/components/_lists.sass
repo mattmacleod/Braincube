@@ -5,10 +5,10 @@
 table.list
 	padding: 0
 	width: 100%
-
+	+adjust-font-size-to(12px,1)
 	td
-		@extend .fade
-		padding: 0.3em 0.4em
+		+transition(background 400ms)
+		padding: 10px 20px
 		
 		// Cell styles
 		&.center
@@ -59,7 +59,7 @@ table.list
 		color: $grey_6
 		font-size: 0.9em
 		text-transform: uppercase
-		padding: 0.2em 0.4em
+		padding: 4px 20px
 		white-space: nowrap
 			
 		&.action_icons
@@ -69,8 +69,8 @@ table.list
 			text-align: center
 			
 	// Row styles	
-	tr.odd td
-		background: #eef
+	tr.even td
+		background: #eee
 		border-top: 1px #ddd solid
 		border-bottom: 1px #ddd solid
 

@@ -50,12 +50,6 @@
 		%legend Tagging
 		.full= f.tag_select :tag_list, :label => "Event tags"
 
-	%fieldset#seo
-		%legend SEO settings
-		= f.fields_for :seo do |ff|
-			.full= ff.text_field :title, :value => (f.object.seo["title"]), :label => "Meta Title"
-			.full= ff.text_area :description, :value => (f.object.seo["description"]), :label => "Meta Description", :rows => 4
-			.full= ff.text_field :keywords, :value => (f.object.seo["keywords"]), :label => "Meta Keywords"
 	
 	%fieldset#performances
 		%legend Performances
@@ -79,4 +73,10 @@
 						%th.icons.last
 				%tbody.performance_list_contents
 					= render :partial => "performance", :locals => { :f => f }, :collection => f.object.performances
-		
+	%fieldset#seo
+		%legend SEO settings
+		= f.fields_for :seo do |ff|
+			.full= ff.text_field :title, :value => (f.object.seo["title"]), :label => "Meta Title"
+			.full= ff.text_area :description, :value => (f.object.seo["description"]), :label => "Meta Description", :rows => 4
+			.full= ff.text_field :keywords, :value => (f.object.seo["keywords"]), :label => "Meta Keywords"
+	

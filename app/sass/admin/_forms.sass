@@ -28,7 +28,7 @@ input,textarea
 label
 	display: block
 	font-weight: bold
-	line-height: 1.2em
+	+adjust-font-size-to(13px,1)
 	span.required
 		color: red
 		margin-left: 0.2em
@@ -36,9 +36,7 @@ label
 .form_note
 	display: block
 	color: $grey_3
-	font-size: 0.9em
-	margin-top: 2px
-	line-height: 1.3em
+	+adjust-font-size-to(11px,1)
 
 
 
@@ -140,14 +138,11 @@ div.token-input-dropdown
 //***************************************************************************/
 
 @mixin button_background($icon)
-	background: $grey_5
-	background: url(/images/admin/embed/icons/button_#{ $icon }) 0.6em center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, $grey_4), color-stop(1, $grey_5))
-	background: url(/images/admin/embed/icons/button_#{ $icon }) 0.6em center no-repeat, -moz-linear-gradient(center bottom, $grey_4 0%, $grey_5 100%)
-	&:hover
-		@extend .fade
-		background: url(/images/admin/embed/icons/button_#{ $icon }) 0.6em center no-repeat, -webkit-gradient(linear, left bottom, left top, color-stop(0, $grey_5), color-stop(1, $grey_6))
-		background: url(/images/admin/embed/icons/button_#{ $icon }) 0.6em center no-repeat, -moz-linear-gradient(center bottom, $grey_5 0%, $grey_6 100%)
-	
+	background-image: url(/images/admin/embed/icons/button_#{ $icon })
+	background-position: 0.6em center
+	background-repeat: no-repeat
+	padding-left: 35px
+		
 	
 .button
 	@extend .standard_button
@@ -211,13 +206,13 @@ a.destroy, a.approve
 		background: url(/images/admin/spinner_transparent.gif) center center no-repeat !important
 
 a.small_button
-	@extend .small_rounded
 	background: $grey_2
+	padding: 5px 10px
 	color: white
 	font-weight: bold
 	display: inline-block
-	padding: 2px 5px
-
+	+adjust-font-size-to(13px,1)
+	
 //****************************************************************************
 // Fieldsets
 //***************************************************************************/
@@ -292,6 +287,7 @@ fieldset
 		background: $grey_2
 		border: 1px $grey_1 solid
 		color: white
+		+adjust-font-size-to(11px,1)
 		span.icon
 			background-image: $icon_set_1	
 		a
@@ -299,7 +295,6 @@ fieldset
 				
 	// Main tab area		
 	fieldset
-		@extend .not_rounded, .small_rounded_bottom
 		border: none
 		background: $grey_6
 		padding: 2%
@@ -320,25 +315,21 @@ fieldset
 				font-weight: bold
 				
 		legend
-			padding: 3px 7px
-			background: $grey_1
-			color: $grey_6
+			padding: 10px 15px
+			background: $grey_6
+			color: $grey_1
 			font-weight: bold
 			display: block
-			@extend .small_rounded_top
 			position: relative
 			top: -1em
-			margin-left: -2%
+			margin-left: -14px
 		
 		fieldset
 			margin-bottom: 2em
 			legend
 				display: none
 		h3
-			@extend .small_rounded
-			background: $grey_2
-			color: $grey_6
-			padding: 0.2em 0.5em
+			color: $grey_1
 			margin-top: 1em
 			margin-bottom: 0.5em 
 			&.top
@@ -349,17 +340,24 @@ fieldset
 		width: 100%
 		overflow: auto
 		margin-bottom: -1px
-		
+		li
+			overflow: hidden
+			float: left
 	h2
 		float: left
 		margin: 0
 		margin-bottom: 3em
+		overflow: hidden
 		a
-			@extend .small_rounded
+			display: block
 			background: $grey_4
-			padding: 0.5em 1em
 			margin-right: 1em
+			padding: 0 16px
 			color: $grey_2
+			font-family: $default-font-stack
+			+adjust-font-size-to(11px,2)
+			&:hover
+				color: $grey_1 !important
 			&.current
 				color: $grey_1 !important
 				background: $grey_6
@@ -378,7 +376,6 @@ fieldset
 		h2
 			margin-bottom: 0
 			a
-				@extend .small_rounded_top
 				color: $grey_3
 			
 	
@@ -467,30 +464,30 @@ fieldset.subform
 		width: 49%
 		
 	h3
-		margin: -10px -10px 10px -10px
+		margin: 0 0 10px 0
+		background: none
+		color: $grey_1
 		
 .ajax_search_field
 	margin-bottom: 20px
 	input
 		width: 90%
+		padding: 5px
 	.spinner
 		position: relative
 		right: 3px
 		top: 2px
 
 .ajax_search_results,.ajax_search_list
-	@extend .small_rounded
-	padding: 10px
-	background: $grey_5
-	line-height: 1.3em
+	+adjust-font-size-to(13px,1)
 	
 	.empty
-		font-size: 0.9em
-		text-transform: uppercase
-		color: $grey_3
-		font-weight: bold
+		color: $grey_1
 		
 	.item_title
+		padding-top: 5px
+		margin-top: 5px
+		border-top: 1px $grey_4 solid
 		display: block
 		color: $grey_1
 		text-transform: uppercase

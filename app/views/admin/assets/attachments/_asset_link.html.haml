@@ -22,7 +22,7 @@
 				.full= ff.text_area :caption, :label => "Custom caption", :note => "Leave blank to use no caption", :maxlength => 255, :rows => 3
 				.full= ff.text_area :url, :label => "URL for link", :note => "Enter the URL for this image to link to", :maxlength => 255, :rows => 2
 			- else
-				.full= ff.text_area :caption, :label => "Custom caption", :note => "Leave blank to use the default caption", :maxlength => 255, :rows => 3
+				.full= ff.text_area :caption, :label => "Custom caption", :note => "Leave blank to use the default caption", :maxlength => 255, :rows => 2
 			
 			- if ff.object.asset
 				= link_to "Edit asset", edit_admin_asset_path(ff.object.asset), :target => "_blank", :class => "small_button"

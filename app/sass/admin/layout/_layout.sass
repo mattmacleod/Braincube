@@ -42,7 +42,7 @@
 //***************************************************************************/
 
 body
-	background: $grey_5
+	background: #eee
 	
 #wrapper
 	min-height: 400px
@@ -62,30 +62,22 @@ body
 	@extend .grid_3, .last
 	
 	.box
-		@extend .clearfix, .small_rounded_top
 		margin-bottom: 2em
-		background: $grey_6
-		padding: 10px
-		
-		h2
-			@extend .small_rounded_top
-			padding: 0.3em 0.5em
-			margin: -10px -10px 10px -10px
-			font-size: 1.2em
-			line-height: 1em
-			color: white
-			background: $grey_1
-			border-bottom: 3px $grey_2 solid
 			
 		input, select
 			margin-bottom: 1em
-	
+	h2
+		+adjust-font-size-to(36px,2)
 	table.stats
 		width: 100%
+		border-top: 1px #ddd solid 
 		th
 		td
 			font-weight: bold
 			text-align: right
+			padding: 5px 0
+		th,td
+			border-bottom: 1px #ddd solid 
 	
 //****************************************************************************
 // Footer

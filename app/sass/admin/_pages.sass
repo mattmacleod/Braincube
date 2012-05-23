@@ -26,33 +26,26 @@
 	@extend .grid_5,.last
 	ul.recent_list
 		li
-			@extend .clearfix
-			padding: 5px
-			border-bottom: 1px $grey_5 solid
-			background: $grey_6
-			.left
-				width: 200px
-				float: left
-				.title
-					font-size: 1.1em
-					font-weight: bold
-				.url
-					color: $grey_3
+			background: #eee
+			+trailer(1)
+			a
+				display: block
+				padding: 20px
+				color: #333
+				&:hover
+					background-color: mix($highlight_1,white,10%)
+					h3
+						color: $highlight_1
+			.title
+				font-size: 1.1em
+				font-weight: bold
+			.url
+				+trailer(0.5)
+
 			.updated
-				font-size: 0.9em
-				width: 150px
-				float: right
-	
-#page_list_recent,#page_list_wrapper
-	h2
-		@extend .small_rounded_top
-		background: $grey_1
-		color: white
-		float: none
-		padding: 3px 10px
-		font-size: 1.2em
-		margin: 0
-		
+				+adjust-font-size-to(12px,1)
+				text-transform: uppercase
+			
 		
 
 
