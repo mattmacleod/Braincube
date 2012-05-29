@@ -63,8 +63,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-rails (1.0.1)
-      compass (~> 0.12.0)
     daemons (1.1.4)
     dr_dre (0.1.1)
     erubis (2.6.6)
@@ -78,12 +76,18 @@ GEM
     fastthread (1.0.7)
     fssm (0.2.9)
     gem_plugin (0.2.3)
-    haml (3.1.2)
+    git (1.2.5)
+    haml (3.1.6)
     htmlentities (4.2.2)
     i18n (0.5.0)
     jammit (0.5.4)
       closure-compiler (>= 0.1.0)
       yui-compressor (>= 0.9.1)
+    jeweler (1.8.3)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+      rdoc
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
     mail (2.2.19)
@@ -136,7 +140,7 @@ GEM
       ruby-debug-base (~> 0.10.4.0)
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
-    sass (3.1.2)
+    sass (3.2.0.alpha.237)
     shoulda (2.11.3)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
@@ -167,14 +171,15 @@ DEPENDENCIES
   autotest-rails
   cgi_multipart_eof_fix
   chronic (= 0.3.0)
-  compass-rails (= 1.0.1)
+  compass (>= 0.12)
   dr_dre
   factory_girl_rails
   fastercsv (= 1.5.3)
   fastthread
-  haml (= 3.1.2)
+  haml
   htmlentities (= 4.2.2)
   jammit
+  jeweler
   lapluviosilla-tickle!
   mime-types (= 1.16)
   mongrel
@@ -185,6 +190,7 @@ DEPENDENCIES
   rcov
   rmagick
   ruby-debug
+  sass (~> 3.2.0.alpha)
   shoulda
   sqlite3-ruby
   sunspot_rails

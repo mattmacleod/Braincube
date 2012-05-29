@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.9'
 
 # Essentials
-gem "haml",         "3.1.2"
+gem "haml"
 gem "fastercsv",    "1.5.3"
 gem "htmlentities", "4.2.2"
 gem "zip",          "2.0.2"
@@ -13,7 +13,8 @@ gem "sunspot_rails"
 
 gem "paper_trail",  "2.0.1"
 gem "will_paginate", "3.0.pre2"
-gem 'compass-rails', "1.0.1"
+gem "compass",      ">=0.12"
+gem "sass",         "~>3.2.0.alpha"
 
 # Need to require the correct name
 gem "mime-types",   "1.16", :require => "mime/types"
@@ -36,7 +37,7 @@ group :development do
   gem "mongrel_experimental"
   gem "dr_dre"
   gem "ruby-debug"
-  #gem "jeweler",      "1.5.2"  
+  gem "jeweler"
 end
   
 # Testing only

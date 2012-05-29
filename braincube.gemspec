@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{braincube}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew MacLeod"]
-  s.date = %q{2011-07-22}
+  s.date = %q{2012-05-23}
   s.description = %q{A Rails Engine that provides basic CMS functionality.}
   s.email = %q{matt@matt-m.co.uk}
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "app/controllers/admin/events_controller.rb",
     "app/controllers/admin/management_controller.rb",
     "app/controllers/admin/pages_controller.rb",
+    "app/controllers/admin/publications_controller.rb",
     "app/controllers/admin/tags_controller.rb",
     "app/controllers/admin/users_controller.rb",
     "app/controllers/admin/venues_controller.rb",
@@ -46,6 +47,7 @@ Gem::Specification.new do |s|
     "app/helpers/admin/events_helper.rb",
     "app/helpers/admin/management_helper.rb",
     "app/helpers/admin/pages_helper.rb",
+    "app/helpers/admin/publications_helper.rb",
     "app/helpers/admin/tags_helper.rb",
     "app/helpers/admin/users_helper.rb",
     "app/helpers/admin/venues_helper.rb",
@@ -69,6 +71,7 @@ Gem::Specification.new do |s|
     "app/models/imported_performance.rb",
     "app/models/lock.rb",
     "app/models/menu.rb",
+    "app/models/node_sweeper.rb",
     "app/models/page.rb",
     "app/models/page_widget.rb",
     "app/models/performance.rb",
@@ -84,31 +87,34 @@ Gem::Specification.new do |s|
     "app/models/zip_upload.rb",
     "app/sass/admin/_ajax.sass",
     "app/sass/admin/_asset_manager.sass",
-    "app/sass/admin/_constants.sass",
     "app/sass/admin/_elements.sass",
     "app/sass/admin/_errors.sass",
     "app/sass/admin/_events.sass",
-    "app/sass/admin/_flash.sass",
     "app/sass/admin/_forms.sass",
     "app/sass/admin/_grid.sass",
     "app/sass/admin/_icons.sass",
     "app/sass/admin/_iframe.sass",
     "app/sass/admin/_jcrop.sass",
+    "app/sass/admin/_jquery_chosen.sass",
     "app/sass/admin/_jquery_ui.sass",
     "app/sass/admin/_jstree.sass",
-    "app/sass/admin/_layout.sass",
     "app/sass/admin/_links.sass",
-    "app/sass/admin/_lists.sass",
-    "app/sass/admin/_nav.sass",
-    "app/sass/admin/_notice.sass",
     "app/sass/admin/_pages.sass",
     "app/sass/admin/_pretty_photo.sass",
-    "app/sass/admin/_reset.sass",
-    "app/sass/admin/_text.sass",
     "app/sass/admin/_treeview.sass",
     "app/sass/admin/_venues.sass",
+    "app/sass/admin/basic/_buttons.sass",
+    "app/sass/admin/basic/_constants.sass",
+    "app/sass/admin/basic/_fonts.sass",
+    "app/sass/admin/basic/_text.sass",
+    "app/sass/admin/components/_lists.sass",
+    "app/sass/admin/elements/_flash.sass",
+    "app/sass/admin/layout/_flash.sass",
+    "app/sass/admin/layout/_layout.sass",
+    "app/sass/admin/layout/_nav.sass",
     "app/sass/admin/print_article.sass",
     "app/sass/admin/show_article.sass",
+    "app/sass/admin/special/_notice.sass",
     "app/sass/admin/styles.sass",
     "app/sass/basic/_constants.sass",
     "app/sass/basic/_elements.sass",
@@ -132,6 +138,7 @@ Gem::Specification.new do |s|
     "app/views/admin/articles/_form_content.html.haml",
     "app/views/admin/articles/_form_events.html.haml",
     "app/views/admin/articles/_form_publishing.html.haml",
+    "app/views/admin/articles/_form_seo.haml",
     "app/views/admin/articles/_form_tags.html.haml",
     "app/views/admin/articles/_form_venues.html.haml",
     "app/views/admin/articles/_list.html.haml",
@@ -191,6 +198,8 @@ Gem::Specification.new do |s|
     "app/views/admin/events/_table.html.haml",
     "app/views/admin/events/_verify_list.html.haml",
     "app/views/admin/events/build_performances.html.haml",
+    "app/views/admin/events/download.html.haml",
+    "app/views/admin/events/download.indtt.haml",
     "app/views/admin/events/edit.html.haml",
     "app/views/admin/events/import.html.haml",
     "app/views/admin/events/index.html.haml",
@@ -209,16 +218,19 @@ Gem::Specification.new do |s|
     "app/views/admin/pages/index.html.haml",
     "app/views/admin/pages/new.html.haml",
     "app/views/admin/pages/page_types/_articles.html.haml",
-    "app/views/admin/pages/page_types/_blogs.html.haml",
-    "app/views/admin/pages/page_types/_competition.html.haml",
     "app/views/admin/pages/page_types/_contact.html.haml",
     "app/views/admin/pages/page_types/_events.html.haml",
     "app/views/admin/pages/page_types/_home.html.haml",
     "app/views/admin/pages/page_types/_section.html.haml",
-    "app/views/admin/pages/page_types/_staff.html.haml",
     "app/views/admin/pages/page_types/_text.html.haml",
     "app/views/admin/pages/page_types/_venues.html.haml",
-    "app/views/admin/pages/page_types/_videos.html.haml",
+    "app/views/admin/publications/_form.html.haml",
+    "app/views/admin/publications/_list.html.haml",
+    "app/views/admin/publications/_sidebar.html.haml",
+    "app/views/admin/publications/_table.html.haml",
+    "app/views/admin/publications/edit.html.haml",
+    "app/views/admin/publications/index.html.haml",
+    "app/views/admin/publications/new.html.haml",
     "app/views/admin/setup.html.haml",
     "app/views/admin/tags/_list.html.haml",
     "app/views/admin/tags/_sidebar.html.haml",
@@ -248,11 +260,8 @@ Gem::Specification.new do |s|
     "app/views/admin/widgets/edit.html.haml",
     "app/views/admin/widgets/index.html.haml",
     "app/views/admin/widgets/new.html.haml",
-    "app/views/admin/widgets/widget_types/_ad_slot.html.haml",
     "app/views/admin/widgets/widget_types/_custom_html.html.haml",
     "app/views/admin/widgets/widget_types/_image.html.haml",
-    "app/views/admin/widgets/widget_types/_latest_comments.html.haml",
-    "app/views/admin/widgets/widget_types/_latest_tagged.html.haml",
     "app/views/braincube_main/index.html.haml",
     "app/views/layouts/admin/default.html.haml",
     "app/views/layouts/admin/error.html.haml",
@@ -280,6 +289,7 @@ Gem::Specification.new do |s|
     "config/boot.rb",
     "config/braincube.rb",
     "config/braincube_menu.yml",
+    "config/compass.rb",
     "config/database.yml",
     "config/environment.rb",
     "config/environments/development.rb",
@@ -287,7 +297,7 @@ Gem::Specification.new do |s|
     "config/environments/test.rb",
     "config/initializers/application.rb",
     "config/initializers/braincube.rb",
-    "config/initializers/haml.rb",
+    "config/initializers/compass.rb",
     "config/initializers/mime_types.rb",
     "config/initializers/search.rb",
     "config/routes.rb",
@@ -311,6 +321,7 @@ Gem::Specification.new do |s|
     "db/migrate/17_create_publications.rb",
     "db/migrate/18_create_locks.rb",
     "db/migrate/19_create_assets.rb",
+    "db/migrate/20111221101125_add_seo_fields.rb",
     "db/migrate/20_create_asset_folders.rb",
     "db/migrate/21_create_asset_links.rb",
     "db/migrate/22_create_menus.rb",
@@ -334,6 +345,7 @@ Gem::Specification.new do |s|
     "lib/braincube/model_extensions/tags.rb",
     "lib/braincube/model_extensions/url.rb",
     "lib/braincube/model_extensions/versions.rb",
+    "lib/braincube/node_cache.rb",
     "lib/braincube/util.rb",
     "lib/braincube/validators.rb",
     "lib/core_extensions.rb",
@@ -348,6 +360,10 @@ Gem::Specification.new do |s|
     "public/422.html",
     "public/500.html",
     "public/favicon.ico",
+    "public/fonts/embed/Hattori_Hanzo-webfont.eot",
+    "public/fonts/embed/Hattori_Hanzo-webfont.ttf",
+    "public/fonts/embed/Hattori_Hanzo_Italic-webfont.eot",
+    "public/fonts/embed/Hattori_Hanzo_Italic-webfont.ttf",
     "public/fonts/embed/Ubuntu-B-webfont.eot",
     "public/fonts/embed/Ubuntu-B-webfont.svg",
     "public/fonts/embed/Ubuntu-B-webfont.ttf",
@@ -365,6 +381,9 @@ Gem::Specification.new do |s|
     "public/fonts/embed/Ubuntu-R-webfont.ttf",
     "public/fonts/embed/Ubuntu-R-webfont.woff",
     "public/images/admin/embed/background.jpg",
+    "public/images/admin/embed/chosen-sprite.png",
+    "public/images/admin/embed/icons/ajax_cross.png",
+    "public/images/admin/embed/icons/ajax_tick.png",
     "public/images/admin/embed/icons/button_back.png",
     "public/images/admin/embed/icons/button_cancel.png",
     "public/images/admin/embed/icons/button_delete.png",
@@ -373,7 +392,6 @@ Gem::Specification.new do |s|
     "public/images/admin/embed/icons/button_import.png",
     "public/images/admin/embed/icons/button_loader.gif",
     "public/images/admin/embed/icons/button_new.png",
-    "public/images/admin/embed/icons/button_save",
     "public/images/admin/embed/icons/button_save.png",
     "public/images/admin/embed/icons/file_types/doc.png",
     "public/images/admin/embed/icons/file_types/generic.png",
@@ -561,6 +579,7 @@ Gem::Specification.new do |s|
     "public/javascripts/admin/asset_manager.js",
     "public/javascripts/admin/events.js",
     "public/javascripts/admin/jquery-1.5.js",
+    "public/javascripts/admin/jquery-chosen.js",
     "public/javascripts/admin/jquery-form.js",
     "public/javascripts/admin/jquery-googlemaps.js",
     "public/javascripts/admin/jquery-jcrop.js",
@@ -910,6 +929,7 @@ Gem::Specification.new do |s|
     "test/functional/admin/events_controller_test.rb",
     "test/functional/admin/management_controller_test.rb",
     "test/functional/admin/pages_controller_test.rb",
+    "test/functional/admin/publications_controller_test.rb",
     "test/functional/admin/tags_controller_test.rb",
     "test/functional/admin/users_controller_test.rb",
     "test/functional/admin/venues_controller_test.rb",
@@ -943,6 +963,7 @@ Gem::Specification.new do |s|
     "test/unit/helpers/admin/events_helper_test.rb",
     "test/unit/helpers/admin/management_helper_test.rb",
     "test/unit/helpers/admin/pages_helper_test.rb",
+    "test/unit/helpers/admin/publications_helper_test.rb",
     "test/unit/helpers/admin/tags_helper_test.rb",
     "test/unit/helpers/admin/users_helper_test.rb",
     "test/unit/helpers/admin/venues_helper_test.rb",
@@ -963,106 +984,20 @@ Gem::Specification.new do |s|
     "test/unit/user_test.rb",
     "test/unit/venue_test.rb",
     "test/unit/widget_test.rb",
+    "tmp/flush_node_cache.txt",
     "vendor/plugins/.gitkeep"
   ]
   s.homepage = %q{http://braincu.be}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.2}
+  s.rubygems_version = %q{1.4.1}
   s.summary = %q{Braincube CMS engine}
-  s.test_files = [
-    "test/factories/api_keys.rb",
-    "test/factories/api_requests.rb",
-    "test/factories/articles.rb",
-    "test/factories/asset_folders.rb",
-    "test/factories/asset_links.rb",
-    "test/factories/assets.rb",
-    "test/factories/authors.rb",
-    "test/factories/cities.rb",
-    "test/factories/comments.rb",
-    "test/factories/drafts.rb",
-    "test/factories/events.rb",
-    "test/factories/locks.rb",
-    "test/factories/menus.rb",
-    "test/factories/page_widgets.rb",
-    "test/factories/pages.rb",
-    "test/factories/performances.rb",
-    "test/factories/publications.rb",
-    "test/factories/sections.rb",
-    "test/factories/taggings.rb",
-    "test/factories/tags.rb",
-    "test/factories/users.rb",
-    "test/factories/venues.rb",
-    "test/factories/widgets.rb",
-    "test/functional/admin/articles_controller_test.rb",
-    "test/functional/admin/asset_folders_controller_test.rb",
-    "test/functional/admin/assets_controller_test.rb",
-    "test/functional/admin/cities_controller_test.rb",
-    "test/functional/admin/comments_controller_test.rb",
-    "test/functional/admin/events_controller_test.rb",
-    "test/functional/admin/management_controller_test.rb",
-    "test/functional/admin/pages_controller_test.rb",
-    "test/functional/admin/tags_controller_test.rb",
-    "test/functional/admin/users_controller_test.rb",
-    "test/functional/admin/venues_controller_test.rb",
-    "test/functional/admin/widgets_controller_test.rb",
-    "test/functional/admin_controller_test.rb",
-    "test/functional/api_controller_test.rb",
-    "test/functional/braincube_main_controller_test.rb",
-    "test/performance/browsing_test.rb",
-    "test/shoulda_macros/assets.rb",
-    "test/shoulda_macros/authentication.rb",
-    "test/shoulda_macros/metatests.rb",
-    "test/shoulda_macros/model_extensions.rb",
-    "test/shoulda_macros/validation.rb",
-    "test/test_helper.rb",
-    "test/unit/api_key_test.rb",
-    "test/unit/api_request_test.rb",
-    "test/unit/article_test.rb",
-    "test/unit/asset_folder_test.rb",
-    "test/unit/asset_link_test.rb",
-    "test/unit/asset_test.rb",
-    "test/unit/author_test.rb",
-    "test/unit/city_test.rb",
-    "test/unit/comment_test.rb",
-    "test/unit/draft_test.rb",
-    "test/unit/event_test.rb",
-    "test/unit/helpers/admin/articles_helper_test.rb",
-    "test/unit/helpers/admin/asset_folders_helper_test.rb",
-    "test/unit/helpers/admin/assets_helper_test.rb",
-    "test/unit/helpers/admin/cities_helper_test.rb",
-    "test/unit/helpers/admin/comments_helper_test.rb",
-    "test/unit/helpers/admin/events_helper_test.rb",
-    "test/unit/helpers/admin/management_helper_test.rb",
-    "test/unit/helpers/admin/pages_helper_test.rb",
-    "test/unit/helpers/admin/tags_helper_test.rb",
-    "test/unit/helpers/admin/users_helper_test.rb",
-    "test/unit/helpers/admin/venues_helper_test.rb",
-    "test/unit/helpers/admin/widgets_helper_test.rb",
-    "test/unit/helpers/admin_helper_test.rb",
-    "test/unit/helpers/api_helper_test.rb",
-    "test/unit/helpers/braincube_main_helper_test.rb",
-    "test/unit/imported_performance_test.rb",
-    "test/unit/lock_test.rb",
-    "test/unit/menu_test.rb",
-    "test/unit/page_test.rb",
-    "test/unit/page_widget_test.rb",
-    "test/unit/performance_test.rb",
-    "test/unit/publication_test.rb",
-    "test/unit/section_test.rb",
-    "test/unit/tag_test.rb",
-    "test/unit/tagging_test.rb",
-    "test/unit/user_test.rb",
-    "test/unit/venue_test.rb",
-    "test/unit/widget_test.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_runtime_dependency(%q<haml>, ["= 3.1.2"])
-      s.add_runtime_dependency(%q<sass>, ["= 3.1.2"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
       s.add_runtime_dependency(%q<fastercsv>, ["= 1.5.3"])
       s.add_runtime_dependency(%q<htmlentities>, ["= 4.2.2"])
       s.add_runtime_dependency(%q<zip>, ["= 2.0.2"])
@@ -1071,6 +1006,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sunspot_rails>, [">= 0"])
       s.add_runtime_dependency(%q<paper_trail>, ["= 2.0.1"])
       s.add_runtime_dependency(%q<will_paginate>, ["= 3.0.pre2"])
+      s.add_runtime_dependency(%q<compass>, [">= 0.12"])
+      s.add_runtime_dependency(%q<sass>, ["~> 3.2.0.alpha"])
       s.add_runtime_dependency(%q<mime-types>, ["= 1.16"])
       s.add_runtime_dependency(%q<lapluviosilla-tickle>, [">= 0"])
       s.add_runtime_dependency(%q<paperclip>, [">= 0"])
@@ -1080,13 +1017,12 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<mongrel_experimental>, [">= 0"])
       s.add_development_dependency(%q<dr_dre>, [">= 0"])
       s.add_development_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jammit>, [">= 0"])
     else
       s.add_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_dependency(%q<haml>, ["= 3.1.2"])
-      s.add_dependency(%q<sass>, ["= 3.1.2"])
+      s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<fastercsv>, ["= 1.5.3"])
       s.add_dependency(%q<htmlentities>, ["= 4.2.2"])
       s.add_dependency(%q<zip>, ["= 2.0.2"])
@@ -1095,6 +1031,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sunspot_rails>, [">= 0"])
       s.add_dependency(%q<paper_trail>, ["= 2.0.1"])
       s.add_dependency(%q<will_paginate>, ["= 3.0.pre2"])
+      s.add_dependency(%q<compass>, [">= 0.12"])
+      s.add_dependency(%q<sass>, ["~> 3.2.0.alpha"])
       s.add_dependency(%q<mime-types>, ["= 1.16"])
       s.add_dependency(%q<lapluviosilla-tickle>, [">= 0"])
       s.add_dependency(%q<paperclip>, [">= 0"])
@@ -1104,14 +1042,13 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<mongrel_experimental>, [">= 0"])
       s.add_dependency(%q<dr_dre>, [">= 0"])
       s.add_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jammit>, [">= 0"])
     end
   else
     s.add_dependency(%q<rails>, ["= 3.0.9"])
-    s.add_dependency(%q<haml>, ["= 3.1.2"])
-    s.add_dependency(%q<sass>, ["= 3.1.2"])
+    s.add_dependency(%q<haml>, [">= 0"])
     s.add_dependency(%q<fastercsv>, ["= 1.5.3"])
     s.add_dependency(%q<htmlentities>, ["= 4.2.2"])
     s.add_dependency(%q<zip>, ["= 2.0.2"])
@@ -1120,6 +1057,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sunspot_rails>, [">= 0"])
     s.add_dependency(%q<paper_trail>, ["= 2.0.1"])
     s.add_dependency(%q<will_paginate>, ["= 3.0.pre2"])
+    s.add_dependency(%q<compass>, [">= 0.12"])
+    s.add_dependency(%q<sass>, ["~> 3.2.0.alpha"])
     s.add_dependency(%q<mime-types>, ["= 1.16"])
     s.add_dependency(%q<lapluviosilla-tickle>, [">= 0"])
     s.add_dependency(%q<paperclip>, [">= 0"])
@@ -1129,7 +1068,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<mongrel_experimental>, [">= 0"])
     s.add_dependency(%q<dr_dre>, [">= 0"])
     s.add_dependency(%q<ruby-debug>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["= 1.5.2"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jammit>, [">= 0"])
   end
