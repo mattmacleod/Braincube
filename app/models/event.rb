@@ -178,14 +178,21 @@ class Event < ActiveRecord::Base
   
   
   
-  # Venue - if there are multiple venues, say that. Otherwise return the venue
-  # name and the city name combined.
-  def venue_string(city=true)
-    venues = performances.upcoming.map(&:venue_id).uniq
+  # Venue details
+  def venue_string( city = nil )
+    
+    if city
+      venues = performances.upcoming.includes(:venue).where("venues.city_id=?", city.id).map(&:venue_id).uniq
+    else
+      venues = performances.upcoming.map(&:venue_id).uniq
+    end
+    
     if venues.length==1 
       v = Venue.find( venues.first )
-      return [v.title, ((v.city ? v.city.name : nil) if city)].compact.join(", ")
-    else 
+      return [v.title, ((v.city ? nil : v.city.name ) if city)].compact.join(", ")
+    elsif venues.empty?
+      return "No venue"
+    else
       return "various venues"
     end
   end
