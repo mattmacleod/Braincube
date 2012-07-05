@@ -233,7 +233,7 @@ class Admin::EventsController < AdminController
 						@events = @events.in_city( city ) if city
 					
 					
-						@results = @events.group_by{|e| e.venue_string( !city ) }.to_a.sort_by{|a|a[0]}
+						@results = @events.group_by{|e| e.venue_string( city ) }.to_a.sort_by{|a|a[0]}
 					
 					else
 						@grouping = :date

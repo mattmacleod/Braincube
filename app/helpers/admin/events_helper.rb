@@ -69,7 +69,7 @@ module Admin::EventsHelper
 	
 	def indesign_listings_event_data( event )
 		out = "<ParaStyle:Listings\:Event><CharStyle:Listings\:Event Time>"
-		out << "#{event.cached_dates}, #{event.cached_times}, #{event.cached_prices}"
+		out << "#{event.date_string}, #{event.time_string}, #{event.price_string}"
 		out << "<CharStyle:>"
 	end
 	
