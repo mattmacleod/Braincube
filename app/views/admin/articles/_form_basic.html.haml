@@ -13,3 +13,5 @@
 			- begin
 				= render :partial => "/admin/articles/article_types/#{k}", :locals => { :k => k, :v => v, :f => f }
 			- rescue MissingTemplate
+				= f.hidden_field "review_#{k}", :value => 0
+				
