@@ -4,3 +4,5 @@
 			= yield
 
 = render :partial => "layouts/admin/parts/head"
+
+= javascript_include_tag "http://www.google.com/jsapi?key=#{Braincube::Config::GoogleApiKey}"
