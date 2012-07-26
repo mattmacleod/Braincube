@@ -3,7 +3,7 @@
 	#google_search_form
 		=note "Use an image from Google by filling in the form then selecting an image."
 		=form_errors @google_url_upload
-		=hidden_field_tag :google, :value => 1
+		=hidden_field_tag :google, 1, :id => "google_hidden"
 		
 		.full= f.text_field :title, :required => true, :id => "google_url_upload_title"
 		.full{:style => "display: none"}= f.text_field :url, :required => true, :note => "This is the URL of the image you have selected", :id => "google_url_upload_url"
