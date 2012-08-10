@@ -207,7 +207,7 @@ module Admin::ArticlesHelper
   
   
   def publication_options(selected = nil)
-    out = "<option>Web-only</option>" +
+    out = "<option value=\"\">Web-only</option>" +
     @all_publications.map do |key, value|
       options = value.map{|v|
         content_tag(:option, v.name, :value => v.id, :selected => ( v==selected || (selected.nil? && key != :past && v==value.first) ) )
