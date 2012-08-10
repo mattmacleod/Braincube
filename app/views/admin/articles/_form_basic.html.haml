@@ -2,7 +2,7 @@
 .full= f.text_field :title, :required => true, :maxlength => 255, :note => "This will be the main title of the article"
 .full= f.text_field :writer_string,	:note => "Separate user names with commas. Leave empty to publish an anonymous article", :label => "Authors"
 .full
-	.half= f.select :publication_id, publication_options(@article.publication), :note => "Choose the publication this article will appear in", :class=>:half
+	.half= f.select :publication_id, publication_options(@article.publication||""), :note => "Choose the publication this article will appear in", :class=>:half
 	.half= f.select :section_id, [""]+Section::all.map{|s| [s.name, s.id] }, :required => true, :note => "Choose the main section for this article"
 .full.bottom
 	.half
