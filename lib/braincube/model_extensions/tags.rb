@@ -62,27 +62,19 @@ module Braincube #:nodoc:
          tag_ids = Tag.where( :name => tags ).map(&:id)
          return where("2=0") if tag_ids.blank?
          tag_query = "(#{ tag_ids.join(",") })"
-         
-         # ... then get the matching taggable IDs ...
-         taggable_id_query = Tagging.select(:taggable_id).where(:taggable_type => name).where("tag_id IN #{tag_query}")
-         
-         # Get matching taggings
-         tagging_ids = taggable_id_query.all
 
          # If we need to match all tags, then group and limit
          if match_all
-           length = tags.length
-           tagging_ids = taggable_id_query.group_by(&:taggable_id).map{|k,v| k if v.length==length}.compact
+					 taggable_ids = Tagging.connection.execute("SELECT GROUP_CONCAT(taggable_id) FROM (SELECT taggable_id FROM taggings WHERE taggable_type='#{ name }' AND tag_id IN #{ tag_query } GROUP BY taggable_id HAVING COUNT(id)=#{tags.length}) AS taggables_with_all_tags").first
          else
-           tagging_ids = taggable_id_query.map(&:taggable_id)
+           taggable_ids = Tagging.connection.execute("SELECT GROUP_CONCAT(taggable_id) FROM taggings WHERE taggable_type='#{ name }' AND tag_id IN #{ tag_query }").first
          end
          
          #... then build a SQL string ...
-         taggable_query_string = tagging_ids.join(", ")
-         return where("3=0") if taggable_query_string.blank?
+         return where("3=0") if taggable_ids.compact.empty?
          
          # ... then find all matching taggables!
-         return where("#{table_name}.id IN (#{taggable_query_string})")
+         return where("#{table_name}.id IN (#{taggable_ids})")
          
          
        end
