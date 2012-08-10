@@ -48,6 +48,14 @@ module Braincube #:nodoc:
           tagged_with( tags, false )
         end
 
+        def traditional_tagged_with_all(tags)
+          traditional_tagged_with( tags, true )
+        end
+
+        def traditional_tagged_with_any(tags)
+          traditional_tagged_with( tags, false )
+        end
+
        private
        
        def tagged_with( tags, match_all = false )
@@ -79,7 +87,35 @@ module Braincube #:nodoc:
          
        end
         
-       public
+
+       def traditional_tagged_with( tags, match_all = false )
+         
+         tags = tags.is_a?(Array) ? TagList.new(tags.map(&:to_s)) : TagList.from(tags)
+         return where("1=0") if tags.blank?
+         
+				# Get the tag condition
+				 tags_condition = tags.map { |t| sanitize_sql(["tags.name LIKE ?", t]) }.join(" OR ")
+         tags_condition = "(" + tags_condition + ")"
+
+         # Now the rest...          
+         if match_all
+					
+					 return where(
+	         "((SELECT COUNT(*) FROM taggings INNER JOIN tags "+
+	         "ON taggings.tag_id = tags.id "+
+	         "WHERE taggable_id = #{table_name}.id AND taggable_type = \"#{name}\" "+
+	         "AND #{tags_condition}) = #{tags.size})"
+					 )
+				
+				else
+          return  select("DISTINCT #{table_name}.*").
+                  where("taggable_id = #{table_name}.id AND taggable_type = \"#{name}\" ").
+                  where( tags_condition ).
+                  joins(:taggings => :tag)
+				end
+
+       end
+
         
       end
 
