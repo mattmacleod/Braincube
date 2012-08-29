@@ -59,6 +59,10 @@ class Event < ActiveRecord::Base
 		next_performance_time
 	end
 	
+	
+	# Callbacks
+	after_save :update_performance_caches
+	
   # Class methods
   ############################################################################
   
@@ -314,6 +318,7 @@ class Event < ActiveRecord::Base
     
   end
   
+
   private
   
   # Formats a number into a price with precision 2
@@ -321,5 +326,12 @@ class Event < ActiveRecord::Base
     return "free" if number.to_f==0.to_f
     "£%01.2f" % ((Float(number.to_f) * (10 ** 2)).round.to_f / 10 ** 2)
   end
-  
+
+  def update_performance_caches
+		performances.each do |p|
+			p.skip_event_cache_update = true
+			p.save
+		end
+	end
+	
 end
