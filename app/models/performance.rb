@@ -120,6 +120,7 @@ class Performance < ActiveRecord::Base
   ############################################################################
 
   def update_caches
+    return if self.destroyed?
     self.cached_venue_name  = venue.title
     self.cached_venue_link  = venue.url
     self.cached_city_name   = venue.city ? venue.city.name : nil
