@@ -328,7 +328,7 @@ class Event < ActiveRecord::Base
   end
 
   def update_performance_caches
-		performances.each do |p|
+		performances.reject(&:destroyed?).each do |p|
 			p.skip_event_cache_update = true
 			p.save
 		end
