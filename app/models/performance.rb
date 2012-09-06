@@ -120,13 +120,16 @@ class Performance < ActiveRecord::Base
   ############################################################################
 
   def update_caches
-    return if self.destroyed?
-    self.cached_venue_name  = venue.title
-    self.cached_venue_link  = venue.url
-    self.cached_city_name   = venue.city ? venue.city.name : nil
-    self.cached_event_name  = event.title
-    self.cached_event_link  = event.url
-    self.cached_description = event.abstract
+		begin
+ 	   return if self.destroyed?
+	    self.cached_venue_name  = venue.title
+	    self.cached_venue_link  = venue.url
+	    self.cached_city_name   = venue.city ? venue.city.name : nil
+	    self.cached_event_name  = event.title
+	    self.cached_event_link  = event.url
+	    self.cached_description = event.abstract
+		rescue 
+		end
   end
   
   # Avoid callbacks!
