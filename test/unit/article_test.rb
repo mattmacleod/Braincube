@@ -360,4 +360,20 @@ class ArticleTest < ActiveSupport::TestCase
     end
   end
   
+  # Misc
+  ############################################################################
+
+  context "an imported article" do
+    setup do
+      @article = Factory(:article, :status => Article::Status[:ready], :starts_at => nil)
+    end
+    should "allow empty start date if draft" do
+      assert_equal @article.starts_at, nil
+    end
+    should "set the start date if published" do
+      @article.status = Article::Status[:published]
+      @article.save
+      assert_in_delta Time.now, @article.starts_at, 5
+    end
+  end
 end
