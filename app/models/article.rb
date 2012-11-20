@@ -78,7 +78,8 @@ class Article < ActiveRecord::Base
   validates_presence_of :title, :template, :word_count, :user
   validates_presence_of :section_id, :article_type, :message => "must be specified"
   validates_presence_of :review_rating, :if => Proc.new{ review }
-  
+  validates_presence_of :starts_at, :if => Proc.new {|article| article.status == Status[:published] }
+
   validates :status, :presence => true, :inclusion => { :in => Article::Status::values }
   
   
@@ -92,7 +93,8 @@ class Article < ActiveRecord::Base
   # Callbacks
   before_save :save_word_count
   before_validation :update_review_rating
-  
+  before_validation :set_starts_at
+
   
   # Search
   searchable :auto_index => true, :auto_remove => true do
@@ -312,6 +314,11 @@ class Article < ActiveRecord::Base
     self.event_ids = self.associated_event_ids.split(",") if self.associated_event_ids
     self.venue_ids = self.associated_venue_ids.split(",") if self.associated_venue_ids
   end
-  
+
+  def set_starts_at
+    if status == Status[:published] && !starts_at
+      self[:starts_at] = Time::now
+    end
+  end
 end
 
