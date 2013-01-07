@@ -122,3 +122,15 @@
 								= link_to event.title, edit_admin_event_path( event )
 								%span.extra= [ event.cached_times, event.cached_dates, event.cached_venues ].select{|e| !e.blank? }.join(", ")
 			
+
+:javascript
+	var lat = #{f.object.lat || 56.909002};
+	var lng = #{f.object.lng || -4.284668};
+
+	braincube.admin.venues.config.latitude_field = "latitude";
+	braincube.admin.venues.config.longitude_field = "longitude";
+	braincube.admin.venues.config.lat = lat;
+	braincube.admin.venues.config.lng = lng;
+	braincube.admin.venues.initial_marker = #{ !f.object.lat.blank? };
+	braincube.admin.venues.config.zoom = (braincube.admin.venues.config.initial_marker ? 13 : 6);
+	braincube.admin.venues.load();
