@@ -92,13 +92,7 @@ class ImportedPerformance < ActiveRecord::Base
 	          end_at   = Time::parse( "#{data[:end_date]} #{data[:end_time]}" ).getlocal rescue nil
 					end
           end_at = (end_at + 1.day) if end_at  && start_at && (end_at < start_at)
-          
-          # Bit of a hack to account for DST
-          if start_at.dst?
-            start_at += 1.hour
-            end_at += 1.hour if end_at
-          end
-          
+
           imported_attributes = {
             :event_name        => data[:event_name],
             :event             => event,
