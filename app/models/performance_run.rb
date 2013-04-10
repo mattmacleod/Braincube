@@ -92,14 +92,14 @@ class PerformanceRun < ActiveRecord::Base
       dates.each do |date|
         
         # Get the start time
-        start_time = Time::parse(date.strftime("%Y-%m-%d") + " " + periodic_start_time.strftime("%H:%M") + " UTC" ).utc
+        start_time = Time::parse(date.strftime("%Y-%m-%d") + " " + periodic_start_time.strftime("%H:%M"))
         
         # Is there an end time?
         if periodic_end_time
           
           # Create the end time. If it's before the start time, add a day - we've
           # wrapped around into the wee small hours
-          end_time = Time::parse(date.strftime("%Y-%m-%d") + " " + periodic_end_time.strftime("%H:%M") + " UTC" ).utc
+          end_time = Time::parse(date.strftime("%Y-%m-%d") + " " + periodic_end_time.strftime("%H:%M"))
           end_time += 1.day if end_time < start_time
           
           times << { 
@@ -156,12 +156,12 @@ class PerformanceRun < ActiveRecord::Base
         end
         
         # Get the start time on that day
-        start_time = Time::parse(date.strftime("%Y-%m-%d") + " " + open_time + " UTC" ).utc
+        start_time = Time::parse(date.strftime("%Y-%m-%d") + " " + open_time)
         
           
         # Create the end time. If it's before the start time, add a day - we've
         # wrapped around into the wee small hours
-        end_time = Time::parse(date.strftime("%Y-%m-%d") + " " + close_time + " UTC" ).utc
+        end_time = Time::parse(date.strftime("%Y-%m-%d") + " " + close_time)
         end_time += 1.day if end_time < start_time
         
         times << { 
