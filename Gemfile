@@ -13,8 +13,8 @@ gem "sunspot_rails"
 
 gem "paper_trail",  "2.0.1"
 gem "will_paginate", "3.0.pre2"
-gem "compass",      ">=0.12"
 gem "sass",         "~>3.2.0.alpha"
+gem "compass-rails"
 
 # Need to require the correct name
 gem "mime-types",   "1.16", :require => "mime/types"
@@ -52,6 +52,6 @@ end
 
 # Development database
 group :development, :test do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3'
   gem "jammit"
 end
