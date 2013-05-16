@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
   class << self
     
     def upcoming
-      includes(:performances).
+      joins(:performances).
       where("performances.starts_at>=? OR (NOT performances.ends_at IS NULL AND performances.ends_at>=?)", Time::now, Time::now)
     end
     
