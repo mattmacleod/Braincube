@@ -30,7 +30,7 @@ class Asset < ActiveRecord::Base
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
         :path => ":id/:id_:style.:extension",
         :default_url => "asset_placeholders/:style.png",
-        :convert_options => { :all => "-strip -colorspace sRGB" },
+        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
         :whiny => true,
         :storage => :s3,
         :s3_credentials => Braincube::Config::S3ConnectionDetails[ Rails.env ],
@@ -44,7 +44,7 @@ class Asset < ActiveRecord::Base
         :path => ":rails_root/public/assets/:rails_env/:id/:id_:style.:extension",
         :url => "/assets/:rails_env/:id/:id_:style.:extension",
         :default_url => "/images/asset_placeholders/:style.png",
-        :convert_options => { :all => "-strip -colorspace sRGB" },
+        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
         :processors => [:cropper], :whiny => true
   end
   
