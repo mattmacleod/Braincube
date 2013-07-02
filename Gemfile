@@ -4,7 +4,7 @@ gem 'rails', '~>3.2'
 
 # Back-end
 gem "will_paginate"
-gem "paper_trail",  "2.0.1"
+gem "paper_trail"
 gem "htmlentities", "4.2.2"
 gem "zip",          "2.0.2"
 gem "chronic",      "0.3.0"
