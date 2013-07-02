@@ -1,3 +1,5 @@
+require "csv"
+
 # Core extensions for Braincube
 Kernel.class_eval do
   
@@ -78,7 +80,7 @@ Array.class_eval do
     end
     
     # Build the CSV export
-    return FasterCSV.generate do |csv|
+    return CSV.generate do |csv|
       
       # Add the row titles (first array entry)
       csv << options[:columns].map(&:first)

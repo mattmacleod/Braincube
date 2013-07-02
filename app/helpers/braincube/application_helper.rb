@@ -29,8 +29,8 @@ module Braincube::ApplicationHelper
     
     if group == :braincube_admin
     	if defined?( Braincube::Application )
-  		  out << include_stylesheets(group, :media => "all")
-  		  out << include_javascripts(group)
+  		  out << include_stylesheets(group, :media => "all").to_s
+  		  out << include_javascripts(group).to_s
   		else
   			out << '<!--[if (!IE)|(gte IE 8)]><!-->'
   			out << '<link href="/packages/' + group.to_s + '-datauri.css?' + Braincube::Version + '" media="all" rel="stylesheet" type="text/css" />'

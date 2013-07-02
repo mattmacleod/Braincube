@@ -12,3 +12,5 @@ module Braincube
 		
   end
 end
+
+ActionController::Base.config.relative_url_root = ''

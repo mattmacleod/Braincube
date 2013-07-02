@@ -4,12 +4,12 @@ gem 'rails', '3.0.19'
 
 # Essentials
 gem "haml"
-gem "fastercsv",    "1.5.3"
 gem "htmlentities", "4.2.2"
 gem "zip",          "2.0.2"
 gem "chronic",      "0.3.0"
 gem "tickle",       "0.1.7"
 gem "sunspot_rails"
+gem "iconv"
 
 gem "paper_trail",  "2.0.1"
 gem "will_paginate", "3.0.pre2"
@@ -44,5 +44,5 @@ end
 # Development database
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "jammit"
+  gem "jammit", :require => "jammit"
 end
