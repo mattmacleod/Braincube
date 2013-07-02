@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.19'
 
 # Essentials
 gem "haml"
@@ -31,22 +31,13 @@ gem 'paperclip',
         
 # Development only
 group :development do
-  gem "mongrel"
-  gem "cgi_multipart_eof_fix"
-  gem "fastthread"
-  gem "mongrel_experimental"
-  gem "dr_dre"
-  gem "ruby-debug"
   gem "jeweler"
 end
   
 # Testing only
 group :test do
-  gem "autotest"
-  gem "autotest-rails"
   gem "shoulda"
   gem "factory_girl_rails"
-  gem "rcov"
   gem "rmagick"
 end
 
