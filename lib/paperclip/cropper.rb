@@ -7,7 +7,7 @@ module Paperclip
       target = @attachment.instance
       
       # Find out what style we are processing
-      current_style = Braincube::Config::ImageFileVersions.index( [@options[:geometry], @options[:format]] )
+      current_style = Braincube::Config::ImageFileVersions.key( [@options[:geometry], @options[:format]] )
    
       # If the style does not need to be recropped, do what we were already doing
       unless current_style && target.cropping?( current_style )
@@ -39,7 +39,7 @@ module Paperclip
       
       # Get the asset we're working with
       target = @attachment.instance
-      current_style = Braincube::Config::ImageFileVersions.index( [@options[:geometry], @options[:format]] )
+      current_style = Braincube::Config::ImageFileVersions.key( [@options[:geometry], @options[:format]] )
       
       # Get the crop attributes supplied to the model
       crop_x = target.send("crop_x_#{current_style}").to_i
