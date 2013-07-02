@@ -35,6 +35,7 @@ gem 'paperclip'
 # Development only
 group :development do
   gem "jeweler"
+  gem "sunspot_solr"
 end
   
 # Testing only
