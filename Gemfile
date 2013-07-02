@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.19'
+gem 'rails', '~>3.2'
 
 # Essentials
 gem "haml"
@@ -26,7 +26,7 @@ gem "lapluviosilla-tickle",
     
 		
 gem 'paperclip',
-    :git => "http://github.com/mattmacleod/paperclip.git"
+    :git => "https://github.com/mattmacleod/paperclip.git"
         
         
 # Development only
