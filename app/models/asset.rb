@@ -87,6 +87,8 @@ class Asset < ActiveRecord::Base
     attr_accessor "crop_x_#{k}", "crop_y_#{k}", "crop_w_#{k}", "crop_h_#{k}"
   end
   def reprocess_cropped_styles 
+    return if @updated
+    @updated = true
     Braincube::Config::ImageFileVersions.keys.select{|k| cropping?( k )}.each do |style|
       asset.reprocess!( style )
     end
