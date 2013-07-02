@@ -4,7 +4,7 @@ class ZipUpload < ActiveRecord::Base
   require "mime/types"
   
   # Table-less model
-  class_inheritable_accessor :columns
+  class_attribute :columns
   self.columns = []
 
   def self.column(name, sql_type = nil, default = nil, null = true)
