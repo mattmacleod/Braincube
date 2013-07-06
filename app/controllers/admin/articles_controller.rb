@@ -341,7 +341,7 @@ class Admin::ArticlesController < AdminController
   # Get the sections and publictions - needed pretty much all over
   def load_defaults
     @all_sections = Section.order(:name)
-    @all_publications = Publication.all.group_by(&:direction).to_a
+    @all_publications = Publication.all.order("date_street DESC").group_by(&:direction).to_a
   end
   
   
