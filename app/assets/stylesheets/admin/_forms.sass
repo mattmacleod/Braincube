@@ -91,7 +91,7 @@ li
 			display: block
 			float: right
 			text-indent: -999em
-			background: url(/images/admin/embed/icons/embed/tag_delete.png) no-repeat center center
+			background: image-url("admin/embed/icons/embed/tag_delete.png") no-repeat center center
 			cursor: pointer
 			
 	&.token-input-selected-token
@@ -138,7 +138,7 @@ div.token-input-dropdown
 //***************************************************************************/
 
 @mixin button_background($icon)
-	background-image: url(/images/admin/embed/icons/button_#{ $icon })
+	background-image: image-url("admin/embed/icons/button_#{ $icon }")
 	background-position: 0.6em center
 	background-repeat: no-repeat
 	padding-left: 35px
@@ -184,7 +184,7 @@ a.destroy
 	display: block
 	width: 20px
 	height: 20px
-	background: url(/images/admin/embed/icons/link_destroy.png) center center no-repeat
+	background: image-url("admin/embed/icons/link_destroy.png") center center no-repeat
 	text-indent: -999em
 	opacity: 0.2
 	&:hover
@@ -195,7 +195,7 @@ a.approve
 	display: block
 	width: 20px
 	height: 20px
-	background: url(/images/admin/embed/icons/link_approve.png) center center no-repeat
+	background: image-url("admin/embed/icons/link_approve.png") center center no-repeat
 	text-indent: -999em
 	opacity: 0.2
 	&:hover
@@ -203,7 +203,7 @@ a.approve
 
 a.destroy, a.approve
 	&.loading
-		background: url(/images/admin/spinner_transparent.gif) center center no-repeat !important
+		background: image-url("admin/spinner_transparent.gif") center center no-repeat !important
 
 a.small_button
 	background: $grey_2
@@ -363,7 +363,7 @@ fieldset
 				background: $grey_6
 			&.has_error
 				padding-left: 2em
-				background-image: url(/images/admin/embed/icons/tab_error.png)
+				background-image: image-url("admin/embed/icons/tab_error.png")
 				background-position: 0.5em center
 				background-repeat: no-repeat
 

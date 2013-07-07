@@ -29,7 +29,7 @@ module Braincube::ApplicationHelper
     
     if group == :braincube_admin
 		  out << stylesheet_link_tag("admin/styles", :media => "all").to_s
-		  out << javascript_tag(group).to_s
+		  out << javascript_include_tag("admin/admin").to_s
 	  elsif group == :braincube_show_article
       out << stylesheet_link_tag(:braincube_show_article, :media => "all")
 		  out << stylesheet_link_tag(:braincube_print_article, :media => "print")

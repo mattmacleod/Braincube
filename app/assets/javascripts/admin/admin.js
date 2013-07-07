@@ -1,38 +1,27 @@
-//////////////////////////////////////////////////////////////////////////////
-// Braincube: admin.js
-// 
-// This javascript file handles the main admin startup
-//////////////////////////////////////////////////////////////////////////////
-
-var braincube = { 
-	admin: {
-		
-		// Main init function for Braincube admin interface
-		init: function(){
-			this.login_page.init();			// Login page JS
-			this.ui.init();							// User interface elements
-			this.tinymce.init();				// Rich text editor
-			this.articles.init();				// Article editor tools
-			this.venues.init();					// Venue manager bits 
-			this.tagging.init();				// Tagging
-			this.asset_manager.init();	// Asset manager
-			this.events.init();					// Event manager
-			this.pages.init();					// Page tree manager
-			this.tag_manager.init();		// Tag manager
-			this.widgets.init();				// Widget manager
-		},
-
-		// Set some config variables here
-		jsconfig: {
-			lock_checker_frequency: 15000,	// 15 seconds
-			autosave_frequency: 30000,			// 30 seconds
-			word_counter_timeout: 2000,			// 2 seconds
-			paginated_search_timeout: 400		// 0.4 seconds
-		}
-		
-	}
-};
-
-$(document).ready(function(){
-	braincube.admin.init();
-});
+//= require ./libraries 
+//= require ./vendor/jquery-1.5  
+//= require ./vendor/jquery-ui
+//= require ./vendor/jquery-tools
+//= require ./vendor/jquery-rails
+//= require ./vendor/jquery-form
+//= require ./vendor/jquery-googlemaps
+//= require ./vendor/jquery-treeview
+//= require ./vendor/jquery-jstree
+//= require ./vendor/jquery-prettyphoto
+//= require ./vendor/jquery-jcrop
+//= require ./vendor/jquery-chosen
+//= require ./vendor/jquery-ui-timepicker
+//= require tiny_mce/jquery.tinymce
+//= require ./setup
+//= require ./login_page
+//= require ./ui
+//= require ./ui.pagination
+//= require ./articles
+//= require ./venues
+//= require ./tagging
+//= require ./tinymce
+//= require ./asset_manager
+//= require ./events
+//= require ./pages
+//= require ./tag_manager
+//= require ./widgets

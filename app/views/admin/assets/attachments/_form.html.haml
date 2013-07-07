@@ -6,8 +6,7 @@
 .asset_attachment_items
 	%h3.top Attached items
 	
-	.attachment_code
-		= new_asset_attachment_form( f )
+	.attachment_code{ :data => { :code => render(:partial => '/admin/assets/attachments/asset_link', :locals => { :f => f, :asset_link => AssetLink.new }).gsub("\n", "") } }
 		
 	.empty{ :style => ("display: none" unless f.object.asset_links.empty?) }
 		There are no assets attached

@@ -41,7 +41,7 @@ module Admin::AssetsHelper
   end
   
   def new_asset_attachment_form( form )
-    javascript_tag "var global_asset_link_string = \"#{ escape_javascript render(:partial => '/admin/assets/attachments/asset_link', :locals => { :f => form, :asset_link => AssetLink.new }) }\""     
+    javascript_tag("var global_asset_link_string = \"#{  }\"")
   end
   
 end

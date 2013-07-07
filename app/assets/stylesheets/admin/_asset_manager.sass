@@ -11,12 +11,12 @@
 	a
 		color: $grey_1
 		padding: 0 0 0 18px
-		background: url(/images/admin/embed/icons/folder_closed.png) no-repeat left center
+		background: image-url("admin/embed/icons/folder_closed.png") no-repeat left center
 		&.collapsable
-			background: url(/images/admin/embed/icons/folder.png) no-repeat left center
+			background: image-url("admin/embed/icons/folder.png") no-repeat left center
 		&.current
 			@extend .small_rounded
-			background: url(/images/admin/embed/icons/folder_white.png) no-repeat left center
+			background: image-url("admin/embed/icons/folder_white.png") no-repeat left center
 			background-color: $grey_1
 			color: white
 			font-weight: bold
@@ -65,16 +65,16 @@
 				
 			// Icon types
 			.icon_area
-				background: black url(/images/admin/embed/icons/file_types/generic.png) no-repeat center center
+				background: black image-url("admin/embed/icons/file_types/generic.png") no-repeat center center
 				
 			&.pdf .icon_area
-				background-image: url(/images/admin/embed/icons/file_types/pdf.png)
+				background-image: image-url("admin/embed/icons/file_types/pdf.png")
 			&.doc .icon_area
-				background-image: url(/images/admin/embed/icons/file_types/doc.png)
+				background-image: image-url("admin/embed/icons/file_types/doc.png")
 			&.xls .icon_area
-				background-image: url(/images/admin/embed/icons/file_types/xls.png)
+				background-image: image-url("admin/embed/icons/file_types/xls.png")
 			&.zip .icon_area
-				background-image: url(/images/admin/embed/icons/file_types/zip.png)
+				background-image: image-url("admin/embed/icons/file_types/zip.png")
 				
 			&:hover
 				+box-shadow(0 0 20px transparentize($highlight_1, 0.5))
@@ -200,7 +200,7 @@ fieldset.preview
 			margin-bottom: 1em
 			
 			h4
-				background: $grey_2 url(/images/admin/embed/icons/move.png) 5px center no-repeat
+				background: $grey_2 image-url("admin/embed/icons/move.png") 5px center no-repeat
 				color: $grey_4
 				padding: 3px 10px 3px 30px
 				margin: -10px -10px 10px -10px
@@ -213,7 +213,7 @@ fieldset.preview
 					padding: 3px 7px 3px 23px
 					margin: 0px -7px 1px 10px
 					line-height: 1em
-					background: url(/images/admin/embed/icons/button_delete.png) 0 center no-repeat
+					background: image-url("admin/embed/icons/button_delete.png") 0 center no-repeat
 
 			.thumbnail
 				@extend .small_rounded
