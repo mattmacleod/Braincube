@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{braincube}
+  s.name = "braincube"
   s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew MacLeod"]
-  s.date = %q{2012-05-23}
-  s.description = %q{A Rails Engine that provides basic CMS functionality.}
-  s.email = %q{matt@matt-m.co.uk}
+  s.date = "2013-07-07"
+  s.description = "A Rails Engine that provides basic CMS functionality."
+  s.email = "matt@matt-m.co.uk"
   s.extra_rdoc_files = [
     "README"
   ]
@@ -850,26 +850,6 @@ Gem::Specification.new do |s|
     "public/javascripts/tiny_mce/utils/form_utils.js",
     "public/javascripts/tiny_mce/utils/mctabs.js",
     "public/javascripts/tiny_mce/utils/validate.js",
-    "public/packages/braincube_admin-datauri.css",
-    "public/packages/braincube_admin-datauri.css.gz",
-    "public/packages/braincube_admin.css",
-    "public/packages/braincube_admin.css.gz",
-    "public/packages/braincube_admin.js",
-    "public/packages/braincube_admin.js.gz",
-    "public/packages/braincube_frontend-datauri.css",
-    "public/packages/braincube_frontend-datauri.css.gz",
-    "public/packages/braincube_frontend.css",
-    "public/packages/braincube_frontend.css.gz",
-    "public/packages/braincube_frontend.js",
-    "public/packages/braincube_frontend.js.gz",
-    "public/packages/braincube_print_article-datauri.css",
-    "public/packages/braincube_print_article-datauri.css.gz",
-    "public/packages/braincube_print_article.css",
-    "public/packages/braincube_print_article.css.gz",
-    "public/packages/braincube_show_article-datauri.css",
-    "public/packages/braincube_show_article-datauri.css.gz",
-    "public/packages/braincube_show_article.css",
-    "public/packages/braincube_show_article.css.gz",
     "public/robots.txt",
     "public/stylesheets/.gitkeep",
     "public/stylesheets/admin/print_article.css",
@@ -987,88 +967,67 @@ Gem::Specification.new do |s|
     "tmp/flush_node_cache.txt",
     "vendor/plugins/.gitkeep"
   ]
-  s.homepage = %q{http://braincu.be}
+  s.homepage = "http://braincu.be"
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.1}
-  s.summary = %q{Braincube CMS engine}
+  s.rubygems_version = "2.0.3"
+  s.summary = "Braincube CMS engine"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_runtime_dependency(%q<haml>, [">= 0"])
-      s.add_runtime_dependency(%q<fastercsv>, ["= 1.5.3"])
+      s.add_runtime_dependency(%q<rails>, ["~> 3.2"])
+      s.add_runtime_dependency(%q<will_paginate>, [">= 0"])
+      s.add_runtime_dependency(%q<paper_trail>, [">= 0"])
       s.add_runtime_dependency(%q<htmlentities>, ["= 4.2.2"])
       s.add_runtime_dependency(%q<zip>, ["= 2.0.2"])
       s.add_runtime_dependency(%q<chronic>, ["= 0.3.0"])
       s.add_runtime_dependency(%q<tickle>, ["= 0.1.7"])
       s.add_runtime_dependency(%q<sunspot_rails>, [">= 0"])
-      s.add_runtime_dependency(%q<paper_trail>, ["= 2.0.1"])
-      s.add_runtime_dependency(%q<will_paginate>, ["= 3.0.pre2"])
-      s.add_runtime_dependency(%q<compass>, [">= 0.12"])
-      s.add_runtime_dependency(%q<sass>, ["~> 3.2.0.alpha"])
+      s.add_runtime_dependency(%q<iconv>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
       s.add_runtime_dependency(%q<mime-types>, ["= 1.16"])
       s.add_runtime_dependency(%q<lapluviosilla-tickle>, [">= 0"])
       s.add_runtime_dependency(%q<paperclip>, [">= 0"])
-      s.add_development_dependency(%q<mongrel>, [">= 0"])
-      s.add_development_dependency(%q<cgi_multipart_eof_fix>, [">= 0"])
-      s.add_development_dependency(%q<fastthread>, [">= 0"])
-      s.add_development_dependency(%q<mongrel_experimental>, [">= 0"])
-      s.add_development_dependency(%q<dr_dre>, [">= 0"])
-      s.add_development_dependency(%q<ruby-debug>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<sunspot_solr>, [">= 0"])
       s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_development_dependency(%q<jammit>, [">= 0"])
     else
-      s.add_dependency(%q<rails>, ["= 3.0.9"])
-      s.add_dependency(%q<haml>, [">= 0"])
-      s.add_dependency(%q<fastercsv>, ["= 1.5.3"])
+      s.add_dependency(%q<rails>, ["~> 3.2"])
+      s.add_dependency(%q<will_paginate>, [">= 0"])
+      s.add_dependency(%q<paper_trail>, [">= 0"])
       s.add_dependency(%q<htmlentities>, ["= 4.2.2"])
       s.add_dependency(%q<zip>, ["= 2.0.2"])
       s.add_dependency(%q<chronic>, ["= 0.3.0"])
       s.add_dependency(%q<tickle>, ["= 0.1.7"])
       s.add_dependency(%q<sunspot_rails>, [">= 0"])
-      s.add_dependency(%q<paper_trail>, ["= 2.0.1"])
-      s.add_dependency(%q<will_paginate>, ["= 3.0.pre2"])
-      s.add_dependency(%q<compass>, [">= 0.12"])
-      s.add_dependency(%q<sass>, ["~> 3.2.0.alpha"])
+      s.add_dependency(%q<iconv>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<mime-types>, ["= 1.16"])
       s.add_dependency(%q<lapluviosilla-tickle>, [">= 0"])
       s.add_dependency(%q<paperclip>, [">= 0"])
-      s.add_dependency(%q<mongrel>, [">= 0"])
-      s.add_dependency(%q<cgi_multipart_eof_fix>, [">= 0"])
-      s.add_dependency(%q<fastthread>, [">= 0"])
-      s.add_dependency(%q<mongrel_experimental>, [">= 0"])
-      s.add_dependency(%q<dr_dre>, [">= 0"])
-      s.add_dependency(%q<ruby-debug>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<sunspot_solr>, [">= 0"])
       s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
       s.add_dependency(%q<jammit>, [">= 0"])
     end
   else
-    s.add_dependency(%q<rails>, ["= 3.0.9"])
-    s.add_dependency(%q<haml>, [">= 0"])
-    s.add_dependency(%q<fastercsv>, ["= 1.5.3"])
+    s.add_dependency(%q<rails>, ["~> 3.2"])
+    s.add_dependency(%q<will_paginate>, [">= 0"])
+    s.add_dependency(%q<paper_trail>, [">= 0"])
     s.add_dependency(%q<htmlentities>, ["= 4.2.2"])
     s.add_dependency(%q<zip>, ["= 2.0.2"])
     s.add_dependency(%q<chronic>, ["= 0.3.0"])
     s.add_dependency(%q<tickle>, ["= 0.1.7"])
     s.add_dependency(%q<sunspot_rails>, [">= 0"])
-    s.add_dependency(%q<paper_trail>, ["= 2.0.1"])
-    s.add_dependency(%q<will_paginate>, ["= 3.0.pre2"])
-    s.add_dependency(%q<compass>, [">= 0.12"])
-    s.add_dependency(%q<sass>, ["~> 3.2.0.alpha"])
+    s.add_dependency(%q<iconv>, [">= 0"])
+    s.add_dependency(%q<haml>, [">= 0"])
     s.add_dependency(%q<mime-types>, ["= 1.16"])
     s.add_dependency(%q<lapluviosilla-tickle>, [">= 0"])
     s.add_dependency(%q<paperclip>, [">= 0"])
-    s.add_dependency(%q<mongrel>, [">= 0"])
-    s.add_dependency(%q<cgi_multipart_eof_fix>, [">= 0"])
-    s.add_dependency(%q<fastthread>, [">= 0"])
-    s.add_dependency(%q<mongrel_experimental>, [">= 0"])
-    s.add_dependency(%q<dr_dre>, [">= 0"])
-    s.add_dependency(%q<ruby-debug>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<sunspot_solr>, [">= 0"])
     s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
     s.add_dependency(%q<jammit>, [">= 0"])
   end
