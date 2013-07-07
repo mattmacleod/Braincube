@@ -28,32 +28,11 @@ module Braincube::ApplicationHelper
     out = ""
     
     if group == :braincube_admin
-    	if defined?( Braincube::Application )
-  		  out << include_stylesheets(group, :media => "all").to_s
-  		  out << include_javascripts(group).to_s
-  		else
-  			out << '<!--[if (!IE)|(gte IE 8)]><!-->'
-  			out << '<link href="/packages/' + group.to_s + '-datauri.css?' + Braincube::Version + '" media="all" rel="stylesheet" type="text/css" />'
-  			out << '<!--<![endif]-->'
-  			out << '<!--[if lte IE 7]>'
-  			out << '<link href="/packages/' + group.to_s + '.css" media="all" rel="stylesheet" type="text/css" />'
-  			out << '<![endif]-->'
-  			out << '<script src="/packages/' + group.to_s + '.js?' + Braincube::Version + '" type="text/javascript"></script>'
-  	  end
+		  out << stylesheet_link_tag("admin/styles", :media => "all").to_s
+		  out << javascript_tag(group).to_s
 	  elsif group == :braincube_show_article
-	    if defined?( Braincube::Application )
-	      out << include_stylesheets(:braincube_show_article, :media => "all")
-  		  out << include_stylesheets(:braincube_print_article, :media => "print")
-		  else
-        out << '<!--[if (!IE)|(gte IE 8)]><!-->'
-        out << '<link href="/packages/braincube_show_article-datauri.css?' + Braincube::Version + '" media="all" rel="stylesheet" type="text/css" />'
-        out << '<link href="/packages/braincube_print_article-datauri.css?' + Braincube::Version + '" media="print" rel="stylesheet" type="text/css" />'
-        out << '<!--<![endif]-->'
-        out << '<!--[if lte IE 7]>'
-        out << '<link href="/packages/braincube_show_article.css" media="all" rel="stylesheet" type="text/css" />'
-        out << '<link href="/packages/braincube_print_article.css" media="print" rel="stylesheet" type="text/css" />'
-        out << '<![endif]-->'
-      end
+      out << stylesheet_link_tag(:braincube_show_article, :media => "all")
+		  out << stylesheet_link_tag(:braincube_print_article, :media => "print")
     end
     
 	  return out.html_safe
