@@ -24,7 +24,11 @@ class Asset < ActiveRecord::Base
   
   # Paperclip details
   ############################################################################
-  
+  Paperclip.interpolates("custom_id_path") do |attachment,style|
+    id = attachment.instance.id.to_i
+    id < 100000 ? attachment.instance.id.to_s : ("%09d" % id).scan(/\d{3}/).join("/")
+  end
+
   # Setup the attachment
   if Braincube::Config::AssetStorageMethod == :s3
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
@@ -41,8 +45,8 @@ class Asset < ActiveRecord::Base
     
   else
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
-        :path => ":rails_root/public/assets/:rails_env/:id/:id_:style.:extension",
-        :url => "/assets/:rails_env/:id/:id_:style.:extension",
+        :path => ":rails_root/public/assets/:rails_env/:custom_id_path/:id_:style.:extension",
+        :url => "/assets/:rails_env/:custom_id_path/:id_:style.:extension",
         :default_url => "/images/asset_placeholders/:style.png",
         :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
         :processors => [:cropper], :whiny => true
