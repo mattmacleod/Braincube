@@ -44,7 +44,7 @@ class ZipUpload < ActiveRecord::Base
   
   # Validate attachment
   validates_attachment_presence :upload
-  validates_attachment_content_type :upload, :content_type => "application/zip"
+  validates_attachment_content_type :upload, :content_type => ["application/zip", "application/octet-stream"]
 
 
   # Convert into asset objects
