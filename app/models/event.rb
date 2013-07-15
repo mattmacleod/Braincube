@@ -113,7 +113,7 @@ class Event < ActiveRecord::Base
 	end
 	
   def upcoming?
-    self.class.upcoming.where("events.id=#{id}").count == 1
+    self.class.upcoming.where("events.id=#{id}").count > 0
   end
 
   def next_performance_time
@@ -205,17 +205,19 @@ class Event < ActiveRecord::Base
   
   # Dates - weird and messy
   # TODO: Pull formatting and constants out to config file
-  def date_string
+  def date_string(the_type = :future)
     
     return unless performances.count > 0
     
+    performances_to_use = the_type==:future ? performances.upcoming : performances.scoped
+
     # Get all distinct start days
-    start_dates = performances.upcoming.map do |n| 
+    start_dates = performances_to_use.map do |n| 
       n.starts_at.midnight
     end.uniq
     
     # Get all distinct end days
-    end_dates = performances.upcoming.map do |n| 
+    end_dates = performances_to_use.map do |n| 
       n.ends_at.midnight if n.ends_at
     end.compact.uniq
     
@@ -250,9 +252,9 @@ class Event < ActiveRecord::Base
     elsif (start_dates.length>1)
       
       # Try to find "runs" of performances for calculating useful date info 
-      start_date        = performances.upcoming.first.starts_at.midnight
-      end_date          = performances.upcoming.last.starts_at.midnight
-      performance_dates = performances.upcoming.map{|p| p.starts_at.midnight }.uniq
+      start_date        = performances_to_use.first.starts_at.midnight
+      end_date          = performances_to_use.last.starts_at.midnight
+      performance_dates = performances_to_use.map{|p| p.starts_at.midnight }.uniq
       
       # First get an array of days between start_date and end_date
       test_dates = []
