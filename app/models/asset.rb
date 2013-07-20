@@ -1,3 +1,4 @@
+
 class Asset < ActiveRecord::Base
   
   # Model definition
@@ -13,7 +14,8 @@ class Asset < ActiveRecord::Base
   
   # Validation
   validates_presence_of :title, :user, :asset_folder, :asset
-  
+  before_validation :derive_title_from_filename
+
   # Sort by title by default
   default_scope :order => 'title ASC'
   
@@ -98,5 +100,12 @@ class Asset < ActiveRecord::Base
   def cropping?( style )
     ["crop_x_#{style}", "crop_y_#{style}", "crop_w_#{style}", "crop_h_#{style}"].flatten.any?{|a| !(self.send(a).blank?) }
   end
-   
+
+  def derive_title_from_filename
+    return unless title.blank? && asset && asset.original_filename
+    self.title = self.class.filename_to_title( asset.original_filename )
+  end
+  def self.filename_to_title(str)
+    str.to_s.split(".")[0..-2].join(".").gsub(/[_\-]/, " ").gsub(/\s+/, " ").strip.gsub(/^(.)/){ $1.capitalize }
+  end
 end
