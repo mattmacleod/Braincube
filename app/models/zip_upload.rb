@@ -98,10 +98,8 @@ class ZipUpload < ActiveRecord::Base
       )
       asset.asset = asset_file
       asset.asset_content_type = mime_type
+      asset.save
       assets << asset
-      
-      debugger
-      
     end
      
     # Did we find assets?
@@ -110,10 +108,7 @@ class ZipUpload < ActiveRecord::Base
       errors.add( :upload, "did not contain any valid asset files. Please check the contents of the ZIP." )
       return false
     end
-    
-    # If they are all valid, we are done
-    assets.each(&:save)
-    
+
     # Were there any errors?
     if assets.map{|a| a.errors.length }.all?{|e| e > 0 }
       new_asset_folder.destroy
