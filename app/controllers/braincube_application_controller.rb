@@ -1,7 +1,11 @@
 class BraincubeApplicationController < ActionController::Base
   protect_from_forgery
   
-  helper :all
+  helper Admin::ArticlesHelper
+  helper Admin::AssetsHelper
+  helper Admin::EventsHelper
+  helper Admin::PagesHelper
+  helper Admin::TagsHelper
   helper Braincube::AdminHelper
   helper Braincube::ApplicationHelper
   
