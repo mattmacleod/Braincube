@@ -77,12 +77,12 @@ module Braincube #:nodoc:
          else
            taggable_ids = Tagging.connection.execute("SELECT GROUP_CONCAT(taggable_id) FROM taggings WHERE taggable_type='#{ name }' AND tag_id IN #{ tag_query }").first
          end
-         
+
          #... then build a SQL string ...
          return where("3=0") if taggable_ids.compact.empty?
          
          # ... then find all matching taggables!
-         return where("#{table_name}.id IN (#{taggable_ids})")
+         return where("#{table_name}.id IN (?)", taggable_ids)
          
          
        end
