@@ -6,14 +6,24 @@
 
 braincube.admin.venues = {
 	
-	// Store the current location of the venue as a google maps Marker
-	venue_marker: null,
-	map_active: null,
+	map             : null,
+	geocoder        : null,
+	marker          : null,
+	initial_marker  : true,
+
+	config : {
+		latitude_field : "latitude",
+		longitude_field: "longitude",
+		lat            : 56.909002,
+		lng            : -4.284668,
+		map_id         : "map_area",
+		zoom           : 5,
+		location_zoom  : 16
+	},
 	
 	// Start the ball rolling
 	init: function(){
 		
-		this.init_map();
 		this.attachment.init();
 
 	},
@@ -22,178 +32,156 @@ braincube.admin.venues = {
 		
 		// Do nothing unless there's a map area on the page
 		if( $("#map_area").length===0 ){ return; }
-		this.load_google_maps();
+		this.load();
 		
 	},
-	
-	// Load the google maps API - there's a map on the page. Once it's loaded,
-	// execute a callback to handle our setup. This relies on the basic google
-	// loader API being included, which it is by default.
-	load_google_maps: function(){
-		google.load("maps", "2", {"callback" : braincube.admin.venues.prep_map});
-	},
-	 
-	// This prepares to show the map by calling the actual setup function when
-	// the form tab containing the map is shown - otherwise,
-	// the size and centering gets all messed up.
-	prep_map: function(){
-		var tabs_api = $(".tabbed_fieldsets ul.tabs").data("tabs");
-		tabs_api.onClick(function(a,b){
-			if( b===1 && !braincube.admin.venues.map_active ){
-				braincube.admin.venues.set_initial_map_location();
-				braincube.admin.venues.map_active = true;
-			}
+
+	// The first stage in loading - bind to the window load event.
+	load: function() {
+		window.addEventListener('load', this.actual_load, false);
+
+		// Hide location button if no field registered for autolocation
+		$autolocation_data_field = $("#venue_postcode");
+
+		$("#venue_auto_locate_button").click( function() {
+	 	   braincube.admin.venues.find_address($autolocation_data_field.val() + ", UK");
+		   return false;
 		});
+
+	},
+
+	// When the window has fired the load event, add the Google Maps API script
+	actual_load: function(){
+		var script  = document.createElement("script");
+		script.type = "text/javascript";
+		script.src  = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=braincube.admin.venues.initialize";
+		document.body.appendChild(script);
 	},
 	
-	// Onl called on initial display of the map
-	set_initial_map_location: function(){
-			
-		var has_marker = false;
-		
-		// The latitude and longitude to display initially are stored in a
-		// hidden element. Load them up into an object.
-		var initial_location = {
-			latitude: $("#braincube_default_map_location").html().split(",")[0],
-			longitude: $("#braincube_default_map_location").html().split(",")[1],
-			depth: 5
-		};
-			
-		// If there is a value in the location fields for the venue, then set
-		// that as the initial location and store that we have a marker available.
-		if( !($("#latitude").val()==="") ){
-			initial_location =  {
-				latitude: $("#latitude").val(),
-				longitude: $("#longitude").val(),
-				depth: 15
-			};
-			has_marker = true;			
+	// Called when the Google Maps API script has loaded
+	initialize: function(){
+
+
+		// Set the initial zoom, center and view of the map
+		var mapOptions = {
+			zoom     : braincube.admin.venues.config.zoom,
+			center   : new google.maps.LatLng( braincube.admin.venues.config.lat, braincube.admin.venues.config.lng),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
 		}
-	
-		// Initialise the map with the initial location we calculated
-		$("#map_area").googleMaps( initial_location );
-	
-	
-		// If there are no markers, then we have to set things up so an initial 
-		// click will create one. Otherwise, we just add the marker and setup
-		// the drag events.
-		if( !has_marker ){
-					
-			// Add an event listener to the map to intercept the click event and 
-			// set the marker location. Also update the form fields.
-			event_listener = GEvent.addListener($.googleMaps.gMap, "click", function(overlay, latlng) {
-			  
-				braincube.admin.venues.set_marker_location( latlng.lat(), latlng.lng() );
-				braincube.admin.venues.update_venue_location_fields( latlng.lat(), latlng.lng() );
-				
-				// Remove the click event listener now that we've added a marker.
-				GEvent.removeListener(event_listener);
-				
-			});
 		
+		// Create the map in the configured element
+		this.map      = new google.maps.Map( document.getElementById(braincube.admin.venues.config.map_id), mapOptions );
+		this.geocoder = new google.maps.Geocoder();
+
+		if( this.initial_marker ){
+
+			// If we are to initially load a marker, then create one
+			this.marker = new google.maps.Marker({
+				map      : this.map, 
+				position : mapOptions.center, 
+				draggable: true
+			});
+
+			// Allow the marker to be moved
+			this.setup_marker_listeners();
+
 		} else {
-			
-			// There is already a location, so set the marker.
-			braincube.admin.venues.set_marker_location( 
-				initial_location.latitude, initial_location.longitude
-			);
+
+			// We are not initially loading a marker, so add a click 
+			// event handler to insert one when the map is clicked
+
+			var listener = google.maps.event.addListener(this.map, "click", function(e) {
+
+
+				braincube.admin.venues.marker = new google.maps.Marker({
+				 	position: e.latLng,
+					map: braincube.admin.venues.map,
+					draggable: true
+				});
+
+				braincube.admin.venues.update_location_from_marker( braincube.admin.venues.marker );
+				braincube.admin.venues.setup_marker_listeners();
+				
+				google.maps.event.removeListener(listener);
+
+			});
 
 		}
-	
-		// Add change handlers to venue form fields
-		$("#latitude,#longitude").keyup(function(){
-			braincube.admin.venues.set_marker_location(
-				$("#latitude").val(), $("#longitude").val()
-			);
-		});
-		
-		// Setup auto-locate button
-		$("#venue_auto_locate_button").click(function(){
-			
-			// Check that the postcode has been filled out
-			if( $("#venue_postcode").val().length===0 ){
-				alert("You need to enter a postcode on the information page to auto-locate the venue.");				
-				return false;
+
+		var tabs_api = $(".tabbed_fieldsets ul.tabs").data("tabs");
+		tabs_api.onClick(function(a,b){
+			if( b===1 ){
+				google.maps.event.trigger( braincube.admin.venues.map, 'resize' );
+				braincube.admin.venues.map.setCenter( 
+					new google.maps.LatLng( 
+						braincube.admin.venues.config.lat, 
+						braincube.admin.venues.config.lng
+					)
+				)
 			}
-			
-			// Add a loading gif
-			$(this).addClass("loading");
-			
-			// Geocode the supplied postcode and pass the result to a callback
-			// to either update the location or error out.
-			geocoder = new GClientGeocoder();
-			geocoder.getLocations( 
-				($("#venue_postcode").val() + ", UK"), 
-				function(response){ 
-					braincube.admin.venues.update_from_geocode( response );
-					$("#venue_auto_locate_button").removeClass("loading");
-				}
-			);
-			return false;
-			
 		});
 		
 	},
 	
-	// Sets the marker location on the map to the supplied co-ordinates.
-	set_marker_location: function( lat, lng ){
-		
-		if( this.venue_marker ){
-			
-			// If there is already a marker, then just set the location of it
-			this.venue_marker.setLatLng( new GLatLng(lat, lng) );
-			
-		} else {
-			
-			// There is no marker available, so create one and add it to the map
-			marker = new GMarker( new GLatLng(lat, lng), {draggable: true} );
-			this.venue_marker = marker;
-			$.googleMaps.gMap.addOverlay(marker);
-			
-			// Add a drag handler to the marker. When it's moved, update the 
-			// corresponding location fields in the venue form.
-			GEvent.addListener(marker, "dragend", function( newlatlng ) { 
-				braincube.admin.venues.update_venue_location_fields(
-					newlatlng.lat(), newlatlng.lng()
-				); 
+	// Allow a marker to be dragged to a new position
+	setup_marker_listeners : function(){
+		google.maps.event.addListener(braincube.admin.venues.marker, "dragend", function(){
+			braincube.admin.venues.update_location_from_marker( braincube.admin.venues.marker );
+		});
+	},
+	
+	// Given an address, find a postcode and move the marker
+	find_address: function(address) {
+
+		this.geocoder.geocode(
+
+			{ address: address },
+
+			function(results, status) {
+				
+				if (status == google.maps.GeocoderStatus.OK) {
+					braincube.admin.venues.map.setCenter(results[0].geometry.location);
+					braincube.admin.venues.update_marker_location( results[0].geometry.location);
+				} else {
+					alert(address + "not found on map. \n Geocode was not successful for the following reason: " + status);
+				}
+			}
+		);
+
+	},
+	
+	
+	update_marker_location: function(LatLng) {
+
+		if( this.marker === null ){
+
+			this.marker = new google.maps.Marker({
+			 	position: LatLng,
+				map: this.map
 			});
-			
-		}
-		
-		// Center on the marker
-		this.center_map_on_marker();
-		
-	},
-	
-	// Just update the fields in the venue form with the supplied location
-	update_venue_location_fields: function( lat, lng ){
-		$("#latitude").val( lat );
-		$("#longitude").val( lng );
-		this.center_map_on_marker();
-	},
-	
-	// Update the map and location fields when a callback is fired by the geocoder
-	update_from_geocode: function( response ){
-		
-		// Check if the response was OK
-		if( response.Status && response.Status.code === 200 ){
-			
-			var loc = response.Placemark[0].Point.coordinates;
-			this.update_venue_location_fields( loc[1], loc[0] );
-			this.set_marker_location( loc[1], loc[0] );
-			
+
+			this.setup_marker_listeners();
+
 		} else {
-			
-			alert("Postcode not found. Please double-check or enter the location manually.");
-			
+
+			this.marker.setPosition(LatLng);
+
 		}
-		
+
+		this.map.setCenter(LatLng)
+		this.map.setZoom(this.config.location_zoom);
+		this.update_location_from_marker( this.marker );
+
 	},
 	
-	// Moves the map so it is centered on the venue marker.
-	center_map_on_marker: function( ){
-		if( this.venue_marker==null ){ return };
-		$.googleMaps.gMap.setCenter( this.venue_marker.getLatLng() );
+	
+	update_location_from_marker: function(marker) {
+		var lat = marker.getPosition().lat();
+		var lng = marker.getPosition().lng();
+		
+		$("#"+this.config.latitude_field).val( lat );
+		$("#"+this.config.longitude_field).val( lng );
+		
 	},
 	
 	

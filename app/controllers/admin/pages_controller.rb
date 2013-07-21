@@ -95,7 +95,7 @@ class Admin::PagesController < AdminController
     if @page.save
       # It saved, so update the sort order en masse
       params[:s].each_with_index do |id,idx|
-        Page.find( id ).update_attribute(:sort_order, idx) rescue nil
+        Page.connection.execute("UPDATE pages SET sort_order = #{ idx } WHERE id=#{ id.to_i }")
       end
       
       # Reload the node cache

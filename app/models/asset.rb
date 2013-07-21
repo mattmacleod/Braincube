@@ -1,3 +1,4 @@
+
 class Asset < ActiveRecord::Base
   
   # Model definition
@@ -13,7 +14,8 @@ class Asset < ActiveRecord::Base
   
   # Validation
   validates_presence_of :title, :user, :asset_folder, :asset
-  
+  before_validation :derive_title_from_filename
+
   # Sort by title by default
   default_scope :order => 'title ASC'
   
@@ -24,13 +26,17 @@ class Asset < ActiveRecord::Base
   
   # Paperclip details
   ############################################################################
-  
+  Paperclip.interpolates("custom_id_path") do |attachment,style|
+    id = attachment.instance.id.to_i
+    id < 100000 ? attachment.instance.id.to_s : ("%09d" % id).scan(/\d{3}/).join("/")
+  end
+
   # Setup the attachment
   if Braincube::Config::AssetStorageMethod == :s3
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
         :path => ":id/:id_:style.:extension",
         :default_url => "asset_placeholders/:style.png",
-        :convert_options => { :all => "-strip -colorspace RGB" },
+        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
         :whiny => true,
         :storage => :s3,
         :s3_credentials => Braincube::Config::S3ConnectionDetails[ Rails.env ],
@@ -41,10 +47,10 @@ class Asset < ActiveRecord::Base
     
   else
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
-        :path => ":rails_root/public/assets/:rails_env/:id/:id_:style.:extension",
-        :url => "/assets/:rails_env/:id/:id_:style.:extension",
+        :path => ":rails_root/public/assets/:rails_env/:custom_id_path/:id_:style.:extension",
+        :url => "/assets/:rails_env/:custom_id_path/:id_:style.:extension",
         :default_url => "/images/asset_placeholders/:style.png",
-        :convert_options => { :all => "-strip -colorspace RGB" },
+        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
         :processors => [:cropper], :whiny => true
   end
   
@@ -96,5 +102,12 @@ class Asset < ActiveRecord::Base
   def cropping?( style )
     ["crop_x_#{style}", "crop_y_#{style}", "crop_w_#{style}", "crop_h_#{style}"].flatten.any?{|a| !(self.send(a).blank?) }
   end
-   
+
+  def derive_title_from_filename
+    return unless title.blank? && asset && asset.original_filename
+    self.title = self.class.filename_to_title( asset.original_filename )
+  end
+  def self.filename_to_title(str)
+    str.to_s.split(".")[0..-2].join(".").gsub(/[_\-]/, " ").gsub(/\s+/, " ").strip.gsub(/^(.)/){ $1.capitalize }
+  end
 end
