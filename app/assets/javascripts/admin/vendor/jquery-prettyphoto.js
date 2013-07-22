@@ -439,7 +439,7 @@
 		};
 		
 		function _hideAjaxSubmitButton(){
-			$('.lightbox_submit').replaceWith('<img src="/images/admin/spinner.gif" alt="Please wait..." class="loading_spinner"/>')
+			$('.lightbox_submit').replaceWith('<img src="/assets/admin/spinner.gif" alt="Please wait..." class="loading_spinner"/>')
 		}
 		
 		/**

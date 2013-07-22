@@ -10,12 +10,12 @@ module Braincube::AdminHelper
   # Ajax and pagination
   ############################################################################
   def ajax_spinner(base, color=nil)
-    image_tag( "/images/admin/spinner#{("_"+color) if color}.gif", :alt => "Loading...", :class => "spinner", :id => "#{base}_spinner" )
+    image_tag( "admin/spinner#{("_"+color) if color}.gif", :alt => "Loading...", :class => "spinner", :id => "#{base}_spinner" )
   end
   
   def continuous_pagination(name)
     out = "<div id=\"pagination_loading_wrapper\"><div id=\"pagination_loading\">Loading..."
-    out << image_tag("/images/admin/spinner.gif", :alt=>"Loading...", :id => "#{name}_spinner")
+    out << image_tag("/assets/admin/spinner.gif", :alt=>"Loading...", :id => "#{name}_spinner")
     out << "</div></div>"
     return out.html_safe
   end

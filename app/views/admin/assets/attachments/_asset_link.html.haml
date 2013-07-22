@@ -10,7 +10,7 @@
 				- if ff.object.asset.asset_type==:image
 					= image_tag ff.object.asset.asset.url( :thumb )
 				- else
-					= image_tag "/images/admin/embed/icons/file_types/#{ff.object.asset.asset_type}.png"
+					= image_tag "icons/file_types/#{ff.object.asset.asset_type}.png"
 				= ff.hidden_field :asset_id, :class => "asset_id"
 			- else 
 				= "<img src='REPLACE_WITH_THUMBNAIL_PATH'/>".html_safe
