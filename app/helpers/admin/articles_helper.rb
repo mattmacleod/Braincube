@@ -4,7 +4,7 @@ module Admin::ArticlesHelper
   # Small element helpers
   ############################################################################
   
-  def review_stars( article )
+  def admin_review_stars( article )
     return unless article.review? && article.review_rating.to_i > 0
     content_tag(
       :span,

@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   
   helper Braincube::AdminHelper
   helper Admin::AssetsHelper
+  helper Admin::ArticlesHelper
   
   # Remember that all admin controllers should inherit from this one. Need to 
   # override things that we want to change!
