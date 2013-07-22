@@ -199,21 +199,21 @@ module Admin::ArticlesHelper
   ############################################################################
   
   def article_type_options( selected = nil )
-    out = "<option></option>" +
+    out = ("<option></option>" +
     Braincube::Config::ArticleTypes.map{|k,v| [v,k] }.sort{|a,b| a.first<=>b.first }.map do |type|
       content_tag(:option, type.first, :value => type.last, :selected => ("selected" if !selected.blank? && type.last==selected.to_sym) )
-    end.join.html_safe
+    end.join).html_safe
   end
   
   
   def publication_options(selected = nil)
-    out = "<option value=\"\">Web-only</option>" +
+    out = ("<option value=\"\">Web-only</option>" +
     @all_publications.map do |key, value|
       options = value.map{|v|
         content_tag(:option, v.name, :value => v.id, :selected => ( v==selected || (selected.nil? && key != :past && v==value.first) ) )
       }.join.html_safe
       content_tag(:optgroup, options, :label => ( key==:past ? "Past publications" : "Future publications") )
-    end.join.html_safe
+    end.join).html_safe
   end
   
   def section_options_for_list(selected=nil)
