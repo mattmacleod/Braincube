@@ -82,7 +82,7 @@ module Braincube #:nodoc:
          return where("3=0") if taggable_ids.compact.empty?
          
          # ... then find all matching taggables!
-         return where("#{table_name}.id IN (?)", taggable_ids)
+         return where("#{table_name}.id IN (#{ taggable_ids.join("") })")
          
          
        end
