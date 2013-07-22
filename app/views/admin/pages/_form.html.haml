@@ -85,6 +85,6 @@
 						There are no widgets
 
 					%ul.page_widget_list
-						- f.object.page_widgets.where(:slot => key).sort{ |a,b| a.sort_order <=> b.sort_order }.each do |page_widget|
+						- f.object.page_widgets.where(:slot => key.to_s).sort{ |a,b| a.sort_order <=> b.sort_order }.each do |page_widget|
 							= render :partial => "/admin/pages/page_widget", :locals => { :f => f, :page_widget => page_widget, :slot => key }
 		
