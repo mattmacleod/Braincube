@@ -43,7 +43,8 @@ class Asset < ActiveRecord::Base
         :bucket => Braincube::Config::S3AssetBucketName[ Rails.env ],
         :url => ":s3_domain_url",
         :s3_options => { :server =>  "#{Braincube::Config::S3AssetBucketName[ Rails.env ]}.s3.amazonaws.com" },
-        :processors => [:cropper]
+        :processors => [:cropper],
+        :s3_protocol => ""
     
   else
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
