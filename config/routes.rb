@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   match "admin/setup"         => "admin#setup",         :as => :admin_setup
   match "admin/login"         => "admin#login",         :as => :admin_login
   get   "admin/logout"        => "admin#logout",        :as => :admin_logout
-  get   "admin/help"          => "admin#help",          :as => :admin_help
   
   # Admin errors
   match "admin/404"           => "admin#display_404",   :as => :admin_error_404

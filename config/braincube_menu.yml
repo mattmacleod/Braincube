@@ -13,16 +13,6 @@ Dashboard:
         - subeditor
         - publisher
         - admin
-    Help:
-      order: 2
-      controller: admin
-      action: help
-      roles:
-        - writer
-        - editor
-        - subeditor
-        - publisher
-        - admin
         
 Articles: 
   order: 1
