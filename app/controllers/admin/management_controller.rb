@@ -9,7 +9,7 @@ class Admin::ManagementController < AdminController
   ############################################################################
   
   def index
-
+  	redirect_to admin_tags_path
   end
   
 end
