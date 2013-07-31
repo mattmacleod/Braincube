@@ -54,7 +54,7 @@ braincube.admin.venues = {
 	actual_load: function(){
 		var script  = document.createElement("script");
 		script.type = "text/javascript";
-		script.src  = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=braincube.admin.venues.initialize";
+		script.src  = "https://maps.googleapis.com/maps/api/js?sensor=false&callback=braincube.admin.venues.initialize";
 		document.body.appendChild(script);
 	},
 	
