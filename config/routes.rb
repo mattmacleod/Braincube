@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       collection do
         get  "zip_upload"           => "assets#zip_upload", :as => :zip_upload
         post "create_from_zip"      => "assets#create_from_zip", :as => :create_from_zip
+        post "dnd_create"           => "assets#dnd_create", :as => :dnd_create
       end
     end
     

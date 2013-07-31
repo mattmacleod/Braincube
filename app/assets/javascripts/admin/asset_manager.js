@@ -13,6 +13,7 @@ braincube.admin.asset_manager = {
 		this.pagination.init();					// Setup the special-case pagination
 		this.cropper.init();						// Setup the cropper
 		this.attachment.init();					// Setup image attachment manager
+		this.bulk.setup();
 	},
 	
 	// Sets up the treeview for the folder browser using the jQuery treeview
@@ -88,9 +89,8 @@ braincube.admin.asset_manager = {
 					location.href,
 					{ page: _this.currentPage, q: $("#search_field").val() }, 
 					function(html){
-					
 						// Disable pagination if there were no results
-						if(html.length===0){
+						if(html.length <= 1){
 							_this.enabled = false;
 						} else {
 							$("#main_folder_wrapper").append( html );
@@ -442,6 +442,50 @@ braincube.admin.asset_manager = {
 
 		}
 				
+	},
+
+	bulk: {
+
+		setup: function(){
+
+			if( !$("#asset_dnd").length ){ return };
+
+			$("body").dropzone({
+
+				previewsContainer: "#asset_dnd",
+				url:               $("#asset_dnd").attr("action"),
+				paramName:         "asset[asset]",
+				clickable:         false,
+
+				fallback: function(){
+					$(this).remove();
+				},
+
+				success: function(file, responseText, e){
+					$(file.previewTemplate).remove();
+					var $new_element = $(responseText);
+					$("#main_folder_wrapper").prepend($new_element);
+					$("#main_folder_wrapper div.note").remove();
+				},
+
+				error: function(file, message) {
+					$(file.previewTemplate).addClass("error").append(
+						$("<a class='close'>Close</a>").bind("click", function(){
+							$(file.previewTemplate).remove();
+						})
+					).find(".error-message span").text(message);
+				},
+
+				sending: function(file,xhr){
+			      var token = $('meta[name="csrf-token"]').attr('content');
+			      if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+				}
+
+			});
+
+
+		}
+
 	}
 	
 };

@@ -25,16 +25,16 @@
 					All folders
 =flash_message
 
-- if (@assets).length>0	
-	#folder_browser
-		%h2= @current_folder.name
-		#main_folder_wrapper
-			=render :partial => "folder"
+%form#asset_dnd{ :action => dnd_create_admin_assets_path, :method => :post }
+	%h2 Drop files here to upload
+
+#folder_browser
+	%h2= @current_folder.name
+	#main_folder_wrapper
+		- if @assets.length>0	
+			= render "folder"
+		- else
+			= note "No assets found"
 			
-- else
-	#folder_browser
-		%h2= @current_folder.name
-		#main_folder_wrapper
-			=note "No assets found"
 
 =continuous_pagination "asset_manager"

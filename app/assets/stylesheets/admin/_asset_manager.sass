@@ -61,7 +61,7 @@
 			width: 125px
 			min-height: 100px
 			float: left
-			margin-right: 11px
+			margin-right: 9px
 			margin-bottom: 13px			
 			img,.icon_area
 				width: 125px
@@ -87,7 +87,7 @@
 					background-color: transparentize($highlight_1, 0.9)
 			&.last
 				margin-right: 0px
-			&.first
+			&:nth-child(5n+1)
 				clear: left
 			.label
 				overflow: hidden
@@ -158,9 +158,10 @@ fieldset.preview
 	.download_document
 		float: left
 		width: 49%	
-			
+	
 
-/* Attachments
+
+
 
 .asset_attachment_tools
 	float: left
@@ -240,8 +241,6 @@ fieldset.preview
 	
 	
 	
-/* Google search
-
 #google_search_form
 	width: 380px
 	float: left

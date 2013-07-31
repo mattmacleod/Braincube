@@ -11,6 +11,7 @@
 //= require ./vendor/jquery-jcrop
 //= require ./vendor/jquery-chosen
 //= require ./vendor/jquery-ui-timepicker
+//= require ./vendor/dropzone
 //= require tiny_mce/jquery.tinymce
 //= require ./setup
 //= require ./login_page
