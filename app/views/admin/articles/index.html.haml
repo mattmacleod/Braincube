@@ -2,9 +2,6 @@
 
 %h1= @page_title
 
--if controller.action_name == "index"
-	= note "Choose an article queue from the tabs above. The most recently-updated articles are shown below."
-	
 .search_form.articles
 	.summary
 		Found #{ pluralize(@article_count, "article") }

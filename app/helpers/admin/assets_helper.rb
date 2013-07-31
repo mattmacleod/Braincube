@@ -4,14 +4,6 @@ module Admin::AssetsHelper
     controller.action_name == "attach" ? attach_admin_asset_folders_path(folder.path) : browse_admin_asset_folders_path(folder.path)
   end
   
-  def asset_breadcrumbs
-    content_tag(:div, 
-      content_tag(:strong, "You are here:", :class=>"title")+
-      @current_folder.ancestors.map{|f| 
-        link_to f.name, get_folder_url(f)
-      }.join(" &raquo; ").html_safe, :class=>"asset_breadcrumbs").html_safe
-  end
-  
   def asset_folder_tree(folder)
     path = get_folder_url(folder)
     

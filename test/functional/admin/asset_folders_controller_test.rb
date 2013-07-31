@@ -92,9 +92,6 @@ class Admin::AssetFoldersControllerTest < ActionController::TestCase
         should "display the correct folder path" do
           assert_select "ul.asset_folder_list a.current"
         end
-        should "display the correct breadcumbs" do
-          assert_select("div.asset_breadcrumbs") { "Test" }
-        end
       end
       
       context "a DELETE to an asset folder page" do

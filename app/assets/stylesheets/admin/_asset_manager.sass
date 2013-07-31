@@ -36,14 +36,6 @@
 	margin-top: 1em
 	margin-bottom: 1em
 
-.asset_breadcrumbs
-	padding: 2px 0px
-	border-bottom: 1px #dde solid
-	margin-top: -1em
-	a
-		margin-left: 5px
-		margin-right: 5px
-
 #main_folder_wrapper
 	border: 3px #eef solid
 	overflow: auto
@@ -159,6 +151,77 @@ fieldset.preview
 		float: left
 		width: 49%	
 	
+
+
+#asset_dnd
+	padding: 10px
+	border: 5px #ccc solid
+	text-align: center
+	color: #222
+	+trailer(1)
+	h2
+		margin: 0
+		+adjust-font-size-to(16px,1)
+		text-transform: uppercase
+	.dz-preview
+		background: white
+		border: 1px #ccc solid
+		padding: 10px
+		text-align: left
+		overflow: hidden
+		cursor: default
+		+leader(0.5)
+	.dz-filename,.dz-size
+		color: #222
+		display: inline
+	.dz-size
+		margin-left: 10px
+		color: #444
+	img
+		float: left
+		margin-right: $gutter-width/2
+		width: 10%
+		display: block
+
+	.dz-progress
+		float: left
+		height: rhythm(1)
+		background: #222
+		width: 100%
+		margin-top: 5px
+	.dz-upload
+		height: rhythm(1)
+		width: 0
+		background-color: $highlight_1
+		display: block
+		+transition(width 10ms ease-in-out)
+
+	.dz-image-preview .dz-progress
+		width: 87%
+
+	.dz-error-message,.dz-wait-message,.dz-close
+		+adjust-font-size-to(12px,1)
+	.dz-error-message
+		color: red
+		float: left
+	.dz-wait-message
+		display: none
+
+	.dz-processing
+		.dz-wait-message
+			display: block
+		.dz-upload
+			background: image-url("admin/progress.gif")
+
+	.dz-error
+		.dz-wait-message
+			display: none
+		.dz-upload
+			background-image: none !important
+
+	.dz-close
+		float: right
+		cursor: pointer
 
 
 

@@ -16,7 +16,11 @@
 	margin: 10px 0px 20px 0px
 	font-weight: bold
 	font-size: 0.9em
-	
+	position: relative
+
+	fieldset
+		width: 500px
+
 	input
 		width: 50%
 		float: left
@@ -29,7 +33,9 @@
 		text-transform: uppercase
 		
 	.summary
-		float: right
+		position: absolute
+		top: 10px
+		right: 10px
 		color: $grey_2
 		font-weight: normal
 		width: 40%
@@ -60,7 +66,7 @@
 
 	.options
 		float: left
-		clear: none
+		clear: none !important
 		label
 			display: block
 			clear: left

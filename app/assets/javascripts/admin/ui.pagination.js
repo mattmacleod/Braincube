@@ -21,8 +21,9 @@ braincube.admin.ui.pagination = {
 		// if we're near the bottom of the document.
 		$(document).scroll( this.checkScroll );
 		
-		// Disable autocomplete
+		// Disable autocomplete and submission
 		$("#search_field").attr("autocomplete", "off");
+		$("#search_field").closest("form").bind("submit", function(){ return false; });
 		
 		// Watch the search field for updates and submit search
 		$("#search_field").keyup(function(){
