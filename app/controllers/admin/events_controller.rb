@@ -133,7 +133,7 @@ class Admin::EventsController < AdminController
 			@events = Event.where( :id => params[:ids].split(",") ).order(:title)
 			render(:partial => "for_attachment", :locals => {:events => @events, :action => :remove})
 		else
-			@events = Event.order("title ASC").where(["events.title LIKE ?", "%#{params[:q]}%"]).limit( Braincube::Config::EventAttachmentLimit )
+			@events = Event.order("title ASC").where(["events.title REGEXP ?", "[[:<:]]#{params[:q]}[[:>:]]"]).limit( Braincube::Config::EventAttachmentLimit )
 			render(:partial => "for_attachment", :locals => {:events => @events, :action => :add})
 		end
 	end
