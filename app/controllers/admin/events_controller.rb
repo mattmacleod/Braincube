@@ -258,7 +258,7 @@ class Admin::EventsController < AdminController
 					out_string = HTMLEntities.new.decode( 
 						render_to_string.gsub("\r\n", "\n").gsub("\n+", "\n").gsub(/\t+/, "")
 					)
-					out_string = Iconv.iconv('utf-16be', 'utf-8', out_string.gsub("\n", "\r") )
+					out_string = out_string.gsub("\n", "\r").encode("utf-16be")
 			
 					send_data out_string[0], 
 						:disposition => "attachment; filename=listings-#{params[:type]}-#{city.name.downcase rescue "all" }.indesign.txt", 
