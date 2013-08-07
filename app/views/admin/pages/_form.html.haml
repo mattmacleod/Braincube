@@ -22,7 +22,7 @@
 	%fieldset#basic
 		%legend Basic info
 		.full= f.text_field :title, :required => true, :maxlength => 255, :note => "This will be the main title of the page."
-		.half= f.select :parent_id, "<option></option>"+page_options(Page.root, f.object.parent_id), :label => "Child of...", :note => "Choose the parent page"
+		.half= f.select :parent_id, ("<option></option>"+page_options(Page.root, f.object.parent_id)).html_safe, :label => "Child of...", :note => "Choose the parent page"
 		.half= f.select	:page_type, Braincube::Config::PageTypes.map{|k,v|[v,k.to_s]}, :required => true, :note => "Choose the type of content that will appear on this page."
 		.full= f.text_field :url, :required => true, :maxlength => 255, :note => "This will be the URL of the page relative to the home page. Do not include an initial forward slash."
 		.half= f.check_box :enabled, :note => "If this box is not checked, the page will be hidden on the website"
