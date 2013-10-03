@@ -2,12 +2,9 @@
 
 #content_body
 	%h1= @tag.name
-	
-	- if @tag.taggables.empty?
+	- if @articles.empty?
 		=note "There are no items associated with this tag", :type => :alert
 	- else
-		=note "There #{@tag.taggables.length==1 ? "is 1 item" : "are #{ @tag.taggables.length} items"} tagged with this tag"
-	
 		%table.list.taggable_list
 			%thead
 				%tr
@@ -16,26 +13,28 @@
 
 			%tbody#list_body
 
-				- @tag.taggables.each do |taggable|
+				- @articles.each do |article|
 					%tr{ :class=>cycle(:even, :odd) }
-						- case taggable.class.name
+						- case article.class.name
 						- when "Article"
 							%td.category Article
-							- unless taggable.removed?
-								%td= link_to taggable.title, edit_admin_article_path( taggable )
+							- unless article.removed?
+								%td= link_to article.title, edit_admin_article_path( article )
 							- else
 								%td 
 									%strong Deleted article: 
-									=taggable.title
+									=article.title
 						- when "Event"
 							%td.category Event
-							%td= link_to taggable.title, edit_admin_event_path( taggable )
+							%td= link_to article.title, edit_admin_event_path( article )
 						- when "Venue"
 							%td.category Venue
-							%td= link_to taggable.title, edit_admin_venue_path( taggable )
+							%td= link_to article.title, edit_admin_venue_path( article )
 						- else
-							%td.category= taggable.class.name
-							%td= responds_to(:title) ? taggable.title : "Unknown title"
-	
+							%td.category= article.class.name
+							%td= responds_to(:title) ? article.title : "Unknown title"
+
+	=will_paginate @taggings
+
 #content_sidebar
 	=render :partial => "sidebar"

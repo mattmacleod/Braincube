@@ -40,6 +40,8 @@ class Admin::TagsController < AdminController
 
   def show
     @tag = Tag.find( params[:id] )
+    @taggings = Tagging.paginate(:all, :conditions => {:tag_id => @tag.id}, :page => params[:page], :per_page => Braincube::Config::AdminPaginationLimit)
+    @articles = @taggings.map(&:taggable).compact
     force_subsection "index"
     render :layout => "admin/manual_sidebar"
   end
