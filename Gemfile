@@ -13,7 +13,7 @@ gem "sunspot_rails"
 
 gem "paper_trail",  "2.0.1"
 gem "will_paginate", "3.0.pre2"
-gem "sass",         "~>3.2.0.alpha"
+gem "sass",         "~>3.2.0"
 gem "compass-rails"
 
 # Need to require the correct name
