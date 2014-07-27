@@ -36,7 +36,7 @@ class Asset < ActiveRecord::Base
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
         :path => ":id/:id_:style.:extension",
         :default_url => "asset_placeholders/:style.png",
-        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
+        :convert_options => { :all => "-set colorspace RGB -strip -colorspace RGB" },
         :whiny => true,
         :storage => :s3,
         :s3_credentials => Braincube::Config::S3ConnectionDetails[ Rails.env ],
