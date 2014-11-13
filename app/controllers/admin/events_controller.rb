@@ -133,7 +133,7 @@ class Admin::EventsController < AdminController
 			@events = Event.where( :id => params[:ids].split(",") ).order(:title)
 			render(:partial => "for_attachment", :locals => {:events => @events, :action => :remove})
 		else
-			@events = Event.order("title ASC").where(["events.title LIKE ?", "%#{params[:q]}%"]).limit( Braincube::Config::EventAttachmentLimit )
+			@events = Event.order("title ASC").where(["events.title REGEXP ?", "[[:<:]]#{params[:q]}[[:>:]]"]).limit( Braincube::Config::EventAttachmentLimit )
 			render(:partial => "for_attachment", :locals => {:events => @events, :action => :add})
 		end
 	end
@@ -258,7 +258,7 @@ class Admin::EventsController < AdminController
 					out_string = HTMLEntities.new.decode( 
 						render_to_string.gsub("\r\n", "\n").gsub("\n+", "\n").gsub(/\t+/, "")
 					)
-					out_string = Iconv.iconv('utf-16be', 'utf-8', out_string.gsub("\n", "\r") )
+					out_string = out_string.gsub("\n", "\r").encode("utf-16be")
 			
 					send_data out_string[0], 
 						:disposition => "attachment; filename=listings-#{params[:type]}-#{city.name.downcase rescue "all" }.indesign.txt", 

@@ -1,4 +1,4 @@
-.icon{:class=>"#{asset.asset_type} #{cycle(:first, "", "", "", :last)}"}
+.icon{:class=>"#{asset.asset_type}"}
 	- if asset.asset_type == :image
 		=image_tag( asset.asset.url(:thumb) )
 	- else

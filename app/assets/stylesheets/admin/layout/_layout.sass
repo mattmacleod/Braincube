@@ -1,0 +1,96 @@
+//****************************************************************************
+// Main layout elements and styles for things in 'em
+//***************************************************************************/
+	
+
+//****************************************************************************
+// Header
+//***************************************************************************/
+
+#header
+	height: 90px
+	background: $highlight_1
+	position: relative
+
+#header_wrapper
+	@extend .container_12
+	position: relative
+	height: 90px
+	
+#header_title
+	font-size: 30px
+	line-height: 1em
+	font-weight: bold
+	color: mix($highlight_1, white)
+	padding: 5px 0
+	
+#admin_tools
+	background: mix($highlight_1, black, 70%)
+	color: mix($highlight_1, white, 40%)
+	position: absolute
+	right: 20px
+	top: -10px
+	padding: 15px 10px 7px 10px
+	+adjust-font-size-to(12px,1)
+	a
+		color: white
+		padding: 0 0.25em
+	
+	
+//****************************************************************************
+// Main layout
+//***************************************************************************/
+
+body
+	background: #eee
+	
+#wrapper
+	min-height: 400px
+	background: white
+	
+#main_content
+	@extend .container_12, .clearfix
+	padding: 20px 0px 30px 0px	
+
+#content_body
+	@extend .grid_9, .first
+
+#content_body_wide
+	@extend .grid_12, .first, .last
+			
+#content_sidebar, #right_pane
+	@extend .grid_3, .last
+	
+	.box
+		margin-bottom: 2em
+			
+		input, select
+			margin-bottom: 1em
+	h2
+		+adjust-font-size-to(28px,2)
+	table.stats
+		width: 100%
+		border-top: 1px #ddd solid 
+		th
+		td
+			font-weight: bold
+			text-align: right
+			padding: 5px 0
+		th,td
+			border-bottom: 1px #ddd solid 
+	
+//****************************************************************************
+// Footer
+//***************************************************************************/
+
+#footer_wrapper
+	background: $grey_5
+	width: 100%
+	bottom: 0
+	font-size: 0.9em
+	
+#footer
+	@extend .container_12
+	padding: 1em
+	
+

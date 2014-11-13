@@ -1,0 +1,65 @@
+.treeview
+  padding: 0
+  margin: 0
+  list-style: none
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
+    margin-top: 4px
+  .hitarea
+    background: image-url("admin/treeview/treeview-default.gif") -64px -25px no-repeat
+    height: 16px
+    width: 16px
+    margin-left: -16px
+    float: left
+    cursor: pointer
+
+/* fix for IE6
+
+* html .hitarea
+  display: inline
+  float: none
+
+.treeview
+  li
+    margin: 0
+    padding: 3px 0pt 3px 16px
+  a.selected
+    background-color: #eee
+
+#treecontrol
+  margin: 1em 0
+  display: none
+
+.treeview
+  .hover
+    cursor: pointer
+  li
+    background: image-url("admin/treeview/treeview-default-line.gif") 0 0 no-repeat
+    &.collapsable, &.expandable
+      background-position: 0 -176px
+  .expandable-hitarea
+    background-position: -80px -3px
+  li
+    &.last
+      background-position: 0 -1766px
+    &.lastCollapsable, &.lastExpandable
+      background-image: image-url("admin/treeview/treeview-default.gif")
+    &.lastCollapsable
+      background-position: 0 -111px
+    &.lastExpandable
+      background-position: -32px -67px
+  div
+    &.lastCollapsable-hitarea, &.lastExpandable-hitarea
+      background-position: 0
+
+.treeview-black
+  li
+    background-image: image-url("admin/treeview/treeview-black-line.gif")
+  .hitarea
+    background-image: image-url("admin/treeview/treeview-black.gif")
+  li
+    &.lastCollapsable, &.lastExpandable
+      background-image: image-url("admin/treeview/treeview-black.gif")
+

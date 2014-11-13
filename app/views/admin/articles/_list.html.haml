@@ -10,7 +10,7 @@
 				= link_to article.title, edit_admin_article_path( article )
 				- if article.has_draft?
 					%span.label draft
-				= review_stars(article)
+				= admin_review_stars(article)
 			%span.extra
 				= article.cached_authors
 		%td

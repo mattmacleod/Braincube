@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   match "admin/setup"         => "admin#setup",         :as => :admin_setup
   match "admin/login"         => "admin#login",         :as => :admin_login
   get   "admin/logout"        => "admin#logout",        :as => :admin_logout
-  get   "admin/help"          => "admin#help",          :as => :admin_help
   
   # Admin errors
   match "admin/404"           => "admin#display_404",   :as => :admin_error_404
@@ -83,6 +82,7 @@ Rails.application.routes.draw do
       collection do
         get  "zip_upload"           => "assets#zip_upload", :as => :zip_upload
         post "create_from_zip"      => "assets#create_from_zip", :as => :create_from_zip
+        post "dnd_create"           => "assets#dnd_create", :as => :dnd_create
       end
     end
     

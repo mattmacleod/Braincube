@@ -1,0 +1,149 @@
+legend
+	display: none
+	
+input, textarea, select
+	border: 1px $grey_2 solid
+	margin: 0
+	padding: 0.25em
+	@extend .small_rounded
+	@extend .fade
+	width: 97%
+	
+input:focus, textarea:focus
+	@extend .form_glow
+
+.check_box
+	width: auto
+
+.radio_button
+	width: auto
+
+input.button,a.button
+	@extend .small_rounded
+	background: $grey_5
+	width: auto
+	border: none
+	padding: 3px 5px
+	line-height: 1em
+	text-transform: uppercase
+	color: $grey_2
+	font-size: 0.9em
+	font-weight: bold
+	display: inline-block
+	cursor: pointer
+
+label
+	display: block
+	font-weight: bold
+	line-height: 1.2em
+	span.required
+		color: red
+		margin-left: 0.2em
+
+.form_note
+	display: block
+	color: $grey_3
+	font-size: 0.9em
+	margin-top: 2px
+	line-height: 1.3em
+	
+	
+fieldset
+	&.content
+		@extend .small_rounded
+		border: 1px $grey_5 solid
+		padding: 2% 2% 2% 2%
+		legend
+			display: block
+			@extend .small_rounded
+			padding: 3px 7px
+			background: $grey_1
+			color: $grey_6
+			font-weight: bold
+		input,textarea,select
+			background: $grey_6
+			padding: 0.25em
+			font-size: 1.5em
+			color: black
+		input.button
+			float: right
+			background: $grey_5 image-url("embed/icons/reveal.png") right center no-repeat
+			padding: 0.5em 15px 0.5em 0.5em
+			border: 1px $grey_4 solid
+			font-size: 1.3em
+			text-transform: none
+			&:hover
+				@extend .form_glow
+			&.loading
+				@extend .fade
+				padding-left: 27px
+				background: $grey_5 image-url("embed/spinner_eeeeff.gif") 5px center no-repeat
+	div
+		@extend .clearfix
+		&.full
+			width: 100%
+			clear: both
+			padding-bottom: 1em
+		&.half
+			width: 47%
+			float: left
+			margin-right: 2%
+			padding-bottom: 1em
+		&.third
+			width: 30%
+			float: left
+			margin-right: 3%
+			padding-bottom: 1em
+		&.two_thirds
+			width: 63%
+			float: left
+			margin-right: 3%
+			padding-bottom: 1em
+		&.quarter
+			width: 23%
+			float: left
+			margin-right: 2%
+			padding-bottom: 1em
+		&.bottom
+			padding-bottom: 0 !important
+		div
+			padding: 0 
+		&.buttons
+			padding: 1em 0
+
+	
+//****************************************************************************
+// Errors
+//***************************************************************************/
+form .errors
+	@extend .small_rounded
+	border: 1px solid $color_flash_error
+	background: lighten($color_flash_error, 20%)
+	color: #ffffff
+	padding: 10px
+	margin-bottom: 20px
+	h2
+		font-size: 1.3em
+		font-weight: bold
+		margin: -10px -10px 10px -10px
+		padding: 5px
+		background: $color_flash_error
+	ul
+		list-style-type: square
+		margin-left: 20px
+
+fieldset 
+	.field_with_errors
+		width: auto
+		display: inline
+		input, textarea, select
+			@extend .fade
+			background: lighten($color_flash_error, 45%) !important
+			border: 1px $color_flash_error solid !important
+			&:focus
+				-moz-box-shadow: 0px 0px 5px $color_flash_error !important
+				-webkit-box-shadow: 0px 0px 5px $color_flash_error !important
+				box-shadow: 0px 0px 5px $color_flash_error !important
+
+	
+	

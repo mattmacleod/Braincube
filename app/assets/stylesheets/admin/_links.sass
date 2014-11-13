@@ -1,0 +1,52 @@
+a
+	color: #09d
+	text-decoration: none
+	+transition(all 300ms)
+
+	&.download_asset
+		@extend .small_rounded
+		margin: 10px 0
+		padding: 5px 10px 5px 25px
+		color: $grey_2
+		font-weight: bold
+		background: $grey_4 image-url("admin/embed/icons/file_types/mini/txt.png") no-repeat 4px center
+		
+	&.pdf
+		background-image: image-url("admin/embed/icons/file_types/mini/pdf.png")
+	&.doc
+		background-image: image-url("admin/embed/icons/file_types/mini/doc.png")
+	&.xls
+		background-image: image-url("admin/embed/icons/file_types/mini/xls.png")
+	&.zip
+		background-image: image-url("admin/embed/icons/file_types/mini/zip.png")	
+		
+.action_icons
+	a
+		display: block
+		float: left
+		text-indent: -999em
+		width: 14px
+		height: 14px
+		background-image: image-url("admin/embed/icons/icons_222.png")
+		margin-right: 3px
+
+	.article_edit
+		background-position: -64px -112px
+		&.locked
+			background-position: -112px -128px
+
+	.article_show
+		background-position: -32px -96px
+
+	.article_print
+		background-position: -160px -96px
+
+	.article_unpublish
+		background-position: -16px -160px
+
+	.article_indesign
+		background-position: -64px -96px
+
+	.article_destroy
+		background-position: -80px -128px
+

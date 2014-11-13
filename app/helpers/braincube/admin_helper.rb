@@ -10,12 +10,12 @@ module Braincube::AdminHelper
   # Ajax and pagination
   ############################################################################
   def ajax_spinner(base, color=nil)
-    image_tag( "/images/admin/spinner#{("_"+color) if color}.gif", :alt => "Loading...", :class => "spinner", :id => "#{base}_spinner" )
+    image_tag( "admin/spinner#{("_"+color) if color}.gif", :alt => "Loading...", :class => "spinner", :id => "#{base}_spinner" )
   end
   
   def continuous_pagination(name)
     out = "<div id=\"pagination_loading_wrapper\"><div id=\"pagination_loading\">Loading..."
-    out << image_tag("/images/admin/spinner.gif", :alt=>"Loading...", :id => "#{name}_spinner")
+    out << image_tag("/assets/admin/spinner.gif", :alt=>"Loading...", :id => "#{name}_spinner")
     out << "</div></div>"
     return out.html_safe
   end
@@ -71,18 +71,18 @@ module Braincube::AdminHelper
     errors = obj.errors
     return if errors.blank?
     
-    error_messages = obj.errors.map do |msg|
+    error_messages = obj.errors.map do |msg, content|
       content_tag(:li, 
-        msg[0].to_s.humanize + " " + h(msg[1])
+        msg.to_s.humanize + " " + h(content)
       ) 
     end.join.html_safe
     
     output = "".html_safe
     output << content_tag(:h2, 
-      "There #{(errors.length==1 ? "was an error" : "were errors")} "+
+      "There #{(errors.size==1 ? "was an error" : "were errors")} "+
       "in your form:"
     ).html_safe
-    output << content_tag(:ul, error_messages).html_safe
+    output << content_tag(:ul, error_messages.html_safe).html_safe
     return content_tag(:div, output, :class=>"errors").html_safe
   end
   

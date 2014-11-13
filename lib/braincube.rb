@@ -11,7 +11,6 @@ module Braincube
   # Load external libraries. I don't quite understand why I have to do this.
   # Something screwy is going on with the load order.
   require "paper_trail"
-  require "fastercsv"
   require "will_paginate"
   require "paperclip"
   require "tickle"

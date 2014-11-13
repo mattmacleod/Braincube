@@ -1,0 +1,517 @@
+//****************************************************************************
+// Basic forms
+//***************************************************************************/
+
+legend
+	display: none
+	
+input, textarea, select
+	font-family: $base_font_face
+	border: 1px $grey_2 solid
+	margin: 0
+	padding: 0.25em
+	width: 97%
+	+transition(all, 200ms)
+	
+input,textarea
+	&:focus
+		border-color: $color_glow
+		outline: 0
+		+box-shadow(0 0 5px $color_glow)
+		
+.check_box
+	width: auto
+
+.radio_button
+	width: auto
+
+label
+	display: block
+	font-weight: bold
+	+adjust-font-size-to(13px,1)
+	span.required
+		color: red
+		margin-left: 0.2em
+
+.form_note
+	display: block
+	color: $grey_3
+	+adjust-font-size-to(11px,1)
+
+
+
+//****************************************************************************
+// Tag selector
+//***************************************************************************/
+
+ul.token-input-list
+	@extend .small_rounded
+	overflow: hidden
+	height: auto !important
+	width: 100%
+	border: 1px $grey_2 solid
+	cursor: text
+	z-index: 999
+	margin: 0
+	padding: 0
+	background-color: #fff
+	list-style-type: none
+	li input
+		@extend .no_glow
+		border: 0
+		width: 100px
+		padding: 3px 8px
+		margin: 4px 0
+
+li
+	&.token-input-token
+		overflow: hidden
+		height: auto !important
+		height: 1%
+		margin: 2px
+		cursor: default
+		float: left
+		@extend .medium_rounded
+		font-size: 0.9em
+		background: lighten($color_blue, 47%)
+		border: 1px lighten($color_blue, 35%) solid
+		padding: 0.1em 0.5em 0.1em 0.7em 		
+		font-weight: bold
+		color: $grey_1
+		text-transform: uppercase
+		p
+			display: block
+			float: left
+			padding: 0
+			margin: 0
+		span
+			width: 16px
+			height: 16px
+			margin-left: 0.5em
+			display: block
+			float: right
+			text-indent: -999em
+			background: image-url("admin/embed/icons/embed/tag_delete.png") no-repeat center center
+			cursor: pointer
+			
+	&.token-input-selected-token
+		background-color: #5670a6
+		border: 1px solid #3b5998
+		color: #fff
+	&.token-input-input-token
+		float: left
+
+div.token-input-dropdown
+	@extend .small_rounded_bottom
+	position: absolute
+	width: 96%
+	overflow: hidden
+	background-color: white
+	border: 1px $grey_2 solid
+	border-top: none
+	cursor: default
+	z-index: 1
+	p
+		margin: 0
+		padding: 5px
+		font-weight: bold
+		color: $grey_3
+	ul
+		margin: 0
+		padding: 0
+		li
+			background-color: transparent
+			padding: 3px
+			&.token-input-dropdown-item, &.token-input-dropdown-item2
+				background-color: transparent
+			em
+				font-weight: bold
+				font-style: none
+			&.token-input-selected-dropdown-item
+				background-color: $color_blue
+				color: white
+
+
+	
+//****************************************************************************
+// Buttons
+//***************************************************************************/
+
+@mixin button_background($icon)
+	background-image: image-url("admin/embed/icons/button_#{ $icon }")
+	background-position: 0.6em center
+	background-repeat: no-repeat
+	padding-left: 35px
+		
+	
+.button
+	@extend .standard_button
+		
+	&.cancel
+		@include button_background( "cancel.png" )
+			
+	&.save
+		@include button_background( "save.png" )
+			
+	&.new
+		@include button_background( "new.png" )
+			
+	&.delete
+		@include button_background( "delete.png" )
+			
+	&.edit
+		@include button_background( "edit.png" )
+
+	&.export
+		@include button_background( "export.png" )
+
+	&.import
+		@include button_background( "import.png" )
+					
+	&.back
+		@include button_background( "back.png" )
+						
+	&.loading
+		@include button_background( "loader.gif" )
+		
+	&:hover
+		text-decoration: none
+			
+			
+			
+// Button for destroying things
+a.destroy
+	display: block
+	width: 20px
+	height: 20px
+	background: image-url("admin/embed/icons/link_destroy.png") center center no-repeat
+	text-indent: -999em
+	opacity: 0.2
+	&:hover
+		opacity: 1
+
+// Button for approving things
+a.approve
+	display: block
+	width: 20px
+	height: 20px
+	background: image-url("admin/embed/icons/link_approve.png") center center no-repeat
+	text-indent: -999em
+	opacity: 0.2
+	&:hover
+		opacity: 1
+
+a.destroy, a.approve
+	&.loading
+		background: image-url("admin/spinner_transparent.gif") center center no-repeat !important
+
+a.small_button
+	background: $grey_2
+	padding: 5px 10px
+	color: white
+	font-weight: bold
+	display: inline-block
+	+adjust-font-size-to(13px,1)
+	
+//****************************************************************************
+// Fieldsets
+//***************************************************************************/
+
+fieldset
+	&.half
+		width: 45%
+	&.left
+		float: left
+	&.right
+		float: right
+	&.standard
+		@extend .small_rounded
+		border: 1px $grey_5 solid
+		padding: 2% 2% 2% 2%
+		legend
+			display: block
+			@extend .small_rounded
+			padding: 3px 7px
+			background: $grey_1
+			color: $grey_6
+			font-weight: bold
+	div
+		@extend .clearfix
+		&.full
+			width: 100%
+			clear: both
+			padding-bottom: 1em
+		&.half
+			width: 47%
+			float: left
+			margin-right: 2%
+			padding-bottom: 1em
+		&.third
+			width: 30%
+			float: left
+			margin-right: 3%
+			padding-bottom: 1em
+		&.two_thirds
+			width: 63%
+			float: left
+			margin-right: 3%
+			padding-bottom: 1em
+		&.quarter
+			width: 23%
+			float: left
+			margin-right: 2%
+			padding-bottom: 1em
+		&.bottom
+			padding-bottom: 0 !important
+		div
+			padding: 0 
+		div.type_options div
+			padding-bottom: 1em
+		&.button_area
+			padding: 1em 0
+
+		
+//****************************************************************************
+// Tabbed fieldsets
+//***************************************************************************/
+
+.tabbed_fieldsets
+
+	// Top tabs
+	h2
+		font-size: 1em
+		margin: 1em 0
+		padding: 0
+		
+	div.note.info
+		background: $grey_2
+		border: 1px $grey_1 solid
+		color: white
+		+adjust-font-size-to(11px,1)
+		span.icon
+			background-image: $icon_set_1	
+		a
+			color: lighten($colour_link, 20%)
+				
+	// Main tab area		
+	fieldset
+		border: none
+		background: $grey_6
+		padding: 2%
+		margin-bottom: 4em
+			
+		fieldset.article_type
+			border: 1px $grey_5 solid
+			@extend .small_rounded
+			padding: 10px
+			legend
+				top: 0
+				@extend .small_rounded
+				margin: 0
+				display: block
+				padding: 1px 7px
+				background: $grey_1
+				color: $grey_6
+				font-weight: bold
+				
+		legend
+			padding: 10px 15px
+			background: $grey_6
+			color: $grey_1
+			font-weight: bold
+			display: block
+			position: relative
+			top: -1em
+			margin-left: -14px
+		
+		fieldset
+			margin-bottom: 2em
+			legend
+				display: none
+		h3
+			color: $grey_1
+			margin-top: 1em
+			margin-bottom: 0.5em 
+			&.top
+				margin-top: 0
+				
+
+	ul.tabs
+		width: 100%
+		overflow: auto
+		margin-bottom: -1px
+		li
+			overflow: hidden
+			float: left
+	h2
+		float: left
+		margin: 0
+		margin-bottom: 3em
+		overflow: hidden
+		a
+			display: block
+			background: $grey_4
+			margin-right: 1em
+			padding: 0 16px
+			color: $grey_2
+			font-family: $default-font-stack
+			+adjust-font-size-to(11px,2)
+			&:hover
+				color: $grey_1 !important
+			&.current
+				color: $grey_1 !important
+				background: $grey_6
+			&.has_error
+				padding-left: 2em
+				background-image: image-url("admin/embed/icons/tab_error.png")
+				background-position: 0.5em center
+				background-repeat: no-repeat
+
+	.top_buttons
+		margin: 1em 0 2em 0
+	
+	&.tabs_enabled
+		legend
+			display: none
+		h2
+			margin-bottom: 0
+			a
+				color: $grey_3
+			
+	
+//****************************************************************************
+// Errors
+//***************************************************************************/
+form .errors
+	@extend .small_rounded
+	border: 1px solid $color_flash_error
+	background: lighten($color_flash_error, 20%)
+	color: #ffffff
+	padding: 10px
+	margin-bottom: 20px
+	h2
+		font-size: 1.3em
+		font-weight: bold
+		margin: -10px -10px 10px -10px
+		padding: 5px
+		background: $color_flash_error
+	ul
+		list-style-type: square
+		margin-left: 20px
+
+fieldset 
+	.field_with_errors
+		width: auto
+		display: inline
+		input, textarea, select
+			@extend .fade
+			background: lighten($color_flash_error, 45%) !important
+			border: 1px $color_flash_error solid !important
+
+				
+				
+									
+
+//****************************************************************************
+// Form buttons in sidebar
+//***************************************************************************/
+
+#content_sidebar
+	input.button
+		width: 100%
+		text-align: left
+	.button
+		display: block
+		margin-bottom: 1em
+		&.last
+			margin-bottom: 0
+	.additional
+		margin: 1em 0
+		h3
+			font-size: 1.1em
+			text-transform: uppercase
+			border-bottom: 1px $grey_4 solid
+			margin-bottom: 1em
+		p
+			font-size: 0.8em
+			line-height: 1.3em
+			color: $grey_2
+			margin: 1em 0
+
+
+//****************************************************************************
+// Article editor specific
+//***************************************************************************/
+.word_counter
+	@extend .small_rounded_top
+	float: right
+	margin-bottom: -1.2em
+	padding: 0.2em 1em 0.2em 1em
+	background: $grey_1
+	color: white
+	
+	.label
+		font-weight: bold
+		
+
+//****************************************************************************
+// Subforms and ajax search
+//***************************************************************************/
+
+fieldset.subform
+	padding:  0
+	&.half
+		width: 49%
+		
+	h3
+		margin: 0 0 10px 0
+		background: none
+		color: $grey_1
+		
+.ajax_search_field
+	margin-bottom: 20px
+	input
+		width: 90%
+		padding: 5px
+	.spinner
+		position: relative
+		right: 3px
+		top: 2px
+
+.ajax_search_results,.ajax_search_list
+	+adjust-font-size-to(13px,1)
+	
+	.empty
+		color: $grey_1
+		
+	.item_title
+		padding-top: 5px
+		margin-top: 5px
+		border-top: 1px $grey_4 solid
+		display: block
+		color: $grey_1
+		text-transform: uppercase
+		font-weight: bold
+		line-height: 1.4em
+	
+		.item_link
+			margin-left: 5px
+			
+	.item_details_1, .item_details_2
+		font-size: 0.9em
+		color: $grey_3
+		display: block	
+		
+		
+.ajax_search_list
+	padding: 0
+	li
+		border-bottom: 1px $grey_4 dotted
+		padding: 0 0 10px 0
+		margin: 0 0 10px 0
+		&.last
+			border-bottom: none
+			margin: 0
+	
+	
+	

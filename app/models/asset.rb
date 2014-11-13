@@ -1,3 +1,4 @@
+
 class Asset < ActiveRecord::Base
   
   # Model definition
@@ -13,7 +14,8 @@ class Asset < ActiveRecord::Base
   
   # Validation
   validates_presence_of :title, :user, :asset_folder, :asset
-  
+  before_validation :derive_title_from_filename
+
   # Sort by title by default
   default_scope :order => 'title ASC'
   
@@ -34,14 +36,15 @@ class Asset < ActiveRecord::Base
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
         :path => ":id/:id_:style.:extension",
         :default_url => "asset_placeholders/:style.png",
-        :convert_options => { :all => "-set colorspace sRGB -strip -colorspace sRGB" },
+        :convert_options => { :all => "-type truecolor -set colorspace RGB -strip -colorspace RGB" },
         :whiny => true,
         :storage => :s3,
         :s3_credentials => Braincube::Config::S3ConnectionDetails[ Rails.env ],
         :bucket => Braincube::Config::S3AssetBucketName[ Rails.env ],
         :url => ":s3_domain_url",
         :s3_options => { :server =>  "#{Braincube::Config::S3AssetBucketName[ Rails.env ]}.s3.amazonaws.com" },
-        :processors => [:cropper]
+        :processors => [:cropper],
+        :s3_protocol => "https"
     
   else
     has_attached_file :asset, :styles => Braincube::Config::ImageFileVersions,
@@ -91,6 +94,8 @@ class Asset < ActiveRecord::Base
     attr_accessor "crop_x_#{k}", "crop_y_#{k}", "crop_w_#{k}", "crop_h_#{k}"
   end
   def reprocess_cropped_styles 
+    return if @updated
+    @updated = true
     Braincube::Config::ImageFileVersions.keys.select{|k| cropping?( k )}.each do |style|
       asset.reprocess!( style )
     end
@@ -98,5 +103,12 @@ class Asset < ActiveRecord::Base
   def cropping?( style )
     ["crop_x_#{style}", "crop_y_#{style}", "crop_w_#{style}", "crop_h_#{style}"].flatten.any?{|a| !(self.send(a).blank?) }
   end
-   
+
+  def derive_title_from_filename
+    return unless title.blank? && asset && asset.original_filename
+    self.title = self.class.filename_to_title( asset.original_filename )
+  end
+  def self.filename_to_title(str)
+    str.to_s.split(".")[0..-2].join(".").gsub(/[_\-]/, " ").gsub(/\s+/, " ").strip.gsub(/^(.)/){ $1.capitalize }
+  end
 end

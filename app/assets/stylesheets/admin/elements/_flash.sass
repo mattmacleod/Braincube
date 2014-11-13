@@ -1,0 +1,71 @@
+div
+	&.flash_wrapper
+		margin-bottom: 1em
+
+	&.flash
+		position: relative
+		padding: 1em 2em 1em 1em
+		font-size: 0.9em
+		line-height: 1.3em
+		font-weight: bold
+		color: #fff
+		background-image: image-url("admin/embed/icons/flash_close_inactive.png")
+		background-repeat: no-repeat
+		background-position: right center
+		&:hover
+			background-image: image-url("admin/embed/icons/flash_close_active.png")
+			cursor: pointer
+		span.icon
+			background-image: $icon_set_1
+				
+	&.flash_error
+		background-color: $color_red
+
+	&.flash_notice
+		background-color: $color_green
+
+	&.flash span.icon, &.note span.icon
+		width: 16px
+		height: 16px
+		display: block
+		position: absolute
+		top: 50%
+		margin-top: -8px
+
+	&.flash span.text, &.note span.text
+		display: block
+		padding: 0 0 0 2.1em			
+
+	&.note
+		position: relative
+		font-weight: bold
+		margin-bottom: 2em
+		padding: 1em
+		+adjust-font-size-to(13px,1)
+		span.icon
+			background-image: $icon_set_2
+			
+		&.alert 
+			background: mix( $color_note_alert, white, 40 )
+			border: 1px $color_note_alert solid
+			span.icon
+				background-position: 0 -144px
+			
+		&.info 
+			background: mix( $color_note_info, white, 40 )
+			border: 1px $color_note_info solid
+			span.icon
+				background-position: -16px -144px
+				
+		.button
+			float: right
+			margin: -2px -2px -2px 20px
+			padding: 5px 10px 5px 30px
+			border: none
+			color: white !important
+				
+span.icon
+	&.notice
+		background-position: -16px -144px
+	&.error
+		background-position: 0 -144px

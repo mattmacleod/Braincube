@@ -1,0 +1,264 @@
+div
+  &.dark_rounded
+    .pp_top
+      .pp_left
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -88px -53px no-repeat
+      .pp_middle
+        background: image-url("admin/prettyPhoto/dark_rounded/contentPattern.png") top left repeat
+      .pp_right
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -110px -53px no-repeat
+    .pp_content_container
+      .pp_left
+        background: image-url("admin/prettyPhoto/dark_rounded/contentPattern.png") top left repeat-y
+      .pp_right
+        background: image-url("admin/prettyPhoto/dark_rounded/contentPattern.png") top right repeat-y
+    .pp_content
+      background: image-url("admin/prettyPhoto/dark_rounded/contentPattern.png") top left repeat
+    .pp_next:hover
+      background: image-url("admin/prettyPhoto/dark_rounded/btnNext.png") center right no-repeat
+      cursor: pointer
+    .pp_previous:hover
+      background: image-url("admin/prettyPhoto/dark_rounded/btnPrevious.png") center left no-repeat
+      cursor: pointer
+    .pp_expand
+      background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -31px -26px no-repeat
+      cursor: pointer
+      &:hover
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -31px -47px no-repeat
+        cursor: pointer
+    .pp_contract
+      background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") 0 -26px no-repeat
+      cursor: pointer
+      &:hover
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") 0 -47px no-repeat
+        cursor: pointer
+    .pp_close
+      width: 75px
+      height: 22px
+      background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -1px -1px no-repeat
+      cursor: pointer
+    .currentTextHolder
+      color: #c4c4c4
+    .pp_description, #pp_full_res .pp_inline
+      color: #fff
+    .pp_arrow_previous
+      background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") 0 -71px no-repeat
+      &.disabled
+        background-position: 0 -87px
+        cursor: default
+    .pp_arrow_next
+      background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -22px -71px no-repeat
+      &.disabled
+        background-position: -22px -87px
+        cursor: default
+    .pp_bottom
+      .pp_left
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -88px -80px no-repeat
+      .pp_middle
+        background: image-url("admin/prettyPhoto/dark_rounded/contentPattern.png") top left repeat
+      .pp_right
+        background: image-url("admin/prettyPhoto/dark_rounded/sprite.png") -110px -80px no-repeat
+    .pp_loaderIcon
+      background: image-url("admin/prettyPhoto/dark_rounded/loader.gif") center center no-repeat
+  &.pp_pic_holder a:focus
+    outline: none
+  &.pp_overlay
+    background: #000
+    display: none
+    left: 0
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 9500
+  &.pp_pic_holder
+    display: none
+    position: absolute
+    width: 100px
+    z-index: 10000
+
+
+.pp_top
+  height: 20px
+  position: relative
+
+* html .pp_top
+  padding: 0 20px
+
+.pp_top
+  .pp_left
+    height: 20px
+    left: 0
+    position: absolute
+    width: 20px
+  .pp_middle
+    height: 20px
+    left: 20px
+    position: absolute
+    right: 20px
+
+* html .pp_top .pp_middle
+  left: 0
+  position: static
+
+.pp_top .pp_right
+  height: 20px
+  left: auto
+  position: absolute
+  right: 0
+  top: 0
+  width: 20px
+
+.pp_content
+  height: 40px
+  .ppt
+    left: auto
+    margin-bottom: 5px
+    position: relative
+    top: auto
+
+.pp_fade
+  display: none
+
+.pp_content_container
+  position: relative
+  text-align: left
+  width: 100%
+  .pp_left
+    padding-left: 20px
+  .pp_right
+    padding-right: 20px
+  .pp_details
+    margin: 10px 0 2px 0
+
+.pp_description
+  display: none
+  margin: 0 0 5px 0
+
+.pp_nav
+  clear: left
+  float: left
+  margin: 3px 0 0 0
+  p
+    float: left
+    margin: 2px 4px
+  a
+    &.pp_arrow_previous, &.pp_arrow_next
+      display: block
+      float: left
+      height: 15px
+      margin-top: 3px
+      overflow: hidden
+      text-indent: -10000px
+      width: 14px
+
+.pp_hoverContainer
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 2000
+
+a
+  &.pp_next
+    background: image-url("admin/prettyPhoto/dark_rounded/btnNext.png") 10000px 10000px no-repeat
+    display: block
+    float: right
+    height: 100%
+    text-indent: -10000px
+    width: 49%
+  &.pp_previous
+    background: image-url("admin/prettyPhoto/dark_rounded/btnNext.png") 10000px 10000px no-repeat
+    display: block
+    float: left
+    height: 100%
+    text-indent: -10000px
+    width: 49%
+  &.pp_expand, &.pp_contract
+    cursor: pointer
+    display: none
+    height: 20px
+    position: absolute
+    right: 30px
+    text-indent: -10000px
+    top: 10px
+    width: 20px
+    z-index: 20000
+  &.pp_close
+    display: block
+    float: right
+    text-indent: -10000px
+
+.pp_bottom
+  height: 20px
+  position: relative
+
+* html .pp_bottom
+  padding: 0 20px
+
+.pp_bottom
+  .pp_left
+    height: 20px
+    left: 0
+    position: absolute
+    width: 20px
+  .pp_middle
+    height: 20px
+    left: 20px
+    position: absolute
+    right: 20px
+
+* html .pp_bottom .pp_middle
+  left: 0
+  position: static
+
+.pp_bottom .pp_right
+  height: 20px
+  left: auto
+  position: absolute
+  right: 0
+  top: 0
+  width: 20px
+
+.pp_loaderIcon
+  display: block
+  height: 24px
+  left: 50%
+  margin: -12px 0 0 -12px
+  position: absolute
+  top: 50%
+  width: 24px
+
+#pp_full_res
+  line-height: 1 !important
+  .pp_inline
+    text-align: left
+    p
+      margin: 0 0 15px 0
+
+div.ppt
+  color: #fff
+  display: none
+  font-size: 17px
+  left: 0
+  position: absolute
+  top: 0
+  z-index: 9999
+
+
+.clearfix
+  &:after
+    content: "."
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+  display: inline-block
+
+/* Hides from IE-mac \
+
+* html .clearfix
+  height: 1%
+
+.clearfix
+  display: block
+
+/* End hide from IE-mac

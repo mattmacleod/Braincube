@@ -1,0 +1,111 @@
+#page_list_area
+	@extend .grid_4,.first
+	#page_tree
+		margin-top: 10px
+		a.add_child
+			display: inline-block
+			padding: 0 !important
+			text-indent: -999em
+			width: 16px
+			height: 16px
+			&:hover,&.show
+				background: image-url("admin/embed/icons/new_page.png") center center no-repeat
+			
+#page_tree_loading
+	@extend .small_rounded_bottom
+	margin: 0 auto
+	background: $grey_6
+	padding: 1em
+	text-align: center
+	text-transform: uppercase
+	color: $grey_2
+	font-size: 0.9em
+	display: none
+			
+#page_list_recent
+	@extend .grid_5,.last
+	ul.recent_list
+		li
+			background: #eee
+			+trailer(1)
+			a
+				display: block
+				padding: 20px
+				color: #333
+				&:hover
+					background-color: mix($highlight_1,white,10%)
+					h3
+						color: $highlight_1
+			.title
+				font-size: 1.1em
+				font-weight: bold
+			.url
+				+trailer(0.5)
+
+			.updated
+				+adjust-font-size-to(12px,1)
+				text-transform: uppercase
+			
+		
+
+
+// Widgets
+	
+.page_widget_tools
+	float: left
+	width: 150px
+	margin-right: 20px
+	
+	.button
+		display: block
+		margin-bottom: 1em
+	
+.page_widget_items
+	float: left
+	width: 500px
+	
+	.empty
+		@extend .small_rounded
+		margin: 0 auto
+		background: $grey_5
+		padding: 1em
+		text-align: center
+		text-transform: uppercase
+		color: $grey_2
+		font-size: 0.9em
+		
+	ul.page_widget_list
+		
+		li.placeholder
+			@extend .small_rounded
+			background: $grey_6
+			margin-bottom: 1em
+			padding: 7px
+			border: 3px $grey_4 dotted
+
+		li.widget
+			@extend .small_rounded
+			background: $grey_5
+			padding: 10px
+			@extend .clearfix
+			margin-bottom: 1em
+			
+			h4
+				@extend .small_rounded_top
+				background: $grey_2 image-url("admin/embed/icons/move.png") 5px center no-repeat
+				color: $grey_3
+				font-size: 1em
+				padding: 3px 10px 3px 30px
+				margin: -10px -10px 10px -10px
+				cursor: move
+				a
+					@extend .medium_rounded
+					float: right
+					color: white
+					padding: 3px 7px 3px 25px
+					margin: 1px -5px 1px 10px
+					line-height: 1em
+					background: $grey_3 image-url("admin/embed/icons/button_delete.png") 0 center no-repeat
+
+
+

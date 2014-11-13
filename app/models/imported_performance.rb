@@ -1,5 +1,7 @@
 class ImportedPerformance < ActiveRecord::Base
   
+  require "csv"
+  
   # Model definition
   ############################################################################
 
@@ -36,7 +38,7 @@ class ImportedPerformance < ActiveRecord::Base
       idx = 0
       
       begin
-        FasterCSV.parse(Iconv.iconv('utf-8', 'Windows-1252', csv_data.read).to_s, {:skip_blanks => true, :headers => false}) do |row|
+        CSV.parse(Iconv.iconv('utf-8', 'Windows-1252', csv_data.read).to_s, {:skip_blanks => true, :headers => false}) do |row|
           idx += 1
           
           if idx < 7
@@ -49,7 +51,7 @@ class ImportedPerformance < ActiveRecord::Base
           
         end
               
-      rescue FasterCSV::MalformedCSVError 
+      rescue CSV::MalformedCSVError 
         return false
       end
 

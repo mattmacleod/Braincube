@@ -1,0 +1,173 @@
+//****************************************************************************
+// List styles
+//***************************************************************************/
+
+table.list
+	padding: 0
+	width: 100%
+	+adjust-font-size-to(12px,1)
+	td
+		+transition(background 400ms)
+		padding: 10px 20px
+		
+		// Cell styles
+		&.center
+			text-align: center
+		&.empty
+			font-weight: bold
+			padding: 2em
+			background: $grey_5
+			text-align: center
+		&.nowrap
+			white-space: nowrap
+		&.destroy,&.approve
+			width: 20px
+		&.category
+			font-weight: bold
+			text-transform: uppercase
+			color: $grey_2
+		
+		// Additional elements
+		span.extra
+			display: block
+			font-size: 0.9em
+			color: #666
+			text-transform: uppercase
+		span.label
+			color: white
+			background: $grey_2
+			@extend .small_rounded
+			text-transform: uppercase
+			font-size: 0.75em
+			padding: 0px 4px
+			position: relative
+			top: -2px
+			display: inline-block
+		span.review_rating
+			display: inline-block
+			white-space: no-break
+
+		// Links
+		a
+			font-weight: bold
+	
+	// Header styles				
+	th
+		font-weight: bold
+		background: $grey_1
+		border-bottom: 1px $grey_3 solid
+		color: $grey_6
+		font-size: 0.9em
+		text-transform: uppercase
+		padding: 4px 20px
+		white-space: nowrap
+			
+		&.action_icons
+			width: 105px
+				
+		&.center
+			text-align: center
+			
+	// Row styles	
+	tr.even td
+		background: #eee
+		border-top: 1px #ddd solid
+		border-bottom: 1px #ddd solid
+
+	tr.reported td
+		background: #fcc !important
+		
+	tr:hover td
+		background: $color_highlight
+	
+	tr.disabled td
+		color: $grey_3
+		text-decoration: line-through
+		a
+			color: $grey_3
+			
+			
+//****************************************************************************
+// Tags
+//***************************************************************************/
+
+span.tag, a.tag
+	@extend .small_rounded
+	font-size: 10px
+	color: $grey_1
+	background: $grey_5
+	border: 1px $grey_4 solid
+	text-transform: uppercase
+	font-weight: bold
+	display: block
+	float: left
+	margin: 0 1em 1em 0
+	padding: 0.1em 0.5em 0.1em 0.7em 
+	&:hover
+		text-decoration: none !important
+		color: $grey_1
+	&:hover
+		background: $grey_4
+	a.show
+		font-weight: bold
+		color: $grey_1
+		text-transform: uppercase
+		&:hover
+			text-decoration: none !important
+			color: $grey_1
+	a.delete
+		width: 16px
+		height: 16px
+		margin-left: 0.5em
+		display: block
+		float: right
+		text-indent: -999em
+		background: image-url("admin/embed/icons/tag_delete.png") no-repeat center center
+			
+		
+//****************************************************************************
+// Opening times
+//***************************************************************************/
+		
+table.opening_times
+	width: 100%
+	td
+		padding: 3px
+	th
+		padding: 0 3px
+		border-bottom: 1px $grey_2 solid
+		font-weight: bold
+		text-transform: uppercase
+		font-size: 0.9em
+
+
+//****************************************************************************
+// Specific to the import list
+//***************************************************************************/
+
+table.import_list
+	.subrow
+		display: block
+	.times
+		white-space: nowrap
+	.error_icon
+		width: 16px
+		height: 16px
+		background: image-url("admin/embed/icons/tab_error.png") no-repeat center center
+		text-indent: -999em
+	.description
+		font-size: 0.9em
+		line-height: 1.3em
+		color: $grey_2
+		margin: 5px 0
+	em
+		display: block
+		color: $grey_3
+		font-size: 0.9em
+		line-height: 1.3em
+		
+	strong.error
+		color: $color_red
+	
+	
+	

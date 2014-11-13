@@ -1,0 +1,389 @@
+//****************************************************************************
+// Styles for asset manager
+//***************************************************************************/
+
+.asset_folder_list
+	max-height: 700px
+	overflow: scroll
+	overflow-y: scroll
+	overflow-x: hidden
+	test: whatever
+	li
+		padding: 2px 0
+		whitespace: nobreak
+		ul
+			margin-left: 0px
+	a
+		color: $grey_1
+		padding: 0 0 0 18px
+		background: image-url("admin/embed/icons/folder_closed.png") no-repeat left center
+		&.collapsable
+			background: image-url("admin/embed/icons/folder.png") no-repeat left center
+		&.current
+			@extend .small_rounded
+			background: image-url("admin/embed/icons/folder_white.png") no-repeat left center
+			background-color: $grey_1
+			color: white
+			font-weight: bold
+			padding: 3px 5px 3px 21px
+			margin-bottom: 2px
+			background-position: 3px center
+
+
+#folder_browser h2
+	font-size: 2em
+	font-weight: bold
+	margin-top: 1em
+	margin-bottom: 1em
+
+#main_folder_wrapper
+	border: 3px #eef solid
+	overflow: auto
+	padding: 11px
+
+
+#folder_browser,.google_image_search
+	h2
+		padding: 0
+		margin: 0 0 10px 0
+	div
+	
+		&.icon
+			+transition(all 400ms)
+			width: 125px
+			min-height: 100px
+			float: left
+			margin-right: 9px
+			margin-bottom: 13px			
+			img,.icon_area
+				width: 125px
+				height: 100px
+				text-indent: -999em
+				
+			// Icon types
+			.icon_area
+				background: black image-url("admin/embed/icons/file_types/generic.png") no-repeat center center
+				
+			&.pdf .icon_area
+				background-image: image-url("admin/embed/icons/file_types/pdf.png")
+			&.doc .icon_area
+				background-image: image-url("admin/embed/icons/file_types/doc.png")
+			&.xls .icon_area
+				background-image: image-url("admin/embed/icons/file_types/xls.png")
+			&.zip .icon_area
+				background-image: image-url("admin/embed/icons/file_types/zip.png")
+				
+			&:hover
+				+box-shadow(0 0 20px transparentize($highlight_1, 0.5))
+				.label
+					background-color: transparentize($highlight_1, 0.9)
+			&.last
+				margin-right: 0px
+			&:nth-child(5n+1)
+				clear: left
+			.label
+				overflow: hidden
+				padding: 5px
+				background: #eee
+				margin-top: -5px
+				+transition(all 400ms)
+				
+				strong
+					display: block
+				em
+					display: block
+					float: right
+					background: $grey_1
+					padding: 0px 3px 2px 3px
+					margin: 3px -5px -5px 3px
+					.asset_edit
+						background-position: -64px -112px
+					.asset_show
+						background-position: -160px -112px
+					.asset_download
+						background-position: -32px -80px
+					.asset_delete
+						background-position: -80px -128px
+					.asset_use
+						background-position: -64px -144px
+					
+		&.label a
+			display: block
+			float: left
+			text-indent: -999em
+			width: 14px
+			height: 14px
+			background-image: $icon_set_1
+			margin-right: 3px
+			&:hover
+				width: 14px
+				height: 14px
+				background-image: $icon_set_3
+
+
+fieldset.preview 
+	width: 672px
+	overflow: auto
+	
+	.original_image_wrapper
+		width: 672px
+		overflow: auto
+		
+	img.original
+		margin: 0px 20px 20px 0
+		
+	.recrop
+		display: none
+			
+	.geometry
+		display: none
+
+	.thumbnail
+		float: left
+		width: 49%
+		
+	.download_pdf
+		float: right
+		width: 49%
+
+
+	.download_document
+		float: left
+		width: 49%	
+	
+
+
+#asset_dnd
+	padding: 10px
+	border: 5px #ccc solid
+	text-align: center
+	color: #222
+	+trailer(1)
+	h2
+		margin: 0
+		+adjust-font-size-to(16px,1)
+		text-transform: uppercase
+	.dz-preview
+		background: white
+		border: 1px #ccc solid
+		padding: 10px
+		text-align: left
+		overflow: hidden
+		cursor: default
+		+leader(0.5)
+	.dz-filename,.dz-size
+		color: #222
+		display: inline
+	.dz-size
+		margin-left: 10px
+		color: #444
+	img
+		float: left
+		margin-right: $gutter-width/2
+		width: 10%
+		display: block
+
+	.dz-progress
+		float: left
+		height: rhythm(1)
+		background: #222
+		width: 100%
+		margin-top: 5px
+	.dz-upload
+		height: rhythm(1)
+		width: 0
+		background-color: $highlight_1
+		display: block
+		+transition(width 10ms ease-in-out)
+
+	.dz-image-preview .dz-progress
+		width: 87%
+
+	.dz-error-message,.dz-wait-message,.dz-close
+		+adjust-font-size-to(12px,1)
+	.dz-error-message
+		color: red
+		float: left
+	.dz-wait-message
+		display: none
+
+	.dz-processing
+		.dz-wait-message
+			display: block
+		.dz-upload
+			background: image-url("admin/progress.gif")
+
+	.dz-error
+		.dz-wait-message
+			display: none
+		.dz-upload
+			background-image: none !important
+
+	.dz-close
+		float: right
+		cursor: pointer
+
+
+
+
+.asset_attachment_tools
+	float: left
+	width: 150px
+	margin-right: 20px
+	
+	.button
+		display: block
+		margin-bottom: 1em
+		
+.asset_search_suggestion
+	display: none
+	
+.asset_attachment_items
+	float: left
+	width: 500px
+
+	.empty
+		@extend .small_rounded
+		margin: 0 auto
+		background: $grey_5
+		padding: 1em
+		text-align: center
+		text-transform: uppercase
+		color: $grey_2
+		font-size: 0.9em
+		
+	ul.asset_attachment_list
+		overflow: auto
+	
+		li.placeholder
+			@extend .small_rounded
+			background: $grey_6
+			margin-bottom: 1em
+			padding: 7px
+			border: 3px $grey_4 dotted
+		
+		li.asset
+			background: $grey_5
+			padding: 10px
+			@extend .clearfix
+			margin-bottom: 1em
+			
+			h4
+				background: $grey_2 image-url("admin/embed/icons/move.png") 5px center no-repeat
+				color: $grey_4
+				padding: 3px 10px 3px 30px
+				margin: -10px -10px 10px -10px
+				cursor: move
+				+adjust-font-size-to(12px,1)
+				font-weight: bold
+				a
+					float: right
+					color: white
+					padding: 3px 7px 3px 23px
+					margin: 0px -7px 1px 10px
+					line-height: 1em
+					background: image-url("admin/embed/icons/button_delete.png") 0 center no-repeat
+
+			.thumbnail
+				@extend .small_rounded
+				width: 126px
+				float: left
+				margin-right: 10px
+				padding: 4px
+				background: $grey_2
+				line-height: 0				
+				img
+					border: 1px $grey_3 solid
+					
+			.caption
+				width: 335px
+				float: left
+					
+.asset_attachment_window fieldset.preview
+	max-width: 775px !important
+	
+	
+	
+#google_search_form
+	width: 380px
+	float: left
+	
+#google_search_results
+	width: 380px
+	float: right
+	
+	h2
+		@extend .small_rounded_top
+		background: $grey_2
+		color: white
+		float: none
+		padding: 5px 10px
+		font-size: 1.2em
+
+#google_search_query
+	padding: 10px
+	background: $grey_5
+	input
+		width: 80%
+	a
+		@extend .small_rounded
+		width: 20%
+		border: 1px $grey_4 solid
+		background: $grey_6
+		color: $grey_2
+		padding: 3px 5px
+		text-transform: uppercase
+		
+	
+#google_branding
+	@extend .small_rounded
+	float: right
+	background: $grey_5
+	padding: 5px 10px 3px 10px
+	line-height: 1.1em
+
+.google_image_search
+	border: 3px $grey_5 solid
+	overflow: auto
+	padding: 10px
+	background: white
+	
+	.result
+		background: $grey_6
+		padding: 10px
+		margin-bottom: 10px
+		
+		.thumb
+			float: left
+			margin-right: 10px
+			width: 125px
+			img
+				max-width: 125px
+				border: 1px $grey_3 solid
+		
+		.label
+			float: left
+			width: 190px
+			strong
+				display: block
+				line-height: 1.3em
+			span.source
+				display: block
+			em
+				display: block
+				float: left
+				@extend .clearfix
+				margin-top: 1em
+				a
+					@extend .small_rounded
+					background-color: $grey_2
+					height: 17px
+					width: 17px
+					margin-right: 7px
+					&.asset_show
+						background-position: -160px -112px
+					&.asset_download
+						background-position: -64px -144px
+
+
+

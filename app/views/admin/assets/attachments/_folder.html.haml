@@ -15,5 +15,5 @@
 					=link_to "Use", asset.asset.url(:thumb), :id => "#{asset.id}", :class => :asset_use
 				- else
 					=link_to "Download", asset.asset.url(:original), :class => :asset_download, :title => asset.title
-					=link_to "Use", "/images/admin/embed/icons/file_types/#{asset.asset_type}.png", :id => "#{asset.id}", :class => "asset_use linked"
+					=link_to "Use", "icons/file_types/#{asset.asset_type}.png", :id => "#{asset.id}", :class => "asset_use linked"
 			.clear

@@ -1,0 +1,32 @@
+html,body
+	font-family: 	$default-font-stack
+	font-size: 		$base-font-size
+	line-height: 	$base-line-height
+	
+// Default fonts
+//============================================================================
++establish-baseline
+
+body
+	font-family: $default-font-stack
+
+// Headings
+//============================================================================
+#{ headings() }
+	font-family: $heading-font-stack
+	font-weight: lighter
+	
+h1
+	+adjust-font-size-to(28px,2)
+	+trailer(0.5)
+
+h2
+	+adjust-font-size-to(18px,1.5)
+	+trailer(0.5)
+	
+h3
+	+adjust-font-size-to(20px, 1)
+	+trailer(0.5)
+	
+h4,h5,h6
+	font-family: $default-font-stack

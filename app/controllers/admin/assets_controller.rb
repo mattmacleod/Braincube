@@ -61,7 +61,19 @@ class Admin::AssetsController < AdminController
     redirect_to browse_admin_asset_folders_path( @asset.asset_folder.path ) and return
   end
   
-  
+  def dnd_create
+    @asset       = Asset.new
+    @asset.asset = params[:asset][:asset]
+    @asset.user  = current_user
+    @asset.title = params[:asset][:asset].original_filename.split(".")[0..-2].join(".").gsub(/[_\-]/, " ").gsub(/\s+/, " ").strip.gsub(/^(.)/){ $1.capitalize }
+    @asset.asset_folder = @current_folder unless @asset.asset_folder
+    if @asset.save
+      render :partial => "admin/asset_folders/asset.html.haml", :locals => { :asset => @asset }
+    else
+      head 400
+    end
+  end
+
   ############################################################################
   # ZIP uploads
   ############################################################################
@@ -98,5 +110,5 @@ class Admin::AssetsController < AdminController
     @current_folder ||= AssetFolder.root
     session[:current_folder] = @current_folder.id
   end
-  
+
 end

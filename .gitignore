@@ -6,3 +6,4 @@ tmp/**/*
 public/assets
 coverage
 solr/data/*
+solr/pids

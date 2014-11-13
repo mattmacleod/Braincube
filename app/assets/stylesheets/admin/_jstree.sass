@@ -1,0 +1,66 @@
+.jstree-braincube
+
+	li, ins
+		background-image: image-url("admin/jstree/d.png")
+		background-repeat: no-repeat
+		background-color: transparent
+		
+	li
+		background-position: -90px 0
+		background-repeat: repeat-y
+		&.jstree-last
+			background: transparent
+
+	.jstree-open > ins
+		background-position: -72px 0
+	.jstree-closed > ins
+		background-position: -54px 0
+	.jstree-leaf > ins
+		background-position: -36px 0
+		
+	a
+		@extend .small_rounded
+		padding: 3px 5px 3px 3px !important
+		&:hover
+			text-decoration: none !important
+			background-color: $grey_5
+		ins
+			cursor: move
+
+	a
+		.jstree-icon
+			background-position: -56px -20px
+		&.disabled 
+			color: $grey_3
+			.jstree-icon
+				background-position: -56px -38px
+		&.timed .jstree-icon
+			background-position: -56px -55px		
+		&.jstree-loading .jstree-icon
+			background: image-url("admin/jstree/throbber.gif") center center no-repeat !important
+	&.jstree-focused
+		background: white
+	.jstree-search
+		font-style: italic
+		color: black !important
+		ins
+			opacity: 1 !important
+
+#vakata-dragged
+	ins
+		background: transparent !important
+	.jstree-ok
+		background: image-url("admin/jstree/d.png") -2px -53px no-repeat !important
+	.jstree-invalid
+		background: image-url("admin/jstree/d.png") -18px -53px no-repeat !important
+
+#jstree-marker
+	background: image-url("admin/jstree/d.png") -41px -57px no-repeat !important
+
+.jstree-braincube.searching
+	a
+		color: $grey_3
+		ins
+			opacity: 0.5
+
+		

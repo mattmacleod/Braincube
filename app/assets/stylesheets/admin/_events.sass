@@ -1,0 +1,144 @@
+//****************************************************************************
+// Styles for event and performance manager
+//***************************************************************************/
+
+.event_performance_tools
+	float: left
+	width: 150px
+	margin-right: 20px
+	
+	.button
+		display: block
+		margin-bottom: 1em
+
+.event_performance_items
+	float: left
+	width: 500px
+
+	.empty
+		@extend .small_rounded
+		margin: 0 auto
+		background: $grey_5
+		padding: 1em
+		text-align: center
+		text-transform: uppercase
+		color: $grey_2
+		font-size: 0.9em
+		
+	table
+		width: 100%
+		border-bottom: 1px $grey_4 solid
+		
+		th
+			background: $grey_2
+			font-weight: bold
+			color: $grey_6
+			padding: 0 5px
+			&.first
+				@extend .small_rounded_top_left
+			&.last
+				@extend .small_rounded_top_right
+			&.icons
+				width: 34px
+				
+		td
+			font-size: 0.9em
+			padding: 5px
+			border-top: 1px $grey_4 solid
+			&.first
+				border-left: 1px $grey_4 solid
+			&.last
+				border-right: 1px $grey_4 solid
+			&.icons
+				a
+					display: block
+					float: right
+					text-indent: -999em
+					width: 14px
+					height: 14px
+					background-image: image-url("admin/embed/icons/icons_222.png")
+					margin-right: 3px
+
+				.edit
+					background-position: -64px -112px
+				.remove
+					background-position: -80px -128px
+			    
+				
+		tr.details
+			display: none
+			td
+				border-top: none
+				border-left: 1px $grey_4 solid
+				border-right: 1px $grey_4 solid
+				h3
+					margin: 0 0 5px 0
+					padding: 0px 5px
+					font-size: 1em
+					color: $grey_4
+					a
+						float: right
+						
+		tr.odd td
+			background: $grey_4
+			
+	
+	
+.performance_previews
+	width: 100%
+	th
+		background: $grey_2
+		color: $grey_6
+		padding: 0 5px
+		font-weight: bold
+		&.checkbox
+			text-align: center
+			width: 40px
+	td
+		padding: 5px 5px
+		border-bottom: 1px $grey_4 solid
+		&.checkbox
+			text-align: center
+	
+.build_performances_window
+	.button_area
+		padding: 2em 0 0 0
+		input
+			float: right
+
+	
+// Search results for attachment
+a.event_search_add_link, a.event_search_remove_link, a.venue_search_add_link, a.venue_search_remove_link
+	@extend .large_rounded
+	display: inline-block
+	background: $grey_4
+	padding: 2px 7px 2px 19px
+	background-position: -1px center
+	background-repeat: no-repeat
+	width: auto
+	color: $grey_0
+	font-weight: bold
+	font-size: 0.75em
+	line-height: 1em
+
+a.event_search_add_link, a.venue_search_add_link
+	background-image: image-url("admin/embed/icons/small_button_save.png")
+
+a.event_search_remove_link, a.venue_search_remove_link
+	background-image: image-url("admin/embed/icons/small_button_delete.png")
+	
+	
+	
+table.list a.event_featured_toggle
+	width: 24px
+	height: 24px
+	display: block
+	text-indent: -999em
+	background-position: center center
+	background-repeat: no-repeat
+	&.tick
+		background-image: image-url("admin/embed/icons/ajax_tick.png")
+	&.cross
+		background-image: image-url("admin/embed/icons/ajax_cross.png")
+			
+			
