@@ -9,7 +9,7 @@ braincube.admin.tinymce = {
 	init: function(){
 		$('textarea.text_editor').tinymce({
 			
-					script_url : '/assets/tiny_mce/tiny_mce.js',
+					script_url : '/site_assets/tiny_mce/tiny_mce.js',
 
 					theme : "advanced",
 					plugins : "inlinepopups,searchreplace,print,contextmenu,paste,fullscreen,xhtmlxtras,braincube_files",
